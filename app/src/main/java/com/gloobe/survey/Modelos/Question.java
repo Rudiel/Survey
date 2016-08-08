@@ -22,16 +22,8 @@ public class Question {
         return type_question;
     }
 
-    public void setType_question(int type_question) {
-        this.type_question = type_question;
-    }
-
     public String getQuestion() {
         return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
     }
 
     public List<Answer> getAnswers() {

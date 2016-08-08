@@ -10,15 +10,8 @@ public class Sad {
         return active;
     }
 
-    public void setActive(String active) {
-        this.active = active;
-    }
-
     public String getInactive() {
         return inactive;
     }
 
-    public void setInactive(String inactive) {
-        this.inactive = inactive;
-    }
 }

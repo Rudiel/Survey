@@ -57,6 +57,7 @@
         <item name="android:background">@drawable/custom_spinner</item>
         <item name="android:height">@dimen/encuesta_spinner_h</item>
         <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
+
     </style>
 
     <style name="EdittextStyle" parent="@android:style/Widget.DeviceDefault.EditText">

@@ -7,10 +7,6 @@ public class Authorize {
 
     private Auth auth;
 
-    public Auth getLoginRequest() {
-        return auth;
-    }
-
     public void setLoginRequest(Auth auth) {
         this.auth = auth;
     }

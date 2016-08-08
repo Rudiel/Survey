@@ -17,10 +17,6 @@ public class Data {
         return surveys;
     }
 
-    public void setSurveys(List<Survey> surveys) {
-        this.surveys = surveys;
-    }
-
     public String getColor() {
         return color;
     }
@@ -33,15 +29,6 @@ public class Data {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-
     public void setColor(String color) {
         this.color = color;
     }
@@ -50,7 +37,4 @@ public class Data {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 }

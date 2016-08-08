@@ -18,23 +18,12 @@ public class Intro {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getTexto() {
         return texto;
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
     }
 
     public int getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
-    }
 }

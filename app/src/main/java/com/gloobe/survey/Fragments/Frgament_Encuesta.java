@@ -78,7 +78,6 @@ public class Frgament_Encuesta extends Fragment {
 
     private RespuestaJSON resEdittex;
     private RespuestaJSON resCheckBox;
-    private RespuestaJSON resCarita;
 
 
     @Nullable
@@ -252,7 +251,7 @@ public class Frgament_Encuesta extends Fragment {
             }
 
             Multiple multiple = new Multiple();
-            cb.setOnCheckedChangeListener(clicCheckBox(multiple, mAnswerList, id, titulo));
+            cb.setOnCheckedChangeListener(clicCheckBox(multiple, id, titulo));
 
 
             ll.addView(cb);
@@ -319,7 +318,7 @@ public class Frgament_Encuesta extends Fragment {
 
             arrCaritas.add(mCarita);
 
-            carita.setOnClickListener(clickCarita(carita, i, mAnswerList, arrCaritas, id_pregunta, titulo));
+            carita.setOnClickListener(clickCarita(arrCaritas, id_pregunta, titulo));
 
             linearLayout.addView(carita);
         }
@@ -374,7 +373,7 @@ public class Frgament_Encuesta extends Fragment {
         return titulo;
     }
 
-    private View.OnClickListener clickCarita(final ImageView imageView, final int id, final List<Answer> mAnswerList, final ArrayList<Carita> arrCaritas, final int id_pregunta, final String titulo) {
+    private View.OnClickListener clickCarita(final ArrayList<Carita> arrCaritas, final int id_pregunta, final String titulo) {
         return new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -397,6 +396,7 @@ public class Frgament_Encuesta extends Fragment {
                             c.getRespuestaJSON().setRespuesta(r);
                         c.getRespuestaJSON().setId_pregunta(c.getId());
                         c.getRespuestaJSON().setTipo(3);
+                        c.getRespuestaJSON().setNombre(titulo);
 
                         if (!c.getRespuestaJSON().getRespuesta().equals(""))
                             if (!arrRespuestasJSON.contains(c.getRespuestaJSON()))
@@ -431,7 +431,7 @@ public class Frgament_Encuesta extends Fragment {
         };
     }
 
-    private CheckBox.OnCheckedChangeListener clicCheckBox(final Multiple multiple, List<Answer> mAnswerList, final int id, final String titulo) {
+    private CheckBox.OnCheckedChangeListener clicCheckBox(final Multiple multiple, final int id, final String titulo) {
 
         return new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -456,6 +456,7 @@ public class Frgament_Encuesta extends Fragment {
                 res.setTipo(4);
                 res.setNombre(titulo);
                 res.setRes(Math.round(v));
+                res.setId_pregunta(id);
 
                 if (!arrRespuestasJSON.contains(res))
                     arrRespuestasJSON.add(res);
@@ -485,6 +486,7 @@ public class Frgament_Encuesta extends Fragment {
                     res.setTipo(1);
                     res.setNombre(titulo);
                     res.setRespuesta(selection);
+                    res.setId_pregunta(id);
 
                     if (!arrRespuestasJSON.contains(res))
                         arrRespuestasJSON.add(res);
@@ -538,16 +540,12 @@ public class Frgament_Encuesta extends Fragment {
                                 ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_mal), getString(R.string.encuesta_dialog_titulo));
 
                             progressDialog.dismiss();
-
-                            arrRespuestasJSON.clear();
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_mal), getString(R.string.encuesta_dialog_titulo));
                             progressDialog.dismiss();
-
-                            arrRespuestasJSON.clear();
 
                         }
                     });
