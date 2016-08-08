@@ -9,13 +9,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:textSize="@dimen/lista_item_textsize" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/flecha" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
+        android:layout_height=".1dp"
         android:layout_below="@id/tvLista"
-        android:background="@android:color/darker_gray" />
+        android:background="@color/tema_gris" />
 
 
 </RelativeLayout>
