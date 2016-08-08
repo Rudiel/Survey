@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Survey</string>
+    <string name="url_global">https://murmuring-ocean-26308.herokuapp.com/api/v1/</string>
+
+    <string name="intro_nuestro_titulo">Nuestro Servicio</string>
+    <string name="intro_dinamic_survey">Dinamic Survey </string>
+    <string name="intro_nuestro_texto"><b>Dinamic Survey</b> es una app de encuestas personalizadas que permite un diseño atractivo y amistoso, al mismo tiempo permite analizar y tener de una manera organizada los resultados de tus encuestas.</string>
+    <string name="intro_trabajando_titulo">Trabajando sin Internet</string>
+    <string name="intro_trabajando_texto">Contamos con un sistema simple y sencillo que tiene la capacidad de trabajar sin internet, permite realizar encuestas que se sincronizarán al conectarse a internet.</string>
+    <string name="intro_tipos_titulo">Tipos de Preguntas</string>
+    <string name="intro_tipos_texto">Ofrecemos más de 50 tipos de preguntas y respuestas personalizables, incluyendo opción multiple.</string>
+
+    <string name="login_hint_password">Password</string>
+    <string name="login_hint_usuario">Usuario</string>
+    <string name="login_hint_password_error">Password es un campo necesario</string>
+    <string name="login_hint_usuario_error">Usuario es un campo necesario</string>
+    <string name="login_signin">SIGN IN</string>
+    <string name="login_dialog_titulo">Login</string>
+    <string name="login_credenciales_invalidas">Usuario o Contraseña no válidos. Verifique sus credenciales.</string>
+    <string name="login_titulo_dialogo">Login</string>
+
+    <string name="encuesta_boton_texto">Enviar Respuestas</string>
+    <string name="encuesta_edittext_hint">Escribe tu respuesta</string>
+    <string name="encuesta_dialog_titulo">Encuesta</string>
+    <string name="encuestra_dialgo_texto_mal">Ocurrio un error al Enviar sus Respuestas, intente nuevamente.</string>
+    <string name="encuestra_dialgo_texto_bien">Respuestas Enviadas Satisfactoriamente!.</string>
+
+    <string name="lista_dialogo_texto_mal">Este item no tiene encuestas</string>
+    <string name="lista_dialogo_titulo">Encuestas</string>
+
+
+</resources>

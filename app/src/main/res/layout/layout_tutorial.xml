@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Actividades.Actividad_Tutorial">
+
+    <ImageView
+        android:id="@+id/ivFondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btLogin"
+        android:layout_width="@dimen/tutorial_button_width"
+        android:layout_height="@dimen/tutorial_button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_orange"
+        android:text="@string/login_signin"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/botones_texto" />
+
+    <ImageView
+        android:id="@+id/ivPuntos"
+        android:layout_width="@dimen/tutorial_puntos_w"
+        android:layout_height="@dimen/tutorial_puntos_h"
+        android:layout_above="@id/btLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/puntos1" />
+
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vpCarrusel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btLogin" />
+
+
+</RelativeLayout>

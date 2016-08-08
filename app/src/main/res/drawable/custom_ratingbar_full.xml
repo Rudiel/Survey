@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:width="@dimen/dimen_carita"
+        android:drawable="@drawable/custom_ratingbar_full_empty" />
+    <item
+        android:id="@android:id/secondaryProgress"
+        android:width="@dimen/dimen_carita"
+        android:drawable="@drawable/custom_ratingbar_full_empty" />
+    <item
+        android:id="@android:id/progress"
+        android:width="@dimen/dimen_carita"
+        android:drawable="@drawable/custom_ratingbar_full_filled" />
+</layer-list>

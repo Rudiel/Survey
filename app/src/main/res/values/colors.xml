@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="tema_naranja">#eb771e</color>
+    <color name="tema_naranja_over">#B65105</color>
+    <color name="tema_verde">#004652</color>
+    <color name="tema_verde_over">#002930</color>
+    <color name="tema_gris">#e6edee</color>
+</resources>

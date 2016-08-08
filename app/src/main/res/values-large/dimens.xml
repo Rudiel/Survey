@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tutorial_button_width">400dp</dimen>
+    <dimen name="tutorial_button_height">40dp</dimen>
+    <dimen name="tutorial_puntos_w">100dp</dimen>
+    <dimen name="tutorial_puntos_h">30dp</dimen>
+    <dimen name="dimen_carita">80dp</dimen>
+
+    <dimen name="encuesta_boton_enviar_h">50dp</dimen>
+    <dimen name="encuesta_boton_enviar_w">300dp</dimen>
+    <dimen name="encuesta_imagen_w">400dp</dimen>
+    <dimen name="encuesta_imagen_h">150dp</dimen>
+    <dimen name="encustas_titulos_s">15sp</dimen>
+    <dimen name="encustas_respuestas_s">12sp</dimen>
+    <dimen name="encuesta_spinner_h">35dp</dimen>
+
+
+    <dimen name="login_button_w">300dp</dimen>
+    <dimen name="login_button_h">60dp</dimen>
+    <dimen name="login_button_space">80dp</dimen>
+
+    <dimen name="lista_logo_w">250dp</dimen>
+    <dimen name="lista_logo_h">55dp</dimen>
+    <dimen name="lista_idioma_w">35dp</dimen>
+    <dimen name="lista_idioma_h">35dp</dimen>
+    <dimen name="lista_item_textsize">25sp</dimen>
+
+    <dimen name="tutorial_image_w">500dp</dimen>
+    <dimen name="tutorial_image_h">500dp</dimen>
+    <dimen name="tutorial_titulo_s">30sp</dimen>
+    <dimen name="tutorial_texto_s">20sp</dimen>
+
+    <dimen name="botones_texto">18sp</dimen>
+
+
+</resources>
