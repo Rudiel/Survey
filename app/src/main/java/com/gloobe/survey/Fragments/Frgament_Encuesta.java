@@ -159,8 +159,6 @@ public class Frgament_Encuesta extends Fragment {
             rg.addView(rb[i]);
 
         }
-        rg.setId(id);
-
         RespuestaJSON res = new RespuestaJSON();
 
         rg.setOnCheckedChangeListener(clickRadioButton(res, id, titulo));
@@ -202,12 +200,14 @@ public class Frgament_Encuesta extends Fragment {
 
         ll.addView(crearTitulos(titulo));
 
-        EditText editText = new EditText(new ContextThemeWrapper(getActivity(), R.style.EdittextStyle));
-        editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        EditText editText = new EditText(new ContextThemeWrapper(getActivity(), R.style.EdittextStyle), null, 0);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.rightMargin = 20;
+        params.leftMargin = 20;
+        editText.setLayoutParams(params);
         editText.setHint(getString(R.string.encuesta_edittext_hint));
-        editText.setHintTextColor(Color.WHITE);
+        editText.setHintTextColor(getResources().getColor(R.color.tema_verde_over));
         editText.setSingleLine(true);
-        editText.setTextColor(Color.WHITE);
         editText.setTextSize(getResources().getDimension(R.dimen.encustas_respuestas_s));
         editText.setMaxLines(1);
         editText.setLines(1);
@@ -477,15 +477,9 @@ public class Frgament_Encuesta extends Fragment {
                     View radioButton = radioGroup.findViewById(idb);
                     int radioId = radioGroup.indexOfChild(radioButton);
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
-                    String selection = "";
-                    try {
-                        selection = (String) btn.getText();
-                    } catch (Exception e) {
-
-                    }
                     res.setTipo(1);
                     res.setNombre(titulo);
-                    res.setRespuesta(selection);
+                    res.setRespuesta((String) btn.getText());
                     res.setId_pregunta(id);
 
                     if (!arrRespuestasJSON.contains(res))

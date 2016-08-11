@@ -62,8 +62,9 @@
 
     <style name="EdittextStyle" parent="@android:style/Widget.DeviceDefault.EditText">
         <item name="android:background">@drawable/custom_spinner</item>
-        <item name="android:height">@dimen/encuesta_spinner_h</item>
+        <item name="android:height">@dimen/encuesta_edittext_h</item>
         <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
+        <item name="android:textColor">@color/tema_verde</item>
     </style>
 
 </resources>

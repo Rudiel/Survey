@@ -2,116 +2,116 @@
 <items version="2" >
 
     <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/libs/internal_impl-24.1.0.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.0_57ce5c13c0bf40a8c8a41d5ec482717db6f97e43/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="e096a5d8343cc9c5a9f6eded36bd0f4c82f8c83e">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.0_ae9ae9521e1c01a962bc3a56159ceeecbaa98b09/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_0b04492f18731b6ce98bc29c9b64b2aa82a1a369/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_eae53177f286b2e4397d9151577da3ba48c78bfa/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="801435f842f3eb299fe1b0028fad0995a191764a">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_044ff2b5af41a2a1db5538c5fec93a9a534f8a5b/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.2.1_a7e1a31eefae926876cb942824c4c972e3bcbfcd/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.0/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.0_39007a2b1fba99c164f98b67d0336bcda774e451/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_466e6268d4251038810a0c9cfa18f41e8c1ebca1/classes.dex" />
-    </item>
-    <item
-        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.2.1/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.2.1_18843f5579a696c2327c6c0b8d54a805a3e35ffc/classes.dex" />
-    </item>
-    <item
         jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_83033db15a2ba38dd48c943d6eb701893e8e4d1c/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_83033db15a2ba38dd48c943d6eb701893e8e4d1c.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_4d783541f044edc10aef3db3af4466a7d0f788e2/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/okio-1.8.0_4d783541f044edc10aef3db3af4466a7d0f788e2.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/libs/internal_impl-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/internal_impl-24.1.0_57ce5c13c0bf40a8c8a41d5ec482717db6f97e43.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e096a5d8343cc9c5a9f6eded36bd0f4c82f8c83e">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.1.0_ae9ae9521e1c01a962bc3a56159ceeecbaa98b09.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/retrofit-2.1.0_0b04492f18731b6ce98bc29c9b64b2aa82a1a369.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_fa900a0407228acd990ca70c26fae8408057f96a/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/okhttp-3.3.0_fa900a0407228acd990ca70c26fae8408057f96a.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.0_c10a893ee07075746580515450fa6f0979a5ab29/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/support-annotations-24.1.0_c10a893ee07075746580515450fa6f0979a5ab29.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/glide-3.7.0_eae53177f286b2e4397d9151577da3ba48c78bfa.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="565bc60de2c4e8baa155f3376ceb7cb1dab08b06">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_044ff2b5af41a2a1db5538c5fec93a9a534f8a5b.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.1.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="9340c4f95a4e3916c9ad70296e24576743743712">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.1.0_81cbace9fe9940b8262a9711389db00555ee015a/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.1.0_81cbace9fe9940b8262a9711389db00555ee015a.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.2.1_a7e1a31eefae926876cb942824c4c972e3bcbfcd.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.1.0_39007a2b1fba99c164f98b67d0336bcda774e451.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/gson-2.7_466e6268d4251038810a0c9cfa18f41e8c1ebca1.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="1bfcc26b411d5c03470a035364c878c5e12a7a54">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f518e87d077002eb6e47b2639e7ea12854f3ae43/classes.dex" />
+        sha1="2932a2e8aa8ccd036be98c50fa4271eb8f148cb4">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/instant-run_f518e87d077002eb6e47b2639e7ea12854f3ae43.jar" />
+    </item>
+    <item
+        jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.2.1_18843f5579a696c2327c6c0b8d54a805a3e35ffc.jar" />
     </item>
     <item
         jar="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.1.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="8c854b30eca6c442fe842e66cd3b58c5dd08996f">
-        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.1.0_3d95c80b8df1d75c828d4d17ca593f3e0e8361cc/classes.dex" />
+        <dex dex="/Users/rudielavilaperaza/Documents/Apps Android/Survey/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.1.0_3d95c80b8df1d75c828d4d17ca593f3e0e8361cc.jar" />
     </item>
 
 </items>

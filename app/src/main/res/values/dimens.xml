@@ -18,6 +18,8 @@
     <dimen name="encustas_respuestas_s">10sp</dimen>
     <dimen name="encuesta_radiobutton">20dp</dimen>
     <dimen name="encuesta_spinner_h">30dp</dimen>
+    <dimen name="encuesta_edittext_h">40dp</dimen>
+
 
     <dimen name="login_button_w">250dp</dimen>
     <dimen name="login_button_h">50dp</dimen>

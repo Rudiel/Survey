@@ -11,6 +11,7 @@
     <dimen name="encustas_titulos_s">25sp</dimen>
     <dimen name="encustas_respuestas_s">20sp</dimen>
     <dimen name="encuesta_spinner_h">40dp</dimen>
+    <dimen name="encuesta_edittext_h">50dp</dimen>
 
 
     <dimen name="login_button_w">350dp</dimen>
