@@ -42,19 +42,19 @@ public class AdapterImageSwipe extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.layout_imageitem, container, false);
+    View itemView = inflater.inflate(R.layout.layout_imageitem, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.ivImagen);
-        TextView titulo = (TextView) itemView.findViewById(R.id.tvTitulo);
-        TextView texto = (TextView) itemView.findViewById(R.id.tvTexto);
+    ImageView imageView = (ImageView) itemView.findViewById(R.id.ivImagen);
+    TextView titulo = (TextView) itemView.findViewById(R.id.tvTitulo);
+    TextView texto = (TextView) itemView.findViewById(R.id.tvTexto);
 
-        titulo.setText(intros.get(position).getTitulo());
-        texto.setText(intros.get(position).getTexto());
-        Glide.with(context).load(intros.get(position).getImagen()).into(imageView);
+    titulo.setText(intros.get(position).getTitulo());
+    texto.setText(intros.get(position).getTexto());
+    Glide.with(context).load(intros.get(position).getImagen()).into(imageView);
 
-        container.addView(itemView);
-        return itemView;
-    }
+    container.addView(itemView);
+    return itemView;
+}
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {

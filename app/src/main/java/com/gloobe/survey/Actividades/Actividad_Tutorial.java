@@ -26,6 +26,7 @@ public class Actividad_Tutorial extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_tutorial);
 
@@ -37,7 +38,7 @@ public class Actividad_Tutorial extends AppCompatActivity {
 
         intros = new ArrayList<>();
 
-        intros.add(new Intro(getString(R.string.intro_nuestro_titulo),getString(R.string.intro_nuestro_texto), R.drawable.logo));
+        intros.add(new Intro(getString(R.string.intro_nuestro_titulo), getString(R.string.intro_nuestro_texto), R.drawable.logo));
         intros.add(new Intro(getString(R.string.intro_trabajando_titulo), getString(R.string.intro_trabajando_texto), R.drawable.wifi));
         intros.add(new Intro(getString(R.string.intro_tipos_titulo), getString(R.string.intro_tipos_texto), R.drawable.smiles));
 

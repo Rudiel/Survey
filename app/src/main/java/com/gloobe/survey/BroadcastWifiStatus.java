@@ -9,18 +9,35 @@ import android.view.View;
 
 import com.gloobe.survey.Actividades.Actividad_Principal;
 
+
 /**
  * Created by rudielavilaperaza on 08/08/16.
  */
 public class BroadcastWifiStatus extends BroadcastReceiver {
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
+
         ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI)
-            Actividad_Principal.llconexion.setVisibility(View.GONE);
-        else
-            Actividad_Principal.llconexion.setVisibility(View.VISIBLE);
+        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                try {
+                    Actividad_Principal.llconexion.setVisibility(View.GONE);
+                    Actividad_Principal.eliminarEncuesta(context);
+
+                } catch (Exception e) {
+                }
+                Actividad_Principal.wifiActive = true;
+        }
+        else {
+            try {
+                Actividad_Principal.llconexion.setVisibility(View.VISIBLE);
+            } catch (Exception e) {
+
+            }
+            Actividad_Principal.wifiActive = false;
+        }
 
     }
 

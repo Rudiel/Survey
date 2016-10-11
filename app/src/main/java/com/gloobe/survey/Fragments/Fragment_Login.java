@@ -64,8 +64,8 @@ public class Fragment_Login extends Fragment {
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         progressDialog.setCancelable(false);
 
-        etPass.setText("qwerty");
-        etUsuario.setText("Client1");
+        //etPass.setText("qwerty");
+        //etUsuario.setText("Client1");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +114,7 @@ public class Fragment_Login extends Fragment {
                         @Override
                         public void onFailure(Call<Cliente> call, Throwable t) {
                             progressDialog.dismiss();
-                            ((Actividad_Principal) getActivity()).mostarDialogo(t.getMessage().toString(), getResources().getString(R.string.login_dialog_titulo));
+                            ((Actividad_Principal) getActivity()).mostarDialogo(getResources().getString(R.string.dialogo_error), getResources().getString(R.string.login_dialog_titulo));
                         }
                     });
                 }

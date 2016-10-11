@@ -67,4 +67,8 @@
         <item name="android:textColor">@color/tema_verde</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+
 </resources>

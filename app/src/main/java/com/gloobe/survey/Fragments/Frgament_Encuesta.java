@@ -1,7 +1,10 @@
 package com.gloobe.survey.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,6 +35,7 @@ import com.gloobe.survey.Modelos.Carita;
 import com.gloobe.survey.Modelos.CaritaID;
 import com.gloobe.survey.Modelos.Multiple;
 import com.gloobe.survey.Modelos.MultipleID;
+import com.gloobe.survey.Modelos.ObjectToSend;
 import com.gloobe.survey.Modelos.PreguntaAbierta;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.RespuestaJSON;
@@ -44,6 +48,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -504,45 +509,75 @@ public class Frgament_Encuesta extends Fragment {
             @Override
             public void onClick(View view) {
 
+                progressDialog.show();
+
                 try {
                     createJsonObject();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
                 if (data != null) {
-                    progressDialog.show();
 
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(getString(R.string.url_global))
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    SurveyInterface service = retrofit.create(SurveyInterface.class);
+                    ConnectivityManager conMan = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo netInfo = conMan.getActiveNetworkInfo();
+                    if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
 
 
-                    RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (data.toString()));
+                        try {
+                            Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
 
-                    Call<ResponseBody> resultado = service.setResultado(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getClient_id(), ((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getId(), body);
+                        } finally {
+                            Actividad_Principal.db4oHelper.db().close();
+                        }
 
-                    resultado.enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            if (response.body() != null)
-                                ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_bien), getString(R.string.encuesta_dialog_titulo));
-                            else
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl(getString(R.string.url_global))
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        SurveyInterface service = retrofit.create(SurveyInterface.class);
+
+
+                        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (data.toString()));
+
+                        Call<ResponseBody> resultado = service.setResultado(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getClient_id(), ((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getId(), body);
+
+                        resultado.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.body() != null)
+                                    ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_bien), getString(R.string.encuesta_dialog_titulo));
+                                else
+                                    ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_mal), getString(R.string.encuesta_dialog_titulo));
+
+                                progressDialog.dismiss();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_mal), getString(R.string.encuesta_dialog_titulo));
+                                progressDialog.dismiss();
 
-                            progressDialog.dismiss();
+                            }
+                        });
+                    } else {
+                        ObjectToSend objectToSend = new ObjectToSend();
+                        objectToSend.setId(UUID.randomUUID());
+                        objectToSend.setId_encuesta(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getId());
+                        objectToSend.setClient_id(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getClient_id());
+                        objectToSend.setRequestBody(RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (data.toString())));
+                        objectToSend.setPosition(((Actividad_Principal) getActivity()).position);
+
+                        try {
+                            Actividad_Principal.db4oHelper.db().store(objectToSend);
+                            Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
+                            ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuesta_dialogo_texto_base), getString(R.string.encuesta_dialog_titulo));
+
+                        } finally {
+                            Actividad_Principal.db4oHelper.db().close();
                         }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.encuestra_dialgo_texto_mal), getString(R.string.encuesta_dialog_titulo));
-                            progressDialog.dismiss();
-
-                        }
-                    });
+                        progressDialog.dismiss();
+                    }
                 }
             }
         });
@@ -652,6 +687,7 @@ public class Frgament_Encuesta extends Fragment {
         }
 
     }
+
 
 }
 

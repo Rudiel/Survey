@@ -24,9 +24,16 @@
     <string name="encuesta_dialog_titulo">Encuesta</string>
     <string name="encuestra_dialgo_texto_mal">Ocurrio un error al Enviar sus Respuestas, intente nuevamente.</string>
     <string name="encuestra_dialgo_texto_bien">Respuestas Enviadas Satisfactoriamente!.</string>
+    <string name="encuesta_dialogo_texto_base">No tienes conexión a internet, se enviarán las respuestas cuando tengas conexión.</string>
 
     <string name="lista_dialogo_texto_mal">Este item no tiene encuestas</string>
     <string name="lista_dialogo_titulo">Encuestas</string>
+
+    <string name="principal_sinconexion">No tienes conexión a internet</string>
+
+    <string name="dialogo_error">Ocurrió un error. Intente nuevamente</string>
+
+    <string name="toast_encuestasatrasadas">Se han enviado todas las encuestas atrasadas.</string>
 
 
 </resources>

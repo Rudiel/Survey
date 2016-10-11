@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No tienes conexion a internet"
+            android:text="@string/principal_sinconexion"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

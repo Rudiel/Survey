@@ -4,10 +4,7 @@ import com.gloobe.survey.Modelos.Authorize;
 import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.Modelos.Encuesta;
 
-import org.json.JSONObject;
-
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 
