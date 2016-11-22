@@ -51,7 +51,7 @@ public class Actividad_Tutorial extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Actividad_Tutorial.this, Actividad_Principal.class));
+                startActivity(new Intent(Actividad_Tutorial.this, Actividad_Login.class));
             }
         });
 

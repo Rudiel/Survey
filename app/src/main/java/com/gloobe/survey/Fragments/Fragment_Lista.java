@@ -113,14 +113,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
 
                         ((Actividad_Principal) getActivity()).questionList = ((Actividad_Principal) getActivity()).encuesta.getData().getQuestions();
 
-                        if (((Actividad_Principal) getActivity()).questionList.get(position).getAnswers().size() != 0 && ((Actividad_Principal) getActivity()).questionList.get(position).getAnswers() != null) {
-
-                            ((Actividad_Principal) getActivity()).answerList = ((Actividad_Principal) getActivity()).encuesta.getData().getQuestions().get(position).getAnswers();
-
-                            ((Actividad_Principal) getActivity()).iniciarFragment(new Frgament_Encuesta(), true);
-
-                        } else
-                            ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.lista_dialogo_texto_mal), getString(R.string.lista_dialogo_titulo));
+                        ((Actividad_Principal) getActivity()).iniciarFragment(new Frgament_Encuesta(), true);
 
                     } else
                         ((Actividad_Principal) getActivity()).mostarDialogo(getString(R.string.lista_dialogo_texto_mal), getString(R.string.lista_dialogo_titulo));

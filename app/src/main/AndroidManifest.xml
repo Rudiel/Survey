@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Actividades.Actividad_Login"/>
+
         <activity
             android:name=".Actividades.Actividad_Tutorial"
             android:configChanges="orientation|keyboardHidden|screenSize" />

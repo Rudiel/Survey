@@ -28,5 +28,6 @@
     <string name="lista_dialogo_texto_mal">Este item no tiene encuestas</string>
     <string name="lista_dialogo_titulo">Encuestas</string>
 
-
+    <string name="menu_surveys">Surveys</string>
+    <string name="menu_settings">Settings</string>
 </resources>
