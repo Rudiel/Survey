@@ -3,6 +3,8 @@ package com.gloobe.survey;
 import com.gloobe.survey.Modelos.Authorize;
 import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.Modelos.Encuesta;
+import com.gloobe.survey.Modelos.Models.Request.Login;
+import com.gloobe.survey.Modelos.Models.Response.User;
 
 import org.json.JSONObject;
 
@@ -33,4 +35,10 @@ public interface SurveyInterface {
     @Headers({"Content-Type: application/json"})
     @POST("clients/{client_id}/surveys/{survey_id}/user_answers")
     Call<ResponseBody> setResultado(@Path("client_id") int client_id, @Path("survey_id") int survey_id, @Body RequestBody resultado);
+
+    @Headers({"Content-Type: application/json"})
+    @POST("sessions")
+    Call<User> login(@Body Login login);
+
+
 }

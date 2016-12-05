@@ -34,7 +34,7 @@
     <dimen name="tutorial_image_w">300dp</dimen>
     <dimen name="tutorial_image_h">300dp</dimen>
     <dimen name="tutorial_titulo_s">25sp</dimen>
-    <dimen name="tutorial_texto_s">20sp</dimen>
+    <dimen name="tutorial_texto_s">15sp</dimen>
 
     <dimen name="botones_texto">12sp</dimen>
 

@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group>
-        <item
-            android:id="@+id/menu_encuestas"
-            android:title="@string/menu_surveys"
-            android:icon="@drawable/logo"
-            />
-    </group>
+    <item
+        android:id="@+id/menu_social"
+        android:title="@null">
+        <menu>
+            <item
+                android:id="@+id/menu_encuestas"
+                android:icon="@drawable/logo"
+                android:title="@string/menu_surveys" />
+        </menu>
+    </item>
 
-    <group>
-        <item
-            android:id="@+id/menu_settings"
-            android:title="@string/menu_settings"
-            android:icon="@android:drawable/ic_menu_info_details"
-            />
-    </group>
+    <item
+        android:id="@+id/menu_settings"
+        android:title="@null">
+        <menu>
+            <item
+                android:id="@+id/menu_idioma"
+                android:icon="@drawable/logo"
+                android:title="Language" />
+
+            <item
+                android:id="@+id/menu_about"
+                android:icon="@drawable/logo"
+                android:title="About us" />
+            <item
+                android:id="@+id/menu_support"
+                android:icon="@drawable/logo"
+                android:title="Support" />
+
+            <item
+                android:id="@+id/menu_preguntas"
+                android:icon="@drawable/ic_launcher"
+                android:title="Preguntas" />
+        </menu>
+    </item>
 </menu>

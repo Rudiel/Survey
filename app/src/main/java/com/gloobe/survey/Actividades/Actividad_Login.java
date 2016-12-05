@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.gloobe.survey.Modelos.Auth;
 import com.gloobe.survey.Modelos.Authorize;
 import com.gloobe.survey.Modelos.Cliente;
+import com.gloobe.survey.Modelos.Models.Request.Login;
+import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.R;
 import com.gloobe.survey.SurveyInterface;
 import com.google.gson.Gson;
@@ -60,14 +63,13 @@ public class Actividad_Login extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         etPass.setText("qwerty");
-        etUsuario.setText("Client1");
+        etUsuario.setText("admin@survey.com");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (passValido() && usuarioValido()) {
-
 
                     progressDialog.show();
 
@@ -78,56 +80,38 @@ public class Actividad_Login extends AppCompatActivity {
 
                     SurveyInterface service = retrofit.create(SurveyInterface.class);
 
-                    Authorize auth = new Authorize();
+                    Login login = new Login();
+                    login.setEmail(etUsuario.getText().toString());
+                    login.setPassword(etPass.getText().toString());
 
-                    Auth loginRequest = new Auth();
-                    loginRequest.setUsername(etUsuario.getText().toString());
-                    loginRequest.setPassword(etPass.getText().toString());
+                    Call<User> loginCall = service.login(login);
 
-                    auth.setLoginRequest(loginRequest);
-
-
-                    Call<Cliente> clienteCall = service.getClients(auth);
-                    clienteCall.enqueue(new Callback<Cliente>() {
+                    loginCall.enqueue(new Callback<User>() {
                         @Override
-                        public void onResponse(Call<Cliente> call, Response<Cliente> response) {
+                        public void onResponse(Call<User> call, Response<User> response) {
 
                             if (response.body() != null) {
-                                Cliente cliente = response.body();
+                                User usuario = response.body();
 
                                 Gson gson = new Gson();
 
                                 Intent intent = new Intent(Actividad_Login.this, Actividad_Principal.class);
-                                intent.putExtra("Cliente", gson.toJson(cliente));
+                                intent.putExtra("Usuario", gson.toJson(usuario));
                                 startActivity(intent);
-
-                                 /*selectedAccount = Utils.gson.fromJson(getIntent().getExtras()
-                .getString("selectedAccount"), Accounts.class);*/
-
-    /*
-    *ArrayList<Accounts> aux = Utils.gson.fromJson(jsonResponse,
-					new TypeToken<ArrayList<Accounts>>() {
-					}.getType()); */
-
-                                // ((Actividad_Principal) getActivity()).datos = cliente.getData();
-                                // ((Actividad_Principal) getActivity()).surveyList = cliente.getData().getSurveys();
-
-
-                                progressDialog.dismiss();
-                                // ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Lista(), true);
-
                             } else {
-                                progressDialog.dismiss();
-                                //   ((Actividad_Principal) getActivity()).mostarDialogo(getResources().getString(R.string.login_credenciales_invalidas), getResources().getString(R.string.login_dialog_titulo));
+                                //mostar error
                             }
+
+                            progressDialog.dismiss();
+
                         }
 
                         @Override
-                        public void onFailure(Call<Cliente> call, Throwable t) {
-                            progressDialog.dismiss();
-                            // ((Actividad_Principal) getActivity()).mostarDialogo(t.getMessage().toString(), getResources().getString(R.string.login_dialog_titulo));
+                        public void onFailure(Call<User> call, Throwable t) {
+                            //mostrar error
                         }
                     });
+
                 }
             }
         });

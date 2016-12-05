@@ -13,12 +13,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
+import com.gloobe.survey.Fragments.Fragment_QuestionsAnswers;
 import com.gloobe.survey.Fragments.Fragment_Settings;
+import com.gloobe.survey.Fragments.Fragment_Support;
 import com.gloobe.survey.Modelos.Answer;
 import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.Modelos.Data;
 import com.gloobe.survey.Modelos.Encuesta;
+import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.Survey;
 import com.gloobe.survey.R;
@@ -39,7 +43,7 @@ public class Actividad_Principal extends AppCompatActivity {
     public List<Answer> answerList;
     public int position;
     public static LinearLayout llconexion;
-    private Cliente cliente;
+    private User user;
     public Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -53,10 +57,10 @@ public class Actividad_Principal extends AppCompatActivity {
         llconexion = (LinearLayout) findViewById(R.id.llConexion);
 
         Gson gson = new Gson();
-        String strObj = getIntent().getStringExtra("Cliente");
-        cliente = gson.fromJson(strObj, Cliente.class);
-        datos = cliente.getData();
-        surveyList = datos.getSurveys();
+        String strObj = getIntent().getStringExtra("User");
+        user = gson.fromJson(strObj, User.class);
+        //datos = cliente.getData();
+        //surveyList = datos.getSurveys();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,6 +83,18 @@ public class Actividad_Principal extends AppCompatActivity {
                         iniciarFragment(new Fragment_Settings(), false);
                         drawerLayout.closeDrawers();
                         return true;
+                    case R.id.menu_preguntas:
+                        iniciarFragment(new Fragment_QuestionsAnswers(), false);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.menu_support:
+                        iniciarFragment(new Fragment_Support(),false);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.menu_about:
+                        iniciarFragment(new Fragment_AboutUs(),false);
+                        drawerLayout.closeDrawers();
+                        return true;
                 }
 
                 return false;
@@ -87,7 +103,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             //iniciarFragment(new Fragment_Login(), false);
-            iniciarFragment(new Fragment_Lista(), false);
+            //iniciarFragment(new Fragment_Lista(), false);
         }
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
