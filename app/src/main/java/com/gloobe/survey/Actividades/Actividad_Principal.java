@@ -1,17 +1,23 @@
 package com.gloobe.survey.Actividades;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
@@ -26,6 +32,7 @@ import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.Survey;
 import com.gloobe.survey.R;
+import com.gloobe.survey.Utils.LocaleHelper;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -88,12 +95,16 @@ public class Actividad_Principal extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         return true;
                     case R.id.menu_support:
-                        iniciarFragment(new Fragment_Support(),false);
+                        iniciarFragment(new Fragment_Support(), false);
                         drawerLayout.closeDrawers();
                         return true;
                     case R.id.menu_about:
-                        iniciarFragment(new Fragment_AboutUs(),false);
+                        iniciarFragment(new Fragment_AboutUs(), false);
                         drawerLayout.closeDrawers();
+                        return true;
+                    case R.id.menu_idioma:
+                        drawerLayout.closeDrawers();
+                        showLenguageDialog();
                         return true;
                 }
 
@@ -192,6 +203,49 @@ public class Actividad_Principal extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    private void showLenguageDialog() {
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        dialog.setContentView(R.layout.layout_dialog_lenguage);
+        //Window window = dialog.getWindow();
+        //window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        //window.setBackgroundDrawableResource(R.color.fondo_dialogo);
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.animationdialog;
+
+        dialog.getWindow().setLayout(ViewPager.LayoutParams.WRAP_CONTENT,
+                ViewPager.LayoutParams.WRAP_CONTENT);
+
+        final Button btEspanol = (Button) dialog.findViewById(R.id.btLenguajeEspañol);
+        final Button btIngles = (Button) dialog.findViewById(R.id.btLenguajeIngles);
+        btEspanol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocaleHelper.setLocale(Actividad_Principal.this, "es");
+                updateViews();
+                dialog.dismiss();
+            }
+        });
+
+        btIngles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocaleHelper.setLocale(Actividad_Principal.this, "en");
+                updateViews();
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
+    }
+
+    private void updateViews() {
+
     }
 
 }

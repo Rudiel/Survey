@@ -15,19 +15,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
+            android:background="@color/survey_rosado"
             android:elevation="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/white">
+                android:background="@color/survey_rosado">
 
                 <ImageView
                     android:layout_width="@dimen/lista_logo_w"
                     android:layout_height="@dimen/lista_logo_h"
-                    android:paddingRight="40dp"
                     android:layout_centerInParent="true"
+                    android:paddingRight="40dp"
                     android:src="@drawable/logo_name" />
 
                 <ImageView
@@ -37,8 +37,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:visibility="gone"
-                    android:src="@drawable/lenguaje" />
+                    android:src="@drawable/lenguaje"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/ivLogout"
@@ -47,8 +47,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@id/ivIdioma"
-                    android:visibility="gone"
-                    android:src="@drawable/logout" />
+                    android:src="@drawable/logout"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/ivAtras"
@@ -66,27 +66,27 @@
         </android.support.v7.widget.Toolbar>
 
 
-    <LinearLayout
-        android:id="@+id/llConexion"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/holo_red_light"
-        android:visibility="gone">
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/llConexion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="No tienes conexion a internet"
-            android:textColor="@android:color/white" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/holo_red_light"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="No tienes conexion a internet"
+                android:textColor="@android:color/white" />
 
-    <FrameLayout
-        android:id="@+id/flContenedor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/flContenedor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -95,11 +95,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white"
+        android:background="@drawable/fondo_degradado"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_header_menu"
-        app:itemIconTint="@color/tema_verde"
-        app:itemTextColor="@color/tema_verde"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
         app:menu="@menu/menu_lateral" />
 
 

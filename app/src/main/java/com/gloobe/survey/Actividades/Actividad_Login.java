@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,13 +13,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.gloobe.survey.Modelos.Auth;
-import com.gloobe.survey.Modelos.Authorize;
-import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.Modelos.Models.Request.Login;
 import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.R;
-import com.gloobe.survey.SurveyInterface;
+import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -39,7 +35,7 @@ public class Actividad_Login extends AppCompatActivity {
     private Button btLogin;
     private ProgressDialog progressDialog;
     private TextInputLayout tilUsuario, tilPassword;
-    private ImageView ivFondo, ivLogo;
+    private ImageView ivLogo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +49,8 @@ public class Actividad_Login extends AppCompatActivity {
         tilUsuario = (TextInputLayout) findViewById(R.id.tilUsuario);
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
 
-        ivFondo = (ImageView) findViewById(R.id.ivFondoLogin);
         ivLogo = (ImageView) findViewById(R.id.ivLoginLogo);
 
-        Glide.with(this).load(R.drawable.fondo).centerCrop().into(ivFondo);
         Glide.with(this).load(R.drawable.logo_name).into(ivLogo);
 
         progressDialog = new ProgressDialog(this, R.style.MyTheme);
@@ -156,6 +150,10 @@ public class Actividad_Login extends AppCompatActivity {
 					new TypeToken<ArrayList<Accounts>>() {
 					}.getType()); */
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
+    }
 }
 

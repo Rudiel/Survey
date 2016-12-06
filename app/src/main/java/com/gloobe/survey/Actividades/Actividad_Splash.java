@@ -16,7 +16,7 @@ import com.gloobe.survey.R;
  */
 public class Actividad_Splash extends Activity {
     private static final int SPLASH_TIME_OUT = 3000;
-    private ImageView ivFondo, ivLogo;
+    private ImageView ivLogo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,8 @@ public class Actividad_Splash extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.layout_splash);
 
-        ivFondo = (ImageView) findViewById(R.id.ivSplashFondo);
         ivLogo = (ImageView) findViewById(R.id.ivSplashLogo);
 
-        Glide.with(this).load(R.drawable.fondo).centerCrop().into(ivFondo);
         Glide.with(this).load(R.drawable.logo_name).into(ivLogo);
 
         new Handler().postDelayed(new Runnable() {

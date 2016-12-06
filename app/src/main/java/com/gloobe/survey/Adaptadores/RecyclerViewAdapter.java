@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.gloobe.survey.IRecyclerItemClic;
+import com.gloobe.survey.Interfaces.IRecyclerItemClic;
 import com.gloobe.survey.Modelos.Survey;
 import com.gloobe.survey.R;
 

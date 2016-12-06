@@ -1,4 +1,4 @@
-package com.gloobe.survey;
+package com.gloobe.survey.Interfaces;
 
 import android.view.View;
 

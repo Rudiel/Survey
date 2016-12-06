@@ -2,14 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/fondo_degradado"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/ivFondoLogin"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:id="@+id/llLogin"
@@ -23,7 +18,7 @@
             style="@style/TextLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/tema_verde">
+            android:textColorHint="@android:color/white">
 
             <EditText
                 android:id="@+id/etUsuario"
@@ -43,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColorHint="@color/tema_verde">
+            android:textColorHint="@android:color/white">
 
             <EditText
                 android:id="@+id/etPassword"
@@ -62,8 +57,9 @@
             android:layout_width="@dimen/login_button_w"
             android:layout_height="@dimen/login_button_h"
             android:layout_marginTop="@dimen/login_button_space"
-            android:background="@drawable/button_green"
+            android:background="@drawable/button_white"
             android:minWidth="200dp"
+            android:elevation="4dp"
             android:text="@string/login_signin"
             android:textColor="@android:color/white"
             android:textSize="@dimen/botones_texto" />
@@ -73,6 +69,7 @@
 
     <ImageView
         android:id="@+id/ivLoginLogo"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/llLogin" />

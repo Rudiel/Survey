@@ -10,14 +10,14 @@
     <string name="intro_tipos_titulo">Tipos de Preguntas</string>
     <string name="intro_tipos_texto">Ofrecemos más de 50 tipos de preguntas y respuestas personalizables, incluyendo opción multiple.</string>
 
-    <string name="login_hint_password">Password</string>
+    <string name="login_hint_password">Contraseña</string>
     <string name="login_hint_usuario">Usuario</string>
     <string name="login_hint_password_error">Password es un campo necesario</string>
     <string name="login_hint_usuario_error">Usuario es un campo necesario</string>
-    <string name="login_signin">SIGN IN</string>
-    <string name="login_dialog_titulo">Login</string>
+    <string name="login_signin">Iniciar Sesión</string>
+    <string name="login_dialog_titulo">Iniciar Sesión</string>
     <string name="login_credenciales_invalidas">Usuario o Contraseña no válidos. Verifique sus credenciales.</string>
-    <string name="login_titulo_dialogo">Login</string>
+    <string name="login_titulo_dialogo">Iniciar Sesión</string>
 
     <string name="encuesta_boton_texto">Enviar Respuestas</string>
     <string name="encuesta_edittext_hint">Escribe tu respuesta</string>
@@ -29,5 +29,9 @@
     <string name="lista_dialogo_titulo">Encuestas</string>
 
     <string name="menu_surveys">Surveys</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_idioma">Idioma</string>
+    <string name="menu_acercade">Acerca de</string>
+    <string name="menu_soporte">Soporte</string>
+    <string name="menu_preguntas">Preguntas Frecuentes</string>
 </resources>

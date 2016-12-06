@@ -19,7 +19,7 @@ import com.gloobe.survey.Modelos.Auth;
 import com.gloobe.survey.Modelos.Authorize;
 import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.R;
-import com.gloobe.survey.SurveyInterface;
+import com.gloobe.survey.Interfaces.SurveyInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +36,7 @@ public class Fragment_Login extends Fragment {
     private Button btLogin;
     private ProgressDialog progressDialog;
     private TextInputLayout tilUsuario, tilPassword;
-    private ImageView ivFondo, ivLogo;
+    private ImageView ivLogo;
 
     @Nullable
     @Override
@@ -55,10 +55,8 @@ public class Fragment_Login extends Fragment {
         tilUsuario = (TextInputLayout) getActivity().findViewById(R.id.tilUsuario);
         tilPassword = (TextInputLayout) getActivity().findViewById(R.id.tilPassword);
 
-        ivFondo = (ImageView) getActivity().findViewById(R.id.ivFondoLogin);
         ivLogo = (ImageView) getActivity().findViewById(R.id.ivLoginLogo);
 
-        Glide.with(getActivity()).load(R.drawable.fondo).centerCrop().into(ivFondo);
         Glide.with(getActivity()).load(R.drawable.logo_name).into(ivLogo);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);

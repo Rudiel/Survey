@@ -13,6 +13,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".Utils.SurveyLifeCycle"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Actividades.Actividad_Splash"
@@ -33,7 +34,7 @@
             android:name=".Actividades.Actividad_Principal"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
-        <receiver android:name=".BroadcastWifiStatus">
+        <receiver android:name=".Utils.BroadcastWifiStatus">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

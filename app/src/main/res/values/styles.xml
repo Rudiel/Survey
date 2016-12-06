@@ -3,22 +3,26 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/tema_verde</item>
-        <item name="colorPrimaryDark">@color/tema_verde</item>
-        <item name="colorAccent">@color/tema_naranja</item>
-        <item name="android:textColorPrimary">@color/tema_naranja</item>
-        <item name="android:colorForeground">@color/tema_naranja</item>
+        <item name="colorPrimary">@color/survey_rosado</item>
+        <item name="colorPrimaryDark">@color/survey_rosado</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:colorForeground">@android:color/white</item>
     </style>
 
     <style name="MyTheme" parent="android:Theme.DeviceDefault.Dialog">
         <item name="android:alertDialogStyle">@style/ProgressBarCustom</item>
         <item name="android:windowBackground">@color/transparent</item>
-        <item name="android:textColorPrimary">@color/tema_verde</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:textColor">@color/tema_verde</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:tint">@android:color/white</item>
+        <item name="colorAccent">@android:color/white</item>
+
     </style>
+
 
     <style name="ProgressBarCustom">
         <item name="android:bottomBright">@color/transparent</item>

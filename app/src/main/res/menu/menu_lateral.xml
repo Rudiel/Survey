@@ -19,21 +19,21 @@
             <item
                 android:id="@+id/menu_idioma"
                 android:icon="@drawable/logo"
-                android:title="Language" />
+                android:title="@string/menu_idioma" />
 
             <item
                 android:id="@+id/menu_about"
                 android:icon="@drawable/logo"
-                android:title="About us" />
+                android:title="@string/menu_acercade" />
             <item
                 android:id="@+id/menu_support"
                 android:icon="@drawable/logo"
-                android:title="Support" />
+                android:title="@string/menu_soporte" />
 
             <item
                 android:id="@+id/menu_preguntas"
                 android:icon="@drawable/ic_launcher"
-                android:title="Preguntas" />
+                android:title="@string/menu_preguntas" />
         </menu>
     </item>
 </menu>

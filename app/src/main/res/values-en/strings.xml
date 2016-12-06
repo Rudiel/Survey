@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Survey</string>
+    <string name="url_global">https://secret-river-79304.herokuapp.com/api/</string>
+
+    <string name="intro_nuestro_titulo">Our service</string>
+    <string name="intro_dinamic_survey">Dinamic Survey </string>
+    <string name="intro_nuestro_texto"><b>Dinamic Survey</b>is a personalized survey app that allows an attractive and friendly design, at the same time allows you to analyze and organize the results of your surveys in an organized way.</string>
+    <string name="intro_trabajando_titulo">Working without internet</string>
+    <string name="intro_trabajando_texto">We have a simple and simple system that has the ability to work without internet, allows surveys to be synchronized when connecting to the internet.</string>
+    <string name="intro_tipos_titulo">Types of Questions</string>
+    <string name="intro_tipos_texto">We offer more than 50 types of customizable questions and answers, including multiple choice.</string>
+
+    <string name="login_hint_password">Password</string>
+    <string name="login_hint_usuario">User</string>
+    <string name="login_hint_password_error">Password is a required field</string>
+    <string name="login_hint_usuario_error">User is a required field</string>
+    <string name="login_signin">SIGN IN</string>
+    <string name="login_dialog_titulo">Login</string>
+    <string name="login_credenciales_invalidas">Invalid User or Password. Verify your credentials.</string>
+    <string name="login_titulo_dialogo">Login</string>
+
+    <string name="encuesta_boton_texto">Send Answers</string>
+    <string name="encuesta_edittext_hint">Write your answer</string>
+    <string name="encuesta_dialog_titulo">Survey</string>
+    <string name="encuestra_dialgo_texto_mal">There was an error submitting your answers, please try again.</string>
+    <string name="encuestra_dialgo_texto_bien">Replies Sent Satisfactorily!</string>
+
+    <string name="lista_dialogo_texto_mal">This item has no surveys</string>
+    <string name="lista_dialogo_titulo">Surveys</string>
+
+    <string name="menu_surveys">Surveys</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_idioma">Lenguage</string>
+    <string name="menu_acercade">About us</string>
+    <string name="menu_soporte">Support</string>
+    <string name="menu_preguntas">FAQ</string>
+</resources>

@@ -4,10 +4,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,10 @@ import android.widget.Toast;
 
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Adaptadores.RecyclerViewAdapter;
-import com.gloobe.survey.IRecyclerItemClic;
+import com.gloobe.survey.Interfaces.IRecyclerItemClic;
 import com.gloobe.survey.Modelos.Encuesta;
 import com.gloobe.survey.R;
-import com.gloobe.survey.SurveyInterface;
+import com.gloobe.survey.Interfaces.SurveyInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -7,4 +7,6 @@
     <color name="tema_verde">#004652</color>
     <color name="tema_verde_over">#002930</color>
     <color name="tema_gris">#e6edee</color>
+    <color name="survey_morado">#7126fc</color>
+    <color name="survey_rosado">#ff2863</color>
 </resources>

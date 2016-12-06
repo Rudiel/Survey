@@ -36,7 +36,7 @@ import com.gloobe.survey.Modelos.PreguntaAbierta;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.RespuestaJSON;
 import com.gloobe.survey.R;
-import com.gloobe.survey.SurveyInterface;
+import com.gloobe.survey.Interfaces.SurveyInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;

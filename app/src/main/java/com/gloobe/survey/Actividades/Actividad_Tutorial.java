@@ -22,7 +22,6 @@ public class Actividad_Tutorial extends AppCompatActivity {
     private AdapterImageSwipe adapter;
     private Button btLogin;
     private ArrayList<Intro> intros;
-    private ImageView ivFondo;
     private ImageView ivPuntos;
 
     @Override
@@ -31,10 +30,7 @@ public class Actividad_Tutorial extends AppCompatActivity {
         setContentView(R.layout.layout_tutorial);
 
         viewPager = (ViewPager) findViewById(R.id.vpCarrusel);
-        ivFondo = (ImageView) findViewById(R.id.ivFondo);
         ivPuntos = (ImageView) findViewById(R.id.ivPuntos);
-
-        Glide.with(this).load(R.drawable.fondo).centerCrop().into(ivFondo);
 
         intros = new ArrayList<>();
 

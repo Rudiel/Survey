@@ -1,4 +1,4 @@
-package com.gloobe.survey;
+package com.gloobe.survey.Utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

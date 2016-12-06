@@ -3,11 +3,12 @@
 
         <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
                 <!-- Customize your theme here. -->
-                <item name="colorPrimary">@color/tema_verde</item>
-                <item name="colorPrimaryDark">@color/tema_verde</item>
-                <item name="colorAccent">@color/tema_naranja</item>
-                <item name="android:textColorPrimary">@color/tema_naranja</item>
-                <item name="android:colorForeground">@color/tema_naranja</item>
-                <item name="android:navigationBarColor">@color/tema_verde_over</item>
+                <item name="colorPrimary">@color/survey_rosado</item>
+                <item name="colorPrimaryDark">@color/survey_rosado</item>
+                <item name="colorAccent">@android:color/white</item>
+                <item name="android:textColorPrimary">@android:color/white</item>
+                <item name="android:colorForeground">@android:color/white</item>
+                <item name="android:navigationBarColor">@android:color/black</item>
+                <item name="android:statusBarColor">@color/survey_rosado</item>
         </style>
 </resources>
