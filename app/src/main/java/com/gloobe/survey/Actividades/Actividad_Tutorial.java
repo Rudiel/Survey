@@ -1,6 +1,7 @@
 package com.gloobe.survey.Actividades;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,10 @@ public class Actividad_Tutorial extends AppCompatActivity {
     private Button btLogin;
     private ArrayList<Intro> intros;
     private ImageView ivPuntos;
+    private Typeface tfTitulos;
+    private Typeface tfTextos;
+    private ImageView ivImagenFondo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +36,20 @@ public class Actividad_Tutorial extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.vpCarrusel);
         ivPuntos = (ImageView) findViewById(R.id.ivPuntos);
+        ivImagenFondo = (ImageView) findViewById(R.id.ivImagenFondo);
 
         intros = new ArrayList<>();
 
-        intros.add(new Intro(getString(R.string.intro_nuestro_titulo),getString(R.string.intro_nuestro_texto), R.drawable.logo));
-        intros.add(new Intro(getString(R.string.intro_trabajando_titulo), getString(R.string.intro_trabajando_texto), R.drawable.wifi));
-        intros.add(new Intro(getString(R.string.intro_tipos_titulo), getString(R.string.intro_tipos_texto), R.drawable.smiles));
+        tfTitulos = Typeface.createFromAsset(getAssets(),
+                "fonts/titulos.ttf");
+        tfTextos = Typeface.createFromAsset(getAssets(),
+                "fonts/textos.ttf");
 
-        adapter = new AdapterImageSwipe(this, intros);
+        intros.add(new Intro(getString(R.string.intro_nuestro_titulo), getString(R.string.intro_nuestro_texto), R.drawable.tuto_uno));
+        intros.add(new Intro(getString(R.string.intro_trabajando_titulo), getString(R.string.intro_trabajando_texto), R.drawable.tuto_dos));
+        intros.add(new Intro(getString(R.string.intro_tipos_titulo), getString(R.string.intro_tipos_texto), R.drawable.tuto_tres));
+
+        adapter = new AdapterImageSwipe(this, intros, tfTextos, tfTitulos);
         viewPager.setAdapter(adapter);
 
         btLogin = (Button) findViewById(R.id.btLogin);
@@ -56,13 +67,16 @@ public class Actividad_Tutorial extends AppCompatActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 switch (position) {
                     case 0:
-                        ivPuntos.setImageResource(R.drawable.puntos1);
+                        ivPuntos.setImageResource(R.drawable.puntos_uno);
+                        Glide.with(Actividad_Tutorial.this).load(R.drawable.tuto_imagen_uno).centerCrop().into(ivImagenFondo);
                         break;
                     case 1:
-                        ivPuntos.setImageResource(R.drawable.puntos2);
+                        ivPuntos.setImageResource(R.drawable.puntos_dos);
+                        Glide.with(Actividad_Tutorial.this).load(R.drawable.tuto_imagen_dos).centerCrop().into(ivImagenFondo);
                         break;
                     case 2:
-                        ivPuntos.setImageResource(R.drawable.puntos3);
+                        ivPuntos.setImageResource(R.drawable.puntos_tres);
+                        Glide.with(Actividad_Tutorial.this).load(R.drawable.tuto_imagen_tres).centerCrop().into(ivImagenFondo);
                         break;
                 }
             }

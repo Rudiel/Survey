@@ -1,16 +1,22 @@
 package com.gloobe.survey.Actividades;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gloobe.survey.Modelos.Models.Request.Login;
@@ -33,9 +39,9 @@ public class Actividad_Login extends AppCompatActivity {
 
     private EditText etPass, etUsuario;
     private Button btLogin;
-    private ProgressDialog progressDialog;
     private TextInputLayout tilUsuario, tilPassword;
     private ImageView ivLogo;
+    private ProgressBar pbLogin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,22 +56,22 @@ public class Actividad_Login extends AppCompatActivity {
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
 
         ivLogo = (ImageView) findViewById(R.id.ivLoginLogo);
+        pbLogin = (ProgressBar) findViewById(R.id.pbLogin);
 
-        Glide.with(this).load(R.drawable.logo_name).into(ivLogo);
+        Glide.with(this).load(R.drawable.splash_logo).into(ivLogo);
 
-        progressDialog = new ProgressDialog(this, R.style.MyTheme);
-        progressDialog.setCancelable(false);
 
         etPass.setText("qwerty");
-        etUsuario.setText("admin@survey.com");
+        etUsuario.setText("admin@dynamicsurveys.com");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                pbLogin.setVisibility(View.VISIBLE);
+
                 if (passValido() && usuarioValido()) {
 
-                    progressDialog.show();
 
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(getString(R.string.url_global))
@@ -88,23 +94,29 @@ public class Actividad_Login extends AppCompatActivity {
                                 User usuario = response.body();
 
                                 Gson gson = new Gson();
-
                                 Intent intent = new Intent(Actividad_Login.this, Actividad_Principal.class);
                                 intent.putExtra("Usuario", gson.toJson(usuario));
+
+                                pbLogin.setVisibility(View.GONE);
+
                                 startActivity(intent);
                             } else {
                                 //mostar error
+                                pbLogin.setVisibility(View.GONE);
+                                showDialog(getString(R.string.login_dialogo_titulo), getString(R.string.login_dialog_text_mal));
                             }
 
-                            progressDialog.dismiss();
 
                         }
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
                             //mostrar error
+                            showDialog(getString(R.string.login_dialogo_titulo), getString(R.string.login_dialog_text_mal));
+                            pbLogin.setVisibility(View.GONE);
                         }
                     });
+
 
                 }
             }
@@ -150,10 +162,34 @@ public class Actividad_Login extends AppCompatActivity {
 					new TypeToken<ArrayList<Accounts>>() {
 					}.getType()); */
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+    private void showDialog(String titulo, String mensaje) {
 
+        final Dialog dialog = new Dialog(Actividad_Login.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.layout_dialog_custom);
+
+        Window window = dialog.getWindow();
+
+        window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        window.setBackgroundDrawableResource(R.color.survey_dialog);
+
+        TextView tvTitulo = (TextView) dialog.findViewById(R.id.tvDialogTitulo);
+        tvTitulo.setText(titulo);
+
+        TextView tvTexto = (TextView) dialog.findViewById(R.id.tvDialogText);
+        tvTexto.setText(mensaje);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.btDialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
+
 }
 

@@ -99,9 +99,9 @@ public class Fragment_Login extends Fragment {
                                 Cliente cliente = response.body();
 
                                 ((Actividad_Principal) getActivity()).datos = cliente.getData();
-                                ((Actividad_Principal) getActivity()).surveyList = cliente.getData().getSurveys();
+                                //((Actividad_Principal) getActivity()).surveyList = cliente.getData().getSurveys();
                                 progressDialog.dismiss();
-                                ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Lista(), true);
+                                ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Lista(), true,((Actividad_Principal)getActivity()).FG_LISTA);
 
                             } else {
                                 progressDialog.dismiss();

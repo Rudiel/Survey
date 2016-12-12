@@ -1,6 +1,7 @@
 package com.gloobe.survey.Adaptadores;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,14 @@ public class AdapterImageSwipe extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Intro> intros;
+    private Typeface tfTitulos;
+    private Typeface tfTextos;
 
-    public AdapterImageSwipe(Context context, ArrayList<Intro> intros) {
+    public AdapterImageSwipe(Context context, ArrayList<Intro> intros, Typeface tfTitulos, Typeface tfTextos) {
         this.context = context;
         this.intros = intros;
+        this.tfTextos = tfTextos;
+        this.tfTitulos = tfTitulos;
     }
 
     @Override
@@ -47,6 +52,9 @@ public class AdapterImageSwipe extends PagerAdapter {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.ivImagen);
         TextView titulo = (TextView) itemView.findViewById(R.id.tvTitulo);
         TextView texto = (TextView) itemView.findViewById(R.id.tvTexto);
+
+        titulo.setTypeface(tfTitulos);
+        texto.setTypeface(tfTextos);
 
         titulo.setText(intros.get(position).getTitulo());
         texto.setText(intros.get(position).getTexto());

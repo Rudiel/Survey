@@ -529,7 +529,7 @@ public class Frgament_Encuesta extends Fragment {
 
                     RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (data.toString()));
 
-                    Call<ResponseBody> resultado = service.setResultado(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getClient_id(), ((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).position).getId(), body);
+                    /*Call<ResponseBody> resultado = service.setResultado(((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).survey_id).getClient_id(), ((Actividad_Principal) getActivity()).surveyList.get(((Actividad_Principal) getActivity()).survey_id).getId(), body);
 
                     resultado.enqueue(new Callback<ResponseBody>() {
                         @Override
@@ -552,7 +552,7 @@ public class Frgament_Encuesta extends Fragment {
                             arrRespuestasJSON.clear();
 
                         }
-                    });
+                    });*/
                 }
             }
         });

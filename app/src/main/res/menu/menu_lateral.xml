@@ -2,38 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_social"
-        android:title="@null">
-        <menu>
-            <item
-                android:id="@+id/menu_encuestas"
-                android:icon="@drawable/logo"
-                android:title="@string/menu_surveys" />
-        </menu>
-    </item>
+        android:id="@+id/menu_encuestas"
+        android:title="@string/menu_surveys" />
 
     <item
-        android:id="@+id/menu_settings"
-        android:title="@null">
-        <menu>
-            <item
-                android:id="@+id/menu_idioma"
-                android:icon="@drawable/logo"
-                android:title="@string/menu_idioma" />
+        android:id="@+id/menu_idioma"
+        android:title="@string/menu_idioma" />
 
-            <item
-                android:id="@+id/menu_about"
-                android:icon="@drawable/logo"
-                android:title="@string/menu_acercade" />
-            <item
-                android:id="@+id/menu_support"
-                android:icon="@drawable/logo"
-                android:title="@string/menu_soporte" />
-
-            <item
-                android:id="@+id/menu_preguntas"
-                android:icon="@drawable/ic_launcher"
-                android:title="@string/menu_preguntas" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/menu_acercade" />
+    <item
+        android:id="@+id/menu_support"
+        android:title="@string/menu_soporte" />
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/menu_logout" />
 </menu>

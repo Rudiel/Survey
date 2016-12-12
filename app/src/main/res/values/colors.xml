@@ -9,4 +9,9 @@
     <color name="tema_gris">#e6edee</color>
     <color name="survey_morado">#7126fc</color>
     <color name="survey_rosado">#ff2863</color>
+    <color name="survey_rosado_bajo">#FA58D0</color>
+    <color name="survey_menu_back">#BFffffff</color>
+    <color name="survey_dialog">#EEffffff</color>
+    <color name="survey_gris">#efefef</color>
+    <color name="survey_text">#838383</color>
 </resources>

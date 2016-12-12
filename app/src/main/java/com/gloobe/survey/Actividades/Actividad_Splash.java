@@ -2,6 +2,7 @@ package com.gloobe.survey.Actividades;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -27,7 +28,7 @@ public class Actividad_Splash extends Activity {
 
         ivLogo = (ImageView) findViewById(R.id.ivSplashLogo);
 
-        Glide.with(this).load(R.drawable.logo_name).into(ivLogo);
+        Glide.with(this).load(R.drawable.splash_logo).into(ivLogo);
 
         new Handler().postDelayed(new Runnable() {
             @Override

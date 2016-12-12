@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Survey</string>
-    <string name="url_global">https://secret-river-79304.herokuapp.com/api/</string>
+    <string name="url_global">https://sleepy-ravine-58079.herokuapp.com/api/</string>
 
     <string name="intro_nuestro_titulo">Nuestro Servicio</string>
     <string name="intro_dinamic_survey">Dinamic Survey </string>
@@ -34,4 +34,34 @@
     <string name="menu_acercade">Acerca de</string>
     <string name="menu_soporte">Soporte</string>
     <string name="menu_preguntas">Preguntas Frecuentes</string>
+    <string name="menu_logout">Cerrar Sesión</string>
+
+
+    <!--> New version strings <-->
+
+    <string name="aboutus_about">Acerca De</string>
+    <string name="aboutus_version">App Versión</string>ç
+    <string name="aboutus_text">Surveys is an app kbjsbosnhfostohshnhgochoruicru oheu oughec ouhec hugh
+        gsj fjgsdjfggs djfhgc sjga jhfgicgeiuyreciuy giegierlkndlkns fkclskfksngkl  nioe5uthui chgoiu ch ghoc h
+    glkn dlkgnlcklnldkngitipjgpoicjgpoj,tijxiomjiegc ihe i hxgieh iwh girhñjdxa,kjsd ñkjfkjsfsf lk sdjfkh slhlkhslfh</string>
+    <string name="aboutus_terminos">Social surveys All Rights Reserved 2016</string>
+    <string name="aboutus_appversion">App version</string>
+
+    <string name="support_title">Soporte</string>
+    <string name="support_mail">Correo</string>
+    <string name="support_faq">FAQ</string>
+    <string name="support_phone">Teléfono</string>
+
+    <string name="login_dialogo_titulo">Survey Login</string>
+    <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
+    <string name="login_aviso">Revisa el aviso de Privacidad y FAQ aqui</string>
+
+    <string name="lenguage_dialog_title">Elige un Idioma</string>
+    <string name="lenguage_dialog_esp">Español</string>
+    <string name="lenguage_dialog_en">Ingles</string>
+
+    <string name="lista_welcome">Bienvenid@</string>
+    <string name="lista_creado">Creado</string>
+
+
 </resources>

@@ -17,10 +17,21 @@ public class BroadcastWifiStatus extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI)
-            Actividad_Principal.llconexion.setVisibility(View.GONE);
-        else
-            Actividad_Principal.llconexion.setVisibility(View.VISIBLE);
+        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+            try {
+                Actividad_Principal.llconexion.setVisibility(View.GONE);
+
+            } catch (Exception e) {
+
+            }
+        } else {
+            try {
+                Actividad_Principal.llconexion.setVisibility(View.VISIBLE);
+
+            } catch (Exception e) {
+
+            }
+        }
 
     }
 

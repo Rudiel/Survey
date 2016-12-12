@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-                <!-- Customize your theme here. -->
-                <item name="colorPrimary">@color/survey_rosado</item>
-                <item name="colorPrimaryDark">@color/survey_rosado</item>
-                <item name="colorAccent">@android:color/white</item>
-                <item name="android:textColorPrimary">@android:color/white</item>
-                <item name="android:colorForeground">@android:color/white</item>
-                <item name="android:navigationBarColor">@android:color/black</item>
-                <item name="android:statusBarColor">@color/survey_rosado</item>
-        </style>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/survey_rosado</item>
+        <item name="android:datePickerDialogTheme">@style/MyDatePickerDialogTheme</item>
+        <item name="colorPrimaryDark">@color/survey_rosado</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:colorForeground">@android:color/white</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:statusBarColor">@color/survey_rosado</item>
+    </style>
+
+    <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:datePickerStyle">@style/MyDatePickerStyle</item>
+        <item name="android:colorPrimary">@color/survey_rosado</item>
+        <item name="android:colorPrimaryDark">@color/survey_rosado</item>
+        <item name="android:colorAccent">@color/survey_rosado</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/survey_rosado</item>
+    </style>
+
+    <style name="EdittextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/custom_spinner</item>
+        <item name="android:height">@dimen/encuesta_spinner_h</item>
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="android:colorControlActivated">@color/survey_rosado</item>
+        <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
+    </style>
+
+    <style name="RatingBarStyle" parent="@android:style/Widget.Material.RatingBar">
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="android:colorControlActivated">@color/survey_rosado</item>
+    </style>
+
+    <style name="CheckBoxStyle" parent="@android:style/Widget.Material.CompoundButton.CheckBox">
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="android:textSize">@dimen/encuesta_item_textos</item>
+        <item name="android:colorControlActivated">@color/survey_rosado</item>
+    </style>
+
+    <style name="RadioButtonStyle" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="android:colorControlActivated">@color/survey_rosado</item>
+        <item name="android:textSize">@dimen/encuesta_item_textos</item>
+    </style>
+
+
+    <style name="SpinnerStyle3" parent="@android:style/Widget.Material.Spinner">
+        <item name="android:height">@dimen/encuesta_spinner_h</item>
+        <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
+        <item name="android:colorForeground">@color/survey_rosado</item>
+        <item name="android:colorAccent">@color/survey_rosado</item>
+        <item name="android:colorPrimary">@color/survey_rosado</item>
+        <item name="android:colorPrimaryDark">@color/survey_rosado</item>
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="android:colorControlActivated">@color/survey_rosado</item>
+        <item name="android:textColor">@color/tema_verde</item>
+    </style>
 </resources>

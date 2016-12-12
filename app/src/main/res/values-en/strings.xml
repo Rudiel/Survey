@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Survey</string>
-    <string name="url_global">https://secret-river-79304.herokuapp.com/api/</string>
 
     <string name="intro_nuestro_titulo">Our service</string>
     <string name="intro_dinamic_survey">Dinamic Survey </string>
@@ -35,4 +34,27 @@
     <string name="menu_acercade">About us</string>
     <string name="menu_soporte">Support</string>
     <string name="menu_preguntas">FAQ</string>
+
+
+    <!--> New version strings <-->
+
+    <string name="aboutus_about">About Us</string>
+    <string name="aboutus_version">App Version</string>ç
+    <string name="aboutus_text">Surveys is an app kbjsbosnhfostohshnhgochoruicru oheu oughec ouhec hugh
+        gsj fjgsdjfggs djfhgc sjga jhfgicgeiuyreciuy giegierlkndlkns fkclskfksngkl  nioe5uthui chgoiu ch ghoc h
+    glkn dlkgnlcklnldkngitipjgpoicjgpoj,tijxiomjiegc ihe i hxgieh iwh girhñjdxa,kjsd ñkjfkjsfsf lk sdjfkh slhlkhslfh</string>
+
+    <string name="support_title">Support</string>
+    <string name="support_mail">Mail</string>
+    <string name="support_faq">FAQ</string>
+    <string name="support_phone">Phone</string>
+
+    <string name="login_dialogo_titulo">Survey Login</string>
+    <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
+
+    <string name="lenguage_dialog_title">Choose a Lenguage</string>
+    <string name="lenguage_dialog_esp">Spanish</string>
+    <string name="lenguage_dialog_en">English</string>
+
+    <string name="lista_welcome">Welcome</string>
 </resources>

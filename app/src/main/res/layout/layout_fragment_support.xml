@@ -5,51 +5,114 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:id="@+id/rlLlamada"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
+        android:text="@string/menu_soporte"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/survey_text" />
 
-        <ImageView
+
+    <RelativeLayout
+        android:id="@+id/rlFaq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvFaq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/support_faq"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/survey_text" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/survey_text" />
+
+    <RelativeLayout
+        android:id="@+id/rlMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
             android:id="@+id/ivCorreo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_launcher" />
+            android:text="@string/support_mail"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/survey_text" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/ivCorreo"
-            android:text="Call Center" />
+            android:gravity="center"
+            android:text="rudielap@gmail.com"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/survey_text" />
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:id="@+id/rlMensaje"
-        android:layout_height="wrap_content">
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/survey_text" />
 
-        <ImageView
+    <RelativeLayout
+        android:id="@+id/rlPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
             android:id="@+id/ivLlamada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_launcher" />
+            android:text="@string/support_phone"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/survey_text" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/ivLlamada"
-            android:text="Llamada" />
+            android:gravity="center"
+            android:text="9982302580"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/survey_text" />
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/survey_text" />
 
 
 </LinearLayout>

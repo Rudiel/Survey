@@ -31,11 +31,15 @@
     <dimen name="lista_idioma_h">30dp</dimen>
     <dimen name="lista_item_textsize">20sp</dimen>
 
-    <dimen name="tutorial_image_w">300dp</dimen>
-    <dimen name="tutorial_image_h">300dp</dimen>
+    <dimen name="tutorial_image_w">200dp</dimen>
+    <dimen name="tutorial_image_h">200dp</dimen>
     <dimen name="tutorial_titulo_s">25sp</dimen>
     <dimen name="tutorial_texto_s">15sp</dimen>
 
     <dimen name="botones_texto">12sp</dimen>
+
+    <!--> dimens nuevos v2<!-->
+    <dimen name="margin_card">10dp</dimen>
+    <dimen name="encuesta_item_textos">14sp</dimen>
 
 </resources>

@@ -6,6 +6,12 @@
     android:background="@drawable/fondo_degradado"
     tools:context=".Actividades.Actividad_Tutorial">
 
+    <ImageView
+        android:id="@+id/ivImagenFondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/tuto_imagen_uno" />
+
     <Button
         android:id="@+id/btLogin"
         android:layout_width="@dimen/tutorial_button_width"
@@ -13,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/button_orange"
+        android:background="@drawable/button_white"
         android:text="@string/login_signin"
         android:textColor="@android:color/white"
         android:textSize="@dimen/botones_texto" />
@@ -25,7 +31,7 @@
         android:layout_above="@id/btLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/puntos1" />
+        android:src="@drawable/puntos_uno" />
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/vpCarrusel"

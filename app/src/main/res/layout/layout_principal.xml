@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ndPrincipal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/survey_gris">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,58 +14,11 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:title=""
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/survey_rosado"
-            android:elevation="4dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/survey_rosado">
-
-                <ImageView
-                    android:layout_width="@dimen/lista_logo_w"
-                    android:layout_height="@dimen/lista_logo_h"
-                    android:layout_centerInParent="true"
-                    android:paddingRight="40dp"
-                    android:src="@drawable/logo_name" />
-
-                <ImageView
-                    android:id="@+id/ivIdioma"
-                    android:layout_width="@dimen/lista_idioma_w"
-                    android:layout_height="@dimen/lista_idioma_h"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/lenguaje"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/ivLogout"
-                    android:layout_width="@dimen/lista_idioma_w"
-                    android:layout_height="@dimen/lista_idioma_h"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@id/ivIdioma"
-                    android:src="@drawable/logout"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/ivAtras"
-                    android:layout_width="@dimen/lista_idioma_w"
-                    android:layout_height="@dimen/lista_idioma_h"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:src="@android:drawable/ic_menu_view"
-                    android:visibility="gone" />
-
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.Toolbar>
-
+            android:background="@drawable/fondo_degradado_toolbar"
+            android:minHeight="?attr/actionBarSize" />
 
         <LinearLayout
             android:id="@+id/llConexion"
@@ -95,12 +49,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/fondo_degradado"
+        android:background="@color/survey_menu_back"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_header_menu"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
+        app:itemIconTint="@color/survey_morado"
+        app:itemTextColor="@color/survey_morado"
         app:menu="@menu/menu_lateral" />
+
+
 
 
 </android.support.v4.widget.DrawerLayout>

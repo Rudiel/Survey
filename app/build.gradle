@@ -30,4 +30,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.android.support:design:23.2.1'
     compile 'com.specyci:residemenu:1.6+'
+    compile 'com.android.support:cardview-v7:23.0.1'
+
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.R;
 
 /**
@@ -18,8 +19,9 @@ import com.gloobe.survey.R;
 
 public class Fragment_Support extends Fragment {
 
-    private RelativeLayout rlCallcenter;
-    private RelativeLayout rlCorreo;
+    private RelativeLayout rlPhone;
+    private RelativeLayout rlMail;
+    private RelativeLayout rlFaq;
 
     @Nullable
     @Override
@@ -32,10 +34,12 @@ public class Fragment_Support extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        rlCallcenter = (RelativeLayout) getActivity().findViewById(R.id.rlLlamada);
-        rlCorreo = (RelativeLayout) getActivity().findViewById(R.id.rlMensaje);
+        rlPhone = (RelativeLayout) getActivity().findViewById(R.id.rlPhone);
+        rlMail = (RelativeLayout) getActivity().findViewById(R.id.rlMail);
+        rlFaq = (RelativeLayout) getActivity().findViewById(R.id.rlFaq);
 
-        rlCallcenter.setOnClickListener(new View.OnClickListener() {
+
+        rlPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phone = "9982392580";
@@ -44,10 +48,21 @@ public class Fragment_Support extends Fragment {
             }
         });
 
-        rlCorreo.setOnClickListener(new View.OnClickListener() {
+        rlMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, "rudielap@gmail.com");
 
+                startActivity(Intent.createChooser(intent, "Send Email"));
+            }
+        });
+
+        rlFaq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_QuestionsAnswers(), true, ((Actividad_Principal) getActivity()).FG_FAQ);
             }
         });
 

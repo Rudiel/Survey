@@ -15,24 +15,24 @@
         android:textStyle="bold" />
 
 
+    <ImageView
+        android:id="@+id/ivImagen"
+        android:layout_width="@dimen/tutorial_image_w"
+        android:layout_height="@dimen/tutorial_image_h"
+        android:layout_below="@id/tvTitulo"
+        android:layout_centerInParent="true"
+        android:layout_margin="40dp" />
+
+
     <TextView
         android:id="@+id/tvTexto"
         android:layout_width="wrap_content"
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
+        android:layout_below="@id/ivImagen"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="@dimen/tutorial_texto_s" />
-
-
-    <ImageView
-        android:id="@+id/ivImagen"
-        android:layout_below="@id/tvTexto"
-        android:layout_width="@dimen/tutorial_image_w"
-        android:layout_height="@dimen/tutorial_image_h"
-        android:layout_centerInParent="true" />
 
 </RelativeLayout>
