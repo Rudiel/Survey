@@ -20,19 +20,19 @@ public class BroadcastWifiStatus extends BroadcastReceiver {
         if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
             try {
                 Actividad_Principal.llconexion.setVisibility(View.GONE);
+                Actividad_Principal.eliminarEncuesta(context);
 
             } catch (Exception e) {
-
             }
+            Actividad_Principal.wifiActive = true;
         } else {
             try {
                 Actividad_Principal.llconexion.setVisibility(View.VISIBLE);
-
             } catch (Exception e) {
 
             }
+            Actividad_Principal.wifiActive = false;
         }
 
     }
-
 }

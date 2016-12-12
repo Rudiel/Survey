@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.gloobe.survey.DataBase.Db4oHelper;
 import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
 import com.gloobe.survey.Fragments.Fragment_Support;
@@ -32,6 +33,7 @@ import com.gloobe.survey.Fragments.Fragment_Survey;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Answer;
 import com.gloobe.survey.Modelos.Data;
+import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
 import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.Modelos.Question;
@@ -43,6 +45,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,6 +65,7 @@ public class Actividad_Principal extends AppCompatActivity {
     public List<Survey> surveyList;
 
     public static LinearLayout llconexion;
+    public static boolean wifiActive;
     public User user;
     public Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -83,6 +87,8 @@ public class Actividad_Principal extends AppCompatActivity {
     public static final String FG_SUPPORT = "SUPPORT";
     public static final String FG_SURVEY = "SURVEY";
     public static final String FG_FAQ = "FAQ";
+
+    public static Db4oHelper db4oHelper = null;
 
 
     @Override
@@ -155,6 +161,8 @@ public class Actividad_Principal extends AppCompatActivity {
         getEncuestas(user.getId(), user.getApi_key());
 
         surveyList = new ArrayList<>();
+
+        dbHelper();
 
     }
 
@@ -344,9 +352,74 @@ public class Actividad_Principal extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private Db4oHelper dbHelper() {
+        if (db4oHelper == null) {
+            db4oHelper = new Db4oHelper(this);
+            db4oHelper.db();
+        }
+        return db4oHelper;
+    }
+
+    public static void eliminarEncuesta(Context context) {
+        if (db4oHelper.db().query(ObjectToSend.class).size() != 0) {
+            List<ObjectToSend> objectToSendList = (Actividad_Principal.db4oHelper.db().query(ObjectToSend.class));
+            for (int i = 0; i < objectToSendList.size(); i++) {
+                sender(objectToSendList.get(i), context);
+            }
+        }
+    }
+
+    private static void sender(final ObjectToSend objectToSend, final Context context) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://sleepy-ravine-58079.herokuapp.com/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SurveyInterface service = retrofit.create(SurveyInterface.class);
+
+        Call<ResponseBody> responseBodyCall = service.setSurvey(objectToSend.getId_encuesta(), "Token token=" + String.valueOf(objectToSend.getClient_id()), objectToSend.getRequestBody());
+
+        responseBodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.body() != null) {
+                    try {
+                        db4oHelper.db().delete(objectToSend);
+                        Log.d("ENCUESTABD", "HECHO");
+                        db4oHelper.db().commit();
+                        if (db4oHelper.db().query(ObjectToSend.class).size() == 0) {
+                            //Toast.makeText(context, context.getString(R.string.toast_encuestasatrasadas), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+
+                    }
+
+
+                } else {
+                    Log.d("ENCUESTABD", "FALLO");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("ENCUESTABD", "FALLO");
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper().close();
+        db4oHelper = null;
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-         this.toolbar.setVisibility(View.VISIBLE);
+        this.toolbar.setVisibility(View.VISIBLE);
     }
 }

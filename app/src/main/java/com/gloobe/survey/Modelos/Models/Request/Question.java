@@ -1,5 +1,7 @@
 package com.gloobe.survey.Modelos.Models.Request;
 
+import android.widget.EditText;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ public class Question {
     private int image_id;
     private List<String> date;
     private int question_type;
+    private EditText editText;
 
     public int getQuestion_id() {
         return question_id;
@@ -70,5 +73,14 @@ public class Question {
 
     public void setQuestion_type(int question_type) {
         this.question_type = question_type;
+    }
+
+
+    public EditText getEditText() {
+        return editText;
+    }
+
+    public void setEditText(EditText editText) {
+        this.editText = editText;
     }
 }

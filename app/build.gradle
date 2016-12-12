@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile 'com.specyci:residemenu:1.6+'
     compile 'com.android.support:cardview-v7:23.0.1'
+    compile files('libs/db4o-8.0.184.15484-all-java5.jar')
 
 }

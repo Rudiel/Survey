@@ -34,9 +34,9 @@
     </style>
 
     <style name="RatingBarStyle" parent="@android:style/Widget.Material.RatingBar">
-        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlNormal">@color/survey_rosado</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
-        <item name="android:colorControlActivated">@color/survey_rosado</item>
+        <item name="android:colorControlActivated">@color/survey_rosado_bajo</item>
     </style>
 
     <style name="CheckBoxStyle" parent="@android:style/Widget.Material.CompoundButton.CheckBox">

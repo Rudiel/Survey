@@ -3,7 +3,10 @@ package com.gloobe.survey.Fragments;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -21,6 +24,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +37,7 @@ import android.widget.TextView;
 
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Interfaces.SurveyInterface;
+import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
 import com.gloobe.survey.Modelos.Models.Response.Question;
 import com.gloobe.survey.R;
@@ -43,6 +49,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -85,6 +92,8 @@ public class Fragment_Survey extends Fragment {
 
         encuesta = ((Actividad_Principal) getActivity()).encuesta;
 
+        lisQuestionsRequest = new ArrayList<>();
+
         for (int q = 0; q < encuesta.getQuestions().size(); q++) {
 
             switch (encuesta.getQuestions().get(q).getQuestion_type().getId()) {
@@ -121,8 +130,6 @@ public class Fragment_Survey extends Fragment {
 
         }
 
-        lisQuestionsRequest = new ArrayList<>();
-
         createSendButton();
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
@@ -144,13 +151,10 @@ public class Fragment_Survey extends Fragment {
         com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_type(question.getQuestion_type().getId());
         ques.setQuestion_id(question.getId());
+        ques.setEditText(editText);
 
-        if (!editText.getText().toString().trim().equals("")) {
-            ques.setResponse(editText.getText().toString());
-            if (!lisQuestionsRequest.contains(ques))
-                lisQuestionsRequest.add(ques);
-        }
-
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
 
         ll.addView(createCardview(createTitle(question.getTitle()), editText));
 
@@ -190,7 +194,7 @@ public class Fragment_Survey extends Fragment {
                     } catch (Exception e) {
 
                     }
-                    ques.setChoice_id(question.getChoices().get(checkedId - 1).getId());
+                    ques.setChoice_id(question.getChoices().get(radioId).getId());
                     if (!lisQuestionsRequest.contains(ques))
                         lisQuestionsRequest.add(ques);
                 }
@@ -200,12 +204,18 @@ public class Fragment_Survey extends Fragment {
         ll.addView(createCardview(createTitle(question.getTitle()), rg));
     }
 
-    private void createMultipleChoiseQuestion(Question question) {
+    private void createMultipleChoiseQuestion(final Question question) {
 
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.LEFT);
+
+        final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
+        ques.setQuestion_id(question.getId());
+        ques.setQuestion_type(question.getQuestion_type().getId());
+
+        List<CheckBox> checkBoxList= new ArrayList<>();
 
 
         for (int i = 0; i < question.getChoices().size(); i++) {
@@ -217,6 +227,17 @@ public class Fragment_Survey extends Fragment {
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.leftMargin = 20;
             cb.setLayoutParams(params);
+
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    //agregar aqui las respuestas
+                    if (isChecked) {
+                    } else {
+
+                    }
+                }
+            });
 
             linearLayout.addView(cb);
         }
@@ -475,16 +496,18 @@ public class Fragment_Survey extends Fragment {
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 1) {
                 JSONObject openObject = new JSONObject();
-                openObject.put("response", lisQuestionsRequest.get(i).getResponse());
+                openObject.put("response", lisQuestionsRequest.get(i).getEditText().getText().toString());
                 questionObject.put("answer_open_attributes", openObject);
+
             }
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 3) {
-
+                //opcion multiple
+                
             }
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 5) {
-
+                //imagenes
             }
 
             objectAttributes.put(String.valueOf(i), questionObject);
@@ -494,47 +517,78 @@ public class Fragment_Survey extends Fragment {
 
         Log.d("OBJECT", objectAnswers.toString());
 
-        sendResponse(objectAnswers);
+        //sendResponse(objectAnswers);
 
+        //TO:DO borrar esto
+        progressDialog.dismiss();
 
     }
 
 
     private void sendResponse(JSONObject sur) {
 
-        progressDialog.dismiss();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.url_global))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        SurveyInterface service = retrofit.create(SurveyInterface.class);
-
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString()));
+        ConnectivityManager conMan = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMan.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
 
 
-        Call<ResponseBody> surveyCall = service.setSurvey(this.encuesta.getId(), "Token token=" + ((Actividad_Principal) getActivity()).user.getApi_key(), body);
+            try {
+                Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
 
-        surveyCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.body() != null) {
-                    progressDialog.dismiss();
-                    showMessage("Send Survey", "Encuesta enviada con exito");
-                } else {
+            } finally {
+                Actividad_Principal.db4oHelper.db().close();
+            }
+
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(getString(R.string.url_global))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            SurveyInterface service = retrofit.create(SurveyInterface.class);
+
+            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString()));
+
+
+            Call<ResponseBody> surveyCall = service.setSurvey(this.encuesta.getId(), "Token token=" + ((Actividad_Principal) getActivity()).user.getApi_key(), body);
+
+            surveyCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.body() != null) {
+                        progressDialog.dismiss();
+                        showMessage("Send Survey", "Encuesta enviada con exito");
+                    } else {
+                        showMessage("Send Survey", "Ocurrio un error");
+                        progressDialog.dismiss();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     showMessage("Send Survey", "Ocurrio un error");
                     progressDialog.dismiss();
+
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                showMessage("Send Survey", "Ocurrio un error");
-                progressDialog.dismiss();
+        } else {
+            ObjectToSend objectToSend = new ObjectToSend();
+            objectToSend.setId(UUID.randomUUID());
+            objectToSend.setClient_id(((Actividad_Principal) getActivity()).user.getId());
+            objectToSend.setId_encuesta(encuesta.getId());
+            objectToSend.setRequestBody(RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString())));
 
+            try {
+                Actividad_Principal.db4oHelper.db().store(objectToSend);
+                Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
+                showMessage("Send Survey", "No cuentas con conexion a internet, la encuesta se enviará automaticamente cuando se establezca la conexión");
+
+            } finally {
+                Actividad_Principal.db4oHelper.db().close();
             }
-        });
+            progressDialog.dismiss();
+        }
     }
 
     private void showMessage(String titulo, String mensaje) {
