@@ -28,17 +28,21 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
+import com.gloobe.survey.Modelos.Models.Response.Images;
 import com.gloobe.survey.Modelos.Models.Response.Question;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Utils.DatePikerFragment;
@@ -215,29 +219,39 @@ public class Fragment_Survey extends Fragment {
         ques.setQuestion_id(question.getId());
         ques.setQuestion_type(question.getQuestion_type().getId());
 
-        List<CheckBox> checkBoxList= new ArrayList<>();
+        final List<Integer> intList = new ArrayList<>();
 
 
         for (int i = 0; i < question.getChoices().size(); i++) {
             //CheckBox cb = new CheckBox(getActivity());
             //new RatingBar(new android.view.ContextThemeWrapper(getActivity(), R.style.RatingBarStyle), null, 0);
-            AppCompatCheckBox cb = new AppCompatCheckBox(new android.view.ContextThemeWrapper(getActivity(), R.style.CheckBoxStyle), null, 0);
+            final AppCompatCheckBox cb = new AppCompatCheckBox(new android.view.ContextThemeWrapper(getActivity(), R.style.CheckBoxStyle), null, 0);
             cb.setText(question.getChoices().get(i).getTitle());
+            cb.setId(question.getId());
             cb.setTextColor(getResources().getColor(R.color.survey_text));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.leftMargin = 20;
             cb.setLayoutParams(params);
+
+            final List<CheckBox> checkBoxList = new ArrayList<>();
 
             cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     //agregar aqui las respuestas
                     if (isChecked) {
+                        checkBoxList.add((CheckBox) buttonView);
+                        //Toast.makeText(getActivity(), buttonView.getText() + "" + isChecked, Toast.LENGTH_SHORT).show();
                     } else {
-
+                        checkBoxList.remove((CheckBox) buttonView);
+                        //Toast.makeText(getActivity(), buttonView.getText() + "" + isChecked, Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
+
+            if (!lisQuestionsRequest.contains(ques))
+                lisQuestionsRequest.add(ques);
 
             linearLayout.addView(cb);
         }
@@ -291,8 +305,61 @@ public class Fragment_Survey extends Fragment {
         ll.addView(createCardview(createTitle(question.getTitle()), btDate));
     }
 
-    private void createImageQuestion(Question question) {
-        // ll.addView(createCardview(createTitle(question.getTitle()), null));
+    private void createImageQuestion(final Question question) {
+
+        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(getActivity());
+
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setGravity(Gravity.CENTER);
+
+        final List<ImageView> imageViewList = new ArrayList<>();
+
+        final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
+        ques.setQuestion_id(question.getId());
+        ques.setQuestion_type(question.getQuestion_type().getId());
+
+        //necesito agregar las imagenes en el linear layout x cada pregunta
+        //cada imagen tiene su listener
+        for (int i = 0; i < question.getImages().size(); i++) {
+
+            final ImageView imagen = new ImageView(getActivity());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.dimen_carita), (int) getResources().getDimension(R.dimen.dimen_carita));
+            params.gravity = Gravity.CENTER;
+            params.leftMargin = 20;
+            imagen.setLayoutParams(params);
+
+            Glide.with(getActivity()).load(question.getImages().get(i).getFile().getUrl()).into(imagen);
+            imagen.setBackground(null);
+
+            final int finalI = i;
+            imagen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (int k = 0; k < imageViewList.size(); k++) {
+                        imageViewList.get(k).setBackground(null);
+                    }
+                    imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
+                    ques.setChoice_id(question.getImages().get(finalI).getId());
+                }
+            });
+
+            if (!imageViewList.contains(imagen))
+                imageViewList.add(imagen);
+
+            linearLayout.addView(imagen);
+
+        }
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
+
+        horizontalScrollView.addView(linearLayout);
+
+
+        ll.addView(createCardview(createTitle(question.getTitle()), horizontalScrollView));
+        //ll.addView(linearLayout);
 
     }
 
@@ -503,11 +570,14 @@ public class Fragment_Survey extends Fragment {
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 3) {
                 //opcion multiple
-                
+
             }
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 5) {
                 //imagenes
+                JSONObject imageObject = new JSONObject();
+                imageObject.put("image_id", lisQuestionsRequest.get(i).getChoice_id());
+                questionObject.put("answer_image_attributes", imageObject);
             }
 
             objectAttributes.put(String.valueOf(i), questionObject);
@@ -520,7 +590,7 @@ public class Fragment_Survey extends Fragment {
         //sendResponse(objectAnswers);
 
         //TO:DO borrar esto
-        progressDialog.dismiss();
+        //progressDialog.dismiss();
 
     }
 
@@ -621,5 +691,14 @@ public class Fragment_Survey extends Fragment {
 
     }
 
+    private void setImageBackground(List<Images> imagenes, ImageView imagen, int position) {
+        for (int x = 0; x < imagenes.size(); x++) {
+            if (x == position) {
+                imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
+            } else {
+                imagen.setBackground(null);
+            }
+        }
+    }
 
 }

@@ -54,4 +54,12 @@ public class Question {
     public void setChoices(List<Choices> choices) {
         this.choices = choices;
     }
+
+    public List<Images> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Images> images) {
+        this.images = images;
+    }
 }

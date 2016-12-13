@@ -1,6 +1,8 @@
 package com.gloobe.survey.Modelos.Models.Request;
 
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Question {
     private List<String> date;
     private int question_type;
     private EditText editText;
+    private List<CheckBox> checkBoxList;
 
     public int getQuestion_id() {
         return question_id;
@@ -83,4 +86,13 @@ public class Question {
     public void setEditText(EditText editText) {
         this.editText = editText;
     }
+
+    public List<CheckBox> getCheckBoxList() {
+        return checkBoxList;
+    }
+
+    public void setCheckBoxList(List<CheckBox> checkBoxList) {
+        this.checkBoxList = checkBoxList;
+    }
+
 }
