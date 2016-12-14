@@ -30,7 +30,7 @@
 
     <string name="menu_surveys">Surveys</string>
     <string name="menu_settings">Settings</string>
-    <string name="menu_idioma">Lenguage</string>
+    <string name="menu_idioma">Language</string>
     <string name="menu_acercade">About us</string>
     <string name="menu_soporte">Support</string>
     <string name="menu_preguntas">FAQ</string>
@@ -52,7 +52,7 @@
     <string name="login_dialogo_titulo">Survey Login</string>
     <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
 
-    <string name="lenguage_dialog_title">Choose a Lenguage</string>
+    <string name="lenguage_dialog_title">Choose a Language</string>
     <string name="lenguage_dialog_esp">Spanish</string>
     <string name="lenguage_dialog_en">English</string>
 

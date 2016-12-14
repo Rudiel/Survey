@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -23,29 +23,29 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@android:color/white" />
+        android:background="@color/survey_text" />
 
-        <Button
-            android:id="@+id/btLenguajeIngles"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/survey_text"
-            android:background="@null"
-            android:text="@string/lenguage_dialog_en" />
+    <Button
+        android:id="@+id/btLenguajeIngles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@null"
+        android:text="@string/lenguage_dialog_en"
+        android:textColor="@color/survey_text" />
 
 
-        <Button
-            android:id="@+id/btLenguajeEspañol"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@null"
-            android:textColor="@color/survey_text"
-            android:text="@string/lenguage_dialog_esp" />
+    <Button
+        android:id="@+id/btLenguajeEspañol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@null"
+        android:text="@string/lenguage_dialog_esp"
+        android:textColor="@color/survey_text" />
 
 </LinearLayout>

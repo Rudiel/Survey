@@ -20,7 +20,7 @@ public class Question {
     private List<String> date;
     private int question_type;
     private EditText editText;
-    private List<CheckBox> checkBoxList;
+    private List<Integer> checkBoxIdsList;
 
     public int getQuestion_id() {
         return question_id;
@@ -87,12 +87,11 @@ public class Question {
         this.editText = editText;
     }
 
-    public List<CheckBox> getCheckBoxList() {
-        return checkBoxList;
+    public List<Integer> getCheckBoxIdsList() {
+        return checkBoxIdsList;
     }
 
-    public void setCheckBoxList(List<CheckBox> checkBoxList) {
-        this.checkBoxList = checkBoxList;
+    public void setCheckBoxIdsList(List<Integer> checkBoxIdsList) {
+        this.checkBoxIdsList = checkBoxIdsList;
     }
-
 }

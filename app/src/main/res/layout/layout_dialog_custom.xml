@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -11,37 +11,41 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/survey_text" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/white"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:background="@color/survey_text" />
 
     <TextView
         android:id="@+id/tvDialogText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:textColor="@color/survey_text" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginRight="10dp"
-        card_view:cardCornerRadius="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         card_view:cardBackgroundColor="@color/survey_rosado"
-        android:layout_height="wrap_content">
+        card_view:cardCornerRadius="10dp">
 
         <Button
             android:id="@+id/btDialog"
@@ -52,7 +56,6 @@
             android:textColor="@android:color/white" />
 
     </android.support.v7.widget.CardView>
-
 
 
 </LinearLayout>

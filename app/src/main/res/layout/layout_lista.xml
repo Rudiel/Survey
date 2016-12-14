@@ -12,11 +12,10 @@
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/lista_imagenperfil"
+        android:layout_height="@dimen/lista_imagenperfil"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:elevation="6dp" />
 
     <TextView
@@ -25,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"
         android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="10dp"
         android:textColor="@color/survey_text" />
 

@@ -28,6 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
     private Typeface tfTitulo;
     private Typeface tfTextos;
+    private Typeface tfTituloBold;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvEncuesta;
@@ -44,12 +45,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(List<Survey> surveyList, IRecyclerItemClic listener, Context context, Typeface tfTitulo, Typeface tfTexto) {
+    public RecyclerViewAdapter(List<Survey> surveyList, IRecyclerItemClic listener, Context context, Typeface tfTitulo, Typeface tfTexto, Typeface tfTituloBold) {
         this.surveyList = surveyList;
         this.listener = listener;
         this.context = context;
         this.tfTextos = tfTexto;
         this.tfTitulo = tfTitulo;
+        this.tfTituloBold = tfTituloBold;
 
     }
 
@@ -73,7 +75,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.tvEncuesta.setTextColor(context.getResources().getColor(R.color.tema_naranja));
         else
             holder.tvEncuesta.setTextColor(context.getResources().getColor(R.color.tema_verde));*/
-        holder.tvEncuesta.setTypeface(tfTitulo);
+        holder.tvEncuesta.setTypeface(tfTituloBold);
         holder.tvFecha.setTypeface(tfTextos);
         holder.tvNumero.setTypeface(tfTitulo);
 
@@ -83,7 +85,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         try {
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(surveyList.get(position).getCreated_at());
             String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(date);
-            holder.tvFecha.setText(context.getString(R.string.lista_creado) + " " +formattedDate);
+            holder.tvFecha.setText(context.getString(R.string.lista_creado) + " " + formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }

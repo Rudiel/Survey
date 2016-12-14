@@ -46,10 +46,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -497,7 +493,7 @@ public class Frgament_Encuesta extends Fragment {
 
     private void crearBotonEnviar() {
         Button btenviar = new Button(getActivity());
-        btenviar.setBackground(getResources().getDrawable(R.drawable.button_orange));
+        btenviar.setBackground(getResources().getDrawable(R.drawable.button_pink));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.encuesta_boton_enviar_w), (int) getResources().getDimension(R.dimen.encuesta_boton_enviar_h));
         params.gravity = Gravity.CENTER;
         params.bottomMargin = 20;

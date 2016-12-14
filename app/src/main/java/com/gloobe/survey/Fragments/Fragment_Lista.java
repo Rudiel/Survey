@@ -62,7 +62,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, this, getActivity(),
-                ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos);
+                ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal)getActivity()).tfTitulosBold);
         mRecyclerView.setAdapter(mAdapter);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
@@ -79,7 +79,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         });
 
         tvProfile.setText(getString(R.string.lista_welcome) + " " + ((Actividad_Principal) getActivity()).user.getName());
-        tvProfile.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+        tvProfile.setTypeface(((Actividad_Principal) getActivity()).tfTitulosBold);
 
         /*ivLogout.setOnClickListener(new View.OnClickListener() {
             @Override

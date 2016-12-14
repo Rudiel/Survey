@@ -68,13 +68,14 @@ public class Actividad_Principal extends AppCompatActivity {
     public static boolean wifiActive;
     public User user;
     public Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+    public DrawerLayout drawerLayout;
+    public NavigationView navigationView;
 
     //Nuevas variables v2
 
     public Typeface tfTitulos;
     public Typeface tfTextos;
+    public Typeface tfTitulosBold;
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
@@ -115,6 +116,8 @@ public class Actividad_Principal extends AppCompatActivity {
                 "fonts/titulos.ttf");
         tfTextos = Typeface.createFromAsset(getAssets(),
                 "fonts/textos.ttf");
+        tfTitulosBold = Typeface.createFromAsset(getAssets(),
+                "fonts/titulos_bold.ttf");
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -378,7 +381,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
         SurveyInterface service = retrofit.create(SurveyInterface.class);
 
-        Call<ResponseBody> responseBodyCall = service.setSurvey(objectToSend.getId_encuesta(), "Token token=" + String.valueOf(objectToSend.getClient_id()), objectToSend.getRequestBody());
+        Call<ResponseBody> responseBodyCall = service.setSurvey(objectToSend.getId_encuesta(), "Token token=" + objectToSend.getApiKey(), objectToSend.getRequestBody());
 
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -389,7 +392,7 @@ public class Actividad_Principal extends AppCompatActivity {
                         Log.d("ENCUESTABD", "HECHO");
                         db4oHelper.db().commit();
                         if (db4oHelper.db().query(ObjectToSend.class).size() == 0) {
-                            //Toast.makeText(context, context.getString(R.string.toast_encuestasatrasadas), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Se han enviado las encuestas atrasadas", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
 
@@ -421,5 +424,7 @@ public class Actividad_Principal extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         this.toolbar.setVisibility(View.VISIBLE);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
     }
 }

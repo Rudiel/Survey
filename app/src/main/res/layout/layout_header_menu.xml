@@ -6,10 +6,10 @@
 
     <ImageView
         android:id="@+id/ivImagenPerfilMenu"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:src="@drawable/splash_logo"
+        android:layout_width="@dimen/menu_logo_w"
+        android:layout_height="@dimen/menu_logo_h"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/aboutus_logo" />
 
 </LinearLayout>

@@ -8,7 +8,7 @@
     <dimen name="tutorial_puntos_w">80dp</dimen>
     <dimen name="tutorial_puntos_h">20dp</dimen>
 
-    <dimen name="dimen_carita">60dp</dimen>
+    <dimen name="dimen_carita">80dp</dimen>
 
     <dimen name="encuesta_boton_enviar_h">40dp</dimen>
     <dimen name="encuesta_boton_enviar_w">200dp</dimen>
@@ -40,6 +40,14 @@
 
     <!--> dimens nuevos v2<!-->
     <dimen name="margin_card">10dp</dimen>
+
     <dimen name="encuesta_item_textos">14sp</dimen>
+
+    <dimen name="lista_imagenperfil">130dp</dimen>
+
+    <dimen name="menu_logo_w">200dp</dimen>
+    <dimen name="menu_logo_h">100dp</dimen>
+
+
 
 </resources>

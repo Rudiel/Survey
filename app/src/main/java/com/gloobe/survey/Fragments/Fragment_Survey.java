@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRadioButton;
@@ -24,7 +25,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -35,18 +35,17 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
-import com.gloobe.survey.Modelos.Models.Response.Images;
 import com.gloobe.survey.Modelos.Models.Response.Question;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Utils.DatePikerFragment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -89,6 +88,8 @@ public class Fragment_Survey extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
+        ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
 
         ll = (LinearLayout) getActivity().findViewById(R.id.llEncuestas);
         llContenedor = (LinearLayout) getActivity().findViewById(R.id.llContenedorEncuesta);
@@ -182,6 +183,7 @@ public class Fragment_Survey extends Fragment {
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_id(question.getId());
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -219,8 +221,7 @@ public class Fragment_Survey extends Fragment {
         ques.setQuestion_id(question.getId());
         ques.setQuestion_type(question.getQuestion_type().getId());
 
-        final List<Integer> intList = new ArrayList<>();
-
+        final List<Integer> checkBoxIdsList = new ArrayList<>();
 
         for (int i = 0; i < question.getChoices().size(); i++) {
             //CheckBox cb = new CheckBox(getActivity());
@@ -233,28 +234,33 @@ public class Fragment_Survey extends Fragment {
             params.leftMargin = 20;
             cb.setLayoutParams(params);
 
-            final List<CheckBox> checkBoxList = new ArrayList<>();
-
+            final int finalI = i;
             cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     //agregar aqui las respuestas
                     if (isChecked) {
-                        checkBoxList.add((CheckBox) buttonView);
+                        if (!checkBoxIdsList.contains(question.getChoices().get(finalI).getId()))
+                            checkBoxIdsList.add(question.getChoices().get(finalI).getId());
+                        //checkBoxList.add((CheckBox) buttonView);
                         //Toast.makeText(getActivity(), buttonView.getText() + "" + isChecked, Toast.LENGTH_SHORT).show();
                     } else {
-                        checkBoxList.remove((CheckBox) buttonView);
+                        Log.d("ID", "" + checkBoxIdsList.indexOf(question.getChoices().get(finalI).getId()));
+                        checkBoxIdsList.remove(checkBoxIdsList.indexOf(question.getChoices().get(finalI).getId()));
+                        //checkBoxList.remove((CheckBox) buttonView);
                         //Toast.makeText(getActivity(), buttonView.getText() + "" + isChecked, Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
 
-            if (!lisQuestionsRequest.contains(ques))
-                lisQuestionsRequest.add(ques);
-
             linearLayout.addView(cb);
         }
+
+        ques.setCheckBoxIdsList(checkBoxIdsList);
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
 
         ll.addView(createCardview(createTitle(question.getTitle()), linearLayout));
 
@@ -331,6 +337,7 @@ public class Fragment_Survey extends Fragment {
             imagen.setLayoutParams(params);
 
             Glide.with(getActivity()).load(question.getImages().get(i).getFile().getUrl()).into(imagen);
+            imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
             imagen.setBackground(null);
 
             final int finalI = i;
@@ -497,14 +504,14 @@ public class Fragment_Survey extends Fragment {
     private void createSendButton() {
 
         final Button btSend = new Button(getActivity());
-        btSend.setBackgroundColor(getResources().getColor(R.color.survey_rosado));
+        btSend.setBackground(getResources().getDrawable(R.drawable.button_pink));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.encuesta_boton_enviar_w), (int) getResources().getDimension(R.dimen.encuesta_boton_enviar_h));
         params.gravity = Gravity.CENTER;
         params.bottomMargin = 20;
         params.topMargin = 20;
         btSend.setLayoutParams(params);
         btSend.setTextColor(getActivity().getResources().getColor(android.R.color.white));
-        btSend.setText("Send Survey");
+        btSend.setText(getResources().getString(R.string.send_survey_title));
 
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -570,6 +577,14 @@ public class Fragment_Survey extends Fragment {
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 3) {
                 //opcion multiple
+                JSONObject multipleObject = new JSONObject();
+                JSONArray jsonArray = new JSONArray();
+                for (int w = 0; w < lisQuestionsRequest.get(i).getCheckBoxIdsList().size(); w++) {
+                    jsonArray.put(lisQuestionsRequest.get(i).getCheckBoxIdsList().get(w));
+                }
+                multipleObject.put("choice_ids", jsonArray);
+
+                questionObject.put("answer_multiple_attributes", multipleObject);
 
             }
 
@@ -587,10 +602,7 @@ public class Fragment_Survey extends Fragment {
 
         Log.d("OBJECT", objectAnswers.toString());
 
-        //sendResponse(objectAnswers);
-
-        //TO:DO borrar esto
-        //progressDialog.dismiss();
+        sendResponse(objectAnswers);
 
     }
 
@@ -606,7 +618,7 @@ public class Fragment_Survey extends Fragment {
                 Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
 
             } finally {
-                Actividad_Principal.db4oHelper.db().close();
+                // Actividad_Principal.db4oHelper.db().close();
             }
 
 
@@ -627,16 +639,16 @@ public class Fragment_Survey extends Fragment {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.body() != null) {
                         progressDialog.dismiss();
-                        showMessage("Send Survey", "Encuesta enviada con exito");
+                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_done));
                     } else {
-                        showMessage("Send Survey", "Ocurrio un error");
+                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
                         progressDialog.dismiss();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    showMessage("Send Survey", "Ocurrio un error");
+                    showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
                     progressDialog.dismiss();
 
                 }
@@ -648,11 +660,11 @@ public class Fragment_Survey extends Fragment {
             objectToSend.setClient_id(((Actividad_Principal) getActivity()).user.getId());
             objectToSend.setId_encuesta(encuesta.getId());
             objectToSend.setRequestBody(RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString())));
-
+            objectToSend.setApiKey(((Actividad_Principal) getActivity()).user.getApi_key());
             try {
                 Actividad_Principal.db4oHelper.db().store(objectToSend);
-                Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
-                showMessage("Send Survey", "No cuentas con conexion a internet, la encuesta se enviará automaticamente cuando se establezca la conexión");
+                //Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
+                showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_noconnection));
 
             } finally {
                 Actividad_Principal.db4oHelper.db().close();
@@ -691,14 +703,5 @@ public class Fragment_Survey extends Fragment {
 
     }
 
-    private void setImageBackground(List<Images> imagenes, ImageView imagen, int position) {
-        for (int x = 0; x < imagenes.size(); x++) {
-            if (x == position) {
-                imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
-            } else {
-                imagen.setBackground(null);
-            }
-        }
-    }
 
 }

@@ -19,6 +19,8 @@ public class ObjectToSend {
 
     private int client_id;
 
+    private String apiKey;
+
 
     public int getClient_id() {
         return client_id;
@@ -58,5 +60,13 @@ public class ObjectToSend {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 }

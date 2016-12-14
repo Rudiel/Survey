@@ -22,7 +22,7 @@
         android:background="@drawable/button_white"
         android:text="@string/login_signin"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/botones_texto" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
         android:id="@+id/ivPuntos"

@@ -14,11 +14,11 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:title=""
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/fondo_degradado_toolbar"
-            android:minHeight="?attr/actionBarSize" />
+            android:minHeight="?attr/actionBarSize"
+            android:title="" />
 
         <LinearLayout
             android:id="@+id/llConexion"
@@ -49,14 +49,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/survey_menu_back"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_header_menu"
-        app:itemIconTint="@color/survey_morado"
-        app:itemTextColor="@color/survey_morado"
+        app:itemIconTint="@color/survey_text"
+        app:itemTextColor="@color/survey_text"
         app:menu="@menu/menu_lateral" />
-
-
 
 
 </android.support.v4.widget.DrawerLayout>

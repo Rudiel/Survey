@@ -63,5 +63,10 @@
     <string name="lista_welcome">Bienvenid@</string>
     <string name="lista_creado">Creado</string>
 
+    <string name="send_survey_title">Enviar Encuesta</string>
+    <string name="send_survey_done">¡Se ha enviado la encuesta con éxito!</string>
+    <string name="send_survey_notsend">Ha ocurrido un error al enviar la encuesta, Intente nuevamente.</string>
+    <string name="send_survey_noconnection">No cuentas con conexion a internet, la encuesta se enviará automaticamente cuando se establezca la conexión</string>
+    <string name="send_survey_oldsended">Se han enviado las encuestas pendientes por enviar.</string>
 
 </resources>
