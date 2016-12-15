@@ -53,8 +53,7 @@ public class Actividad_Tutorial extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         btLogin = (Button) findViewById(R.id.btLogin);
-
-
+        btLogin.setTypeface(tfTitulos);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

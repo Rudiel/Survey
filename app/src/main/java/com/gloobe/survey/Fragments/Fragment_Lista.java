@@ -1,18 +1,20 @@
 package com.gloobe.survey.Fragments;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,8 +22,12 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Adaptadores.RecyclerViewAdapter;
 import com.gloobe.survey.Interfaces.IRecyclerItemClic;
+import com.gloobe.survey.Modelos.Models.Response.Survey;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Interfaces.SurveyInterface;
+import com.gloobe.survey.Utils.Utils;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,9 +43,10 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ProgressDialog progressDialog;
     private ImageView ivProfile;
     private TextView tvProfile;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ProgressBar pbLista;
 
     @Nullable
     @Override
@@ -57,16 +64,18 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
 
         ivProfile = (ImageView) getActivity().findViewById(R.id.ivProfile);
         tvProfile = (TextView) getActivity().findViewById(R.id.tvProfile);
+        swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swiperefresh);
+        pbLista = (ProgressBar) getActivity().findViewById(R.id.pbLista);
+
+        //pbLista.getIndeterminateDrawable().setColorFilter(0xff2863, android.graphics.PorterDuff.Mode.MULTIPLY);
+
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, this, getActivity(),
-                ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal)getActivity()).tfTitulosBold);
+                ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
         mRecyclerView.setAdapter(mAdapter);
-
-        progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
-        progressDialog.setCancelable(false);
 
         Glide.with(this).load(R.drawable.pp).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
             @Override
@@ -78,7 +87,9 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
             }
         });
 
-        tvProfile.setText(getString(R.string.lista_welcome) + " " + ((Actividad_Principal) getActivity()).user.getName());
+        Utils.setContext(getActivity());
+
+        tvProfile.setText(getString(R.string.lista_welcome) + " " + Utils.getUserName());
         tvProfile.setTypeface(((Actividad_Principal) getActivity()).tfTitulosBold);
 
         /*ivLogout.setOnClickListener(new View.OnClickListener() {
@@ -91,17 +102,31 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         ((Actividad_Principal) getActivity()).questionList = null;
         ((Actividad_Principal) getActivity()).answerList = null;
 
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.survey_rosado), getResources().getColor(R.color.survey_morado));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getEncuestas(Utils.getUserID(), Utils.getApiKey());
+            }
+        });
+
     }
 
     @Override
     public void clicItem(View v) {
+
+        pbLista.setVisibility(View.VISIBLE);
+
         int position = mRecyclerView.getChildLayoutPosition(v);
         ((Actividad_Principal) getActivity()).survey_id = ((Actividad_Principal) getActivity()).surveyList.get(position).getId();
-        getEncuesta(((Actividad_Principal) getActivity()).user.getId(), ((Actividad_Principal) getActivity()).survey_id, ((Actividad_Principal) getActivity()).user.getApi_key());
+        Utils.setContext(getActivity());
+        getEncuesta(Utils.getUserID(), ((Actividad_Principal) getActivity()).survey_id, Utils.getApiKey());
         //callGetEncuestas(survey_id);
     }
 
     private void getEncuesta(int customer_id, int survey_id, String token) {
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.url_global))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -116,13 +141,44 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
             public void onResponse(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Response<com.gloobe.survey.Modelos.Models.Response.Encuesta> response) {
                 if (response.body() != null) {
                     ((Actividad_Principal) getActivity()).encuesta = response.body();
-                    ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Survey(), true,((Actividad_Principal)getActivity()).FG_SURVEY);
-
+                    pbLista.setVisibility(View.GONE);
+                    ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Survey(), true, ((Actividad_Principal) getActivity()).FG_SURVEY);
                 }
             }
 
             @Override
             public void onFailure(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Throwable t) {
+                pbLista.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private void getEncuestas(int custumer_id, String token) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.url_global))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SurveyInterface service = retrofit.create(SurveyInterface.class);
+
+        Call<List<Survey>> encuestas = service.getSurveys(custumer_id, "Token token=" + token);
+        encuestas.enqueue(new Callback<List<Survey>>() {
+            @Override
+            public void onResponse(Call<List<Survey>> call, Response<List<Survey>> response) {
+                Log.d("RESPONSE", response.body().toString());
+                ((Actividad_Principal) getActivity()).surveyList = response.body();
+                mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, Fragment_Lista.this, getActivity(),
+                        ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
+                mRecyclerView.setAdapter(mAdapter);
+                swipeRefreshLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Survey>> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
 
             }
         });

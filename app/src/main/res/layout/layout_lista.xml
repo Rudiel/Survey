@@ -24,16 +24,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"
         android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/survey_text" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvProfile"
-        android:backgroundTint="@color/survey_gris"
-        android:orientation="vertical" />
+        android:layout_below="@id/tvProfile">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/survey_gris"
+            android:orientation="vertical" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/survey_rosado"
+        android:visibility="gone" />
 
 </RelativeLayout>

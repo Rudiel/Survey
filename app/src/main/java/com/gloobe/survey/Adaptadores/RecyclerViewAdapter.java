@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gloobe.survey.Interfaces.IRecyclerItemClic;
@@ -90,7 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             e.printStackTrace();
         }
 
-        holder.tvNumero.setText(String.valueOf(surveyList.get(position).getQuestion_counter()));
+        holder.tvNumero.setText(String.valueOf(surveyList.get(position).getQuestions_count()));
     }
 
     @Override

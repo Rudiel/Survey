@@ -23,11 +23,13 @@ public class Adapter_ExpandibleList extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listPreguntas;
     private HashMap<String, List<String>> listaRespuestas;
+    private Typeface typeface;
 
-    public Adapter_ExpandibleList(Context context, List<String> listPreguntas, HashMap<String, List<String>> listaRespuestas) {
+    public Adapter_ExpandibleList(Context context, List<String> listPreguntas, HashMap<String, List<String>> listaRespuestas, Typeface typeface) {
         this.context = context;
         this.listPreguntas = listPreguntas;
         this.listaRespuestas = listaRespuestas;
+        this.typeface = typeface;
     }
 
     @Override
@@ -68,30 +70,32 @@ public class Adapter_ExpandibleList extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String pregunta = (String) getGroup(groupPosition);
-        if(convertView ==null){
+        if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.layout_fragment_questionsanswers_group, null);
         }
-        TextView  tvPregunta= (TextView) convertView.findViewById(R.id.lblListHeader);
+        TextView tvPregunta = (TextView) convertView.findViewById(R.id.lblListHeader);
         tvPregunta.setTypeface(null, Typeface.BOLD);
         tvPregunta.setText(pregunta);
+        tvPregunta.setTypeface(typeface);
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String respuesta= (String) getChild(groupPosition,childPosition);
+        final String respuesta = (String) getChild(groupPosition, childPosition);
 
-        if(convertView==null){
-            LayoutInflater infalInflater = (LayoutInflater)context
+        if (convertView == null) {
+            LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.layout_fragment_questionsanswers_item, null);
         }
 
         TextView tvRespuesta = (TextView) convertView.findViewById(R.id.lblListItem);
         tvRespuesta.setText(respuesta);
+        tvRespuesta.setTypeface(typeface);
 
         return convertView;
     }

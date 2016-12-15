@@ -1,9 +1,8 @@
 package com.gloobe.survey.Actividades;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,7 +22,7 @@ import com.gloobe.survey.Modelos.Models.Request.Login;
 import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Interfaces.SurveyInterface;
-import com.google.gson.Gson;
+import com.gloobe.survey.Utils.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +41,9 @@ public class Actividad_Login extends AppCompatActivity {
     private TextInputLayout tilUsuario, tilPassword;
     private ImageView ivLogo;
     private ProgressBar pbLogin;
+    private Typeface tfTitulos;
+    private Typeface tfTitulosBold;
+    private TextView tvPrivacidad;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +60,21 @@ public class Actividad_Login extends AppCompatActivity {
         ivLogo = (ImageView) findViewById(R.id.ivLoginLogo);
         pbLogin = (ProgressBar) findViewById(R.id.pbLogin);
 
+        tvPrivacidad = (TextView) findViewById(R.id.tvPrivacidad);
+
         Glide.with(this).load(R.drawable.splash_logo).into(ivLogo);
 
+        tfTitulos = Typeface.createFromAsset(getAssets(),
+                "fonts/titulos.ttf");
+        tfTitulosBold = Typeface.createFromAsset(getAssets(),
+                "fonts/titulos_bold.ttf");
+
+        tilUsuario.setTypeface(tfTitulos);
+        tilPassword.setTypeface(tfTitulos);
+        etUsuario.setTypeface(tfTitulos);
+        etPass.setTypeface(tfTitulos);
+        btLogin.setTypeface(tfTitulos);
+        tvPrivacidad.setTypeface(tfTitulos);
 
         etPass.setText("qwerty");
         etUsuario.setText("admin@dynamicsurveys.com");
@@ -68,9 +83,9 @@ public class Actividad_Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pbLogin.setVisibility(View.VISIBLE);
-
                 if (passValido() && usuarioValido()) {
+
+                    pbLogin.setVisibility(View.VISIBLE);
 
 
                     Retrofit retrofit = new Retrofit.Builder()
@@ -93,13 +108,17 @@ public class Actividad_Login extends AppCompatActivity {
                             if (response.body() != null) {
                                 User usuario = response.body();
 
-                                Gson gson = new Gson();
+                                savePreferences(usuario);
+
                                 Intent intent = new Intent(Actividad_Login.this, Actividad_Principal.class);
-                                intent.putExtra("Usuario", gson.toJson(usuario));
-
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 pbLogin.setVisibility(View.GONE);
-
                                 startActivity(intent);
+                               /* Gson gson = new Gson();
+                                Intent intent = new Intent(Actividad_Login.this, Actividad_Principal.class);
+                                intent.putExtra("Usuario", gson.toJson(usuario));*/
+
+                                //startActivity(intent);
                             } else {
                                 //mostar error
                                 pbLogin.setVisibility(View.GONE);
@@ -176,9 +195,11 @@ public class Actividad_Login extends AppCompatActivity {
 
         TextView tvTitulo = (TextView) dialog.findViewById(R.id.tvDialogTitulo);
         tvTitulo.setText(titulo);
+        tvTitulo.setTypeface(tfTitulos);
 
         TextView tvTexto = (TextView) dialog.findViewById(R.id.tvDialogText);
         tvTexto.setText(mensaje);
+        tvTexto.setTypeface(tfTitulos);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.btDialog);
         dialogButton.setOnClickListener(new View.OnClickListener() {
@@ -187,8 +208,19 @@ public class Actividad_Login extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+        dialogButton.setTypeface(tfTitulos);
 
         dialog.show();
+    }
+
+    private void savePreferences(User usuario) {
+        Utils.setContext(this);
+        Utils.saveApiKey(usuario.getApi_key());
+        Utils.saveUserId(usuario.getId());
+        Utils.saveUserLastName(usuario.getLast_name());
+        Utils.saveUserName(usuario.getName());
+        Utils.saveUserMail(usuario.getEmail());
+
     }
 
 }

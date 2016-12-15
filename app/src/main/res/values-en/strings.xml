@@ -40,9 +40,8 @@
 
     <string name="aboutus_about">About Us</string>
     <string name="aboutus_version">App Version</string>ç
-    <string name="aboutus_text">Surveys is an app kbjsbosnhfostohshnhgochoruicru oheu oughec ouhec hugh
-        gsj fjgsdjfggs djfhgc sjga jhfgicgeiuyreciuy giegierlkndlkns fkclskfksngkl  nioe5uthui chgoiu ch ghoc h
-    glkn dlkgnlcklnldkngitipjgpoicjgpoj,tijxiomjiegc ihe i hxgieh iwh girhñjdxa,kjsd ñkjfkjsfsf lk sdjfkh slhlkhslfh</string>
+    <string name="aboutus_text">Social Survey is integrated with a back office to make our online surveys, offline-compatible.
+Download the Android app from Google Play and connect your surveys with the back office. All the surveys that are in your back office will be available on your device. All the data collected on your Android device can be synchronized to your online account.</string>
 
     <string name="support_title">Support</string>
     <string name="support_mail">Mail</string>
@@ -57,4 +56,20 @@
     <string name="lenguage_dialog_en">English</string>
 
     <string name="lista_welcome">Welcome</string>
+
+    <!--> New version strings <-->
+
+    <string name="aboutus_terminos">Social surveys All Rights Reserved 2016</string>
+    <string name="aboutus_appversion">App version</string>
+
+    <string name="lista_creado">Created</string>
+
+    <string name="send_survey_title">Send Survey</string>
+    <string name="send_survey_done">The survey was successfully sent!</string>
+    <string name="send_survey_notsend">There was an error submitting the survey, try again.</string>
+    <string name="send_survey_noconnection">You do not have internet connection, the survey will be sent automatically when the connection is established.</string>
+    <string name="send_survey_oldsended">Surveys pending due to be submitted.</string>
+    <string name="send_survey_fecha">Select a Date</string>
+
+
 </resources>

@@ -9,7 +9,7 @@ public class Survey {
     private String name;
     private String description;
     private String created_at;
-    private int question_counter;
+    private int questions_count;
 
     public int getId() {
         return id;
@@ -43,11 +43,11 @@ public class Survey {
         this.created_at = created_at;
     }
 
-    public int getQuestion_counter() {
-        return question_counter;
+    public int getQuestions_count() {
+        return questions_count;
     }
 
-    public void setQuestion_counter(int question_counter) {
-        this.question_counter = question_counter;
+    public void setQuestions_count(int questions_count) {
+        this.questions_count = questions_count;
     }
 }

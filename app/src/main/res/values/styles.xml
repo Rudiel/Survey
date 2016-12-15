@@ -68,6 +68,9 @@
         <item name="android:background">@drawable/custom_spinner</item>
         <item name="android:height">@dimen/encuesta_spinner_h</item>
         <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
+        <item name="colorControlActivated">@color/survey_rosado</item>
+        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
+        <item name="colorControlHighlight">@color/survey_rosado</item>
     </style>
 
 
@@ -91,17 +94,24 @@
     <style name="RatingBarStyle" parent="@android:style/Widget.DeviceDefault.RatingBar">
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
+        <item name="colorControlActivated">@color/survey_rosado</item>
+        <item name="android:colorActivatedHighlight">@color/survey_rosado</item>
+
     </style>
 
     <style name="CheckBoxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
         <item name="android:textSize">@dimen/encuesta_item_textos</item>
+        <item name="colorControlActivated">@color/survey_rosado</item>
+        <item name="android:colorActivatedHighlight">@color/survey_rosado</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
     </style>
 
     <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
         <item name="android:textSize">@dimen/encuesta_item_textos</item>
+        <item name="colorControlActivated">@color/survey_rosado</item>
+        <item name="android:colorActivatedHighlight">@color/survey_rosado</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
     </style>
 
@@ -110,7 +120,17 @@
         <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
-        <item name="android:textColor">@color/tema_verde</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="ThemeToolbar" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
 </resources>

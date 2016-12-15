@@ -3,11 +3,13 @@ package com.gloobe.survey.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Adaptadores.Adapter_ExpandibleList;
 import com.gloobe.survey.R;
 
@@ -36,11 +38,14 @@ public class Fragment_QuestionsAnswers extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
+        ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
         expList = (ExpandableListView) getActivity().findViewById(R.id.explistQuestions);
 
         prepareListData();
 
-        expAdapter = new Adapter_ExpandibleList(getActivity(), listPreguntas, listRespuestas);
+        expAdapter = new Adapter_ExpandibleList(getActivity(), listPreguntas, listRespuestas, (((Actividad_Principal) getActivity()).tfTitulos));
 
         expList.setAdapter(expAdapter);
     }

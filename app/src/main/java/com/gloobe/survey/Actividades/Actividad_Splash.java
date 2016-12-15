@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.gloobe.survey.R;
+import com.gloobe.survey.Utils.Utils;
 
 /**
  * Created by rudielavilaperaza on 26/07/16.
@@ -34,10 +35,21 @@ public class Actividad_Splash extends Activity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(Actividad_Splash.this, Actividad_Tutorial.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                Utils.setContext(Actividad_Splash.this);
+
+                if (Utils.getUserName().equals("")) {
+
+                    Intent intent = new Intent(Actividad_Splash.this, Actividad_Tutorial.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                } else {
+                    Intent intent = new Intent(Actividad_Splash.this, Actividad_Principal.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                }
+
             }
         }, SPLASH_TIME_OUT);
     }

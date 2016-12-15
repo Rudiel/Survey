@@ -47,6 +47,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="@color/survey_text"
+        android:textAppearance="?android:attr/textAppearance"
         android:text="@string/aboutus_text"/>
 
 </LinearLayout>

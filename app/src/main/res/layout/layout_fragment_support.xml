@@ -50,7 +50,7 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/ivCorreo"
+            android:id="@+id/tvSupportMailIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -59,13 +59,14 @@
             android:textColor="@color/survey_text" />
 
         <TextView
+            android:id="@+id/tvSupportMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/ivCorreo"
+            android:layout_toRightOf="@id/tvSupportMailIcon"
             android:gravity="center"
-            android:text="rudielap@gmail.com"
+            android:text="@string/support_correo"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/survey_text" />
 
@@ -86,7 +87,7 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/ivLlamada"
+            android:id="@+id/tvSupportLlamadaIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -95,13 +96,14 @@
             android:textColor="@color/survey_text" />
 
         <TextView
+            android:id="@+id/tvSupportLlamada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/ivLlamada"
+            android:layout_toRightOf="@id/tvSupportLlamadaIcon"
             android:gravity="center"
-            android:text="9982302580"
+            android:text="@string/support_number"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/survey_text" />
 

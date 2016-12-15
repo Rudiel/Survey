@@ -14,6 +14,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            app:theme="@style/ThemeToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/fondo_degradado_toolbar"
@@ -53,6 +54,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_header_menu"
         app:itemIconTint="@color/survey_text"
+        app:itemTextAppearance="@style/NavigationDrawerStyle"
         app:itemTextColor="@color/survey_text"
         app:menu="@menu/menu_lateral" />
 

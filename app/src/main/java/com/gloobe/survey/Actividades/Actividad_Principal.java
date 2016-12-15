@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,24 +25,24 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gloobe.survey.DataBase.Db4oHelper;
 import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
 import com.gloobe.survey.Fragments.Fragment_Support;
-import com.gloobe.survey.Fragments.Fragment_Survey;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Answer;
 import com.gloobe.survey.Modelos.Data;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
-import com.gloobe.survey.Modelos.Models.Response.User;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.Models.Response.Survey;
 import com.gloobe.survey.R;
+import com.gloobe.survey.Utils.FontsOverride;
 import com.gloobe.survey.Utils.LocaleHelper;
-import com.google.gson.Gson;
+import com.gloobe.survey.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
     public static LinearLayout llconexion;
     public static boolean wifiActive;
-    public User user;
+    //public User user;
     public Toolbar toolbar;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
@@ -99,9 +101,11 @@ public class Actividad_Principal extends AppCompatActivity {
 
         llconexion = (LinearLayout) findViewById(R.id.llConexion);
 
-        Gson gson = new Gson();
-        String strObj = getIntent().getStringExtra("Usuario");
-        user = gson.fromJson(strObj, User.class);
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/titulos.ttf");
+
+        //Gson gson = new Gson();
+        //String strObj = getIntent().getStringExtra("Usuario");
+        //user = gson.fromJson(strObj, User.class);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -118,7 +122,6 @@ public class Actividad_Principal extends AppCompatActivity {
                 "fonts/textos.ttf");
         tfTitulosBold = Typeface.createFromAsset(getAssets(),
                 "fonts/titulos_bold.ttf");
-
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -141,6 +144,10 @@ public class Actividad_Principal extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         showLenguageDialog();
                         return true;
+                    case R.id.menu_logout:
+                        drawerLayout.closeDrawers();
+                        logout();
+                        return true;
                 }
 
                 return false;
@@ -161,7 +168,8 @@ public class Actividad_Principal extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
 
-        getEncuestas(user.getId(), user.getApi_key());
+        Utils.setContext(this);
+        getEncuestas(Utils.getUserID(), Utils.getApiKey());
 
         surveyList = new ArrayList<>();
 
@@ -292,6 +300,12 @@ public class Actividad_Principal extends AppCompatActivity {
 
         final Button btEspanol = (Button) dialog.findViewById(R.id.btLenguajeEspañol);
         final Button btIngles = (Button) dialog.findViewById(R.id.btLenguajeIngles);
+        final TextView tvTitlo = (TextView) dialog.findViewById(R.id.tvLenguajeTitulo);
+
+        btEspanol.setTypeface(tfTitulos);
+        btIngles.setTypeface(tfTitulos);
+        tvTitlo.setTypeface(tfTitulos);
+
         btEspanol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -315,9 +329,21 @@ public class Actividad_Principal extends AppCompatActivity {
 
     }
 
+    private void logout() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        Intent intent = new Intent(Actividad_Principal.this, Actividad_Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     private void updateViews() {
         recreate();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

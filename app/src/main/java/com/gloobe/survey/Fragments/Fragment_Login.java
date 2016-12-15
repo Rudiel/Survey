@@ -1,6 +1,7 @@
 package com.gloobe.survey.Fragments;
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -64,6 +65,7 @@ public class Fragment_Login extends Fragment {
 
         etPass.setText("qwerty");
         etUsuario.setText("Client1");
+
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override

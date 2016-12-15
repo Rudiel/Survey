@@ -44,6 +44,7 @@ import com.gloobe.survey.Modelos.Models.Response.Encuesta;
 import com.gloobe.survey.Modelos.Models.Response.Question;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Utils.DatePikerFragment;
+import com.gloobe.survey.Utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,6 +97,11 @@ public class Fragment_Survey extends Fragment {
         ivLogo = (ImageView) getActivity().findViewById(R.id.ivLogo);
 
         encuesta = ((Actividad_Principal) getActivity()).encuesta;
+
+        Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).into(ivLogo);
+
+
+        Utils.setContext(getActivity());
 
         lisQuestionsRequest = new ArrayList<>();
 
@@ -278,7 +284,7 @@ public class Fragment_Survey extends Fragment {
         btDate.setLayoutParams(params);
         btDate.setId(question.getId());
         btDate.setTextColor(getActivity().getResources().getColor(R.color.survey_text));
-        btDate.setText("Select a Date");
+        btDate.setText(getString(R.string.send_survey_fecha));
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_type(question.getQuestion_type().getId());
@@ -419,6 +425,7 @@ public class Fragment_Survey extends Fragment {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         //spinner.setId(id);
+        spinner.setPopupBackgroundResource(R.color.survey_rosado);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.leftMargin = 20;
@@ -512,6 +519,7 @@ public class Fragment_Survey extends Fragment {
         btSend.setLayoutParams(params);
         btSend.setTextColor(getActivity().getResources().getColor(android.R.color.white));
         btSend.setText(getResources().getString(R.string.send_survey_title));
+        btSend.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
 
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -535,7 +543,7 @@ public class Fragment_Survey extends Fragment {
         JSONObject objectAnswers = new JSONObject();
 
         objectAnswers.put("survey_id", encuesta.getId());
-        objectAnswers.put("user_id", ((Actividad_Principal) getActivity()).user.getId());
+        objectAnswers.put("user_id", Utils.getUserID());
 
         JSONObject objectAttributes = new JSONObject();
 
@@ -632,7 +640,7 @@ public class Fragment_Survey extends Fragment {
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString()));
 
 
-            Call<ResponseBody> surveyCall = service.setSurvey(this.encuesta.getId(), "Token token=" + ((Actividad_Principal) getActivity()).user.getApi_key(), body);
+            Call<ResponseBody> surveyCall = service.setSurvey(this.encuesta.getId(), "Token token=" + Utils.getApiKey(), body);
 
             surveyCall.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -657,10 +665,10 @@ public class Fragment_Survey extends Fragment {
         } else {
             ObjectToSend objectToSend = new ObjectToSend();
             objectToSend.setId(UUID.randomUUID());
-            objectToSend.setClient_id(((Actividad_Principal) getActivity()).user.getId());
+            objectToSend.setClient_id(Utils.getUserID());
             objectToSend.setId_encuesta(encuesta.getId());
             objectToSend.setRequestBody(RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (sur.toString())));
-            objectToSend.setApiKey(((Actividad_Principal) getActivity()).user.getApi_key());
+            objectToSend.setApiKey(Utils.getApiKey());
             try {
                 Actividad_Principal.db4oHelper.db().store(objectToSend);
                 //Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
@@ -671,6 +679,7 @@ public class Fragment_Survey extends Fragment {
             }
             progressDialog.dismiss();
         }
+
     }
 
     private void showMessage(String titulo, String mensaje) {
@@ -687,11 +696,14 @@ public class Fragment_Survey extends Fragment {
 
         TextView tvTitulo = (TextView) dialog.findViewById(R.id.tvDialogTitulo);
         tvTitulo.setText(titulo);
+        tvTitulo.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
 
         TextView tvTexto = (TextView) dialog.findViewById(R.id.tvDialogText);
         tvTexto.setText(mensaje);
+        tvTexto.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.btDialog);
+        dialogButton.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

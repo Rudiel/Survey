@@ -10,9 +10,10 @@ public class Encuesta {
     private int id;
     private String name;
     private String description;
-    private int question_counter;
+    private int questions_count;
     private String created_at;
     private List<Question> questions;
+    private EncuestaImage avatar;
     //falta la lista de imagenes
 
 
@@ -40,12 +41,12 @@ public class Encuesta {
         this.description = description;
     }
 
-    public int getQuestion_counter() {
-        return question_counter;
+    public int getQuestions_count() {
+        return questions_count;
     }
 
-    public void setQuestion_counter(int question_counter) {
-        this.question_counter = question_counter;
+    public void setQuestions_count(int questions_count) {
+        this.questions_count = questions_count;
     }
 
     public String getCreated_at() {
@@ -62,5 +63,13 @@ public class Encuesta {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public EncuestaImage getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(EncuestaImage avatar) {
+        this.avatar = avatar;
     }
 }

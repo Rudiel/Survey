@@ -41,9 +41,8 @@
 
     <string name="aboutus_about">Acerca De</string>
     <string name="aboutus_version">App Versión</string>ç
-    <string name="aboutus_text">Surveys is an app kbjsbosnhfostohshnhgochoruicru oheu oughec ouhec hugh
-        gsj fjgsdjfggs djfhgc sjga jhfgicgeiuyreciuy giegierlkndlkns fkclskfksngkl  nioe5uthui chgoiu ch ghoc h
-    glkn dlkgnlcklnldkngitipjgpoicjgpoj,tijxiomjiegc ihe i hxgieh iwh girhñjdxa,kjsd ñkjfkjsfsf lk sdjfkh slhlkhslfh</string>
+    <string name="aboutus_text">Social Survey is integrated with a back office to make our online surveys, offline-compatible.
+Download the iOS app from App Store and connect your surveys with the back office. All the surveys that are in your back office will be available on your device. All the data collected on your iOS device can be synchronized to your online account.</string>
     <string name="aboutus_terminos">Social surveys All Rights Reserved 2016</string>
     <string name="aboutus_appversion">App version</string>
 
@@ -51,6 +50,8 @@
     <string name="support_mail">Correo</string>
     <string name="support_faq">FAQ</string>
     <string name="support_phone">Teléfono</string>
+    <string name="support_number">(998) 892 0251</string>
+    <string name="support_correo">info@socialastronauts.com</string>
 
     <string name="login_dialogo_titulo">Survey Login</string>
     <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
@@ -68,5 +69,6 @@
     <string name="send_survey_notsend">Ha ocurrido un error al enviar la encuesta, Intente nuevamente.</string>
     <string name="send_survey_noconnection">No cuentas con conexion a internet, la encuesta se enviará automaticamente cuando se establezca la conexión</string>
     <string name="send_survey_oldsended">Se han enviado las encuestas pendientes por enviar.</string>
+    <string name="send_survey_fecha">Selecciona una fecha</string>
 
 </resources>

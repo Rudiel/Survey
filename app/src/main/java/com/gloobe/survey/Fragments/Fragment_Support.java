@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.R;
@@ -37,6 +38,12 @@ public class Fragment_Support extends Fragment {
         rlPhone = (RelativeLayout) getActivity().findViewById(R.id.rlPhone);
         rlMail = (RelativeLayout) getActivity().findViewById(R.id.rlMail);
         rlFaq = (RelativeLayout) getActivity().findViewById(R.id.rlFaq);
+
+        ((TextView) getActivity().findViewById(R.id.tvSupportLlamada)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+        ((TextView) getActivity().findViewById(R.id.tvSupportLlamadaIcon)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+        ((TextView) getActivity().findViewById(R.id.tvSupportMail)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+        ((TextView) getActivity().findViewById(R.id.tvSupportMailIcon)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+        ((TextView) getActivity().findViewById(R.id.tvFaq)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
 
 
         rlPhone.setOnClickListener(new View.OnClickListener() {
