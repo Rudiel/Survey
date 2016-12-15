@@ -12,9 +12,9 @@
 
     <dimen name="encuesta_boton_enviar_h">40dp</dimen>
     <dimen name="encuesta_boton_enviar_w">200dp</dimen>
-    <dimen name="encuesta_imagen_w">400dp</dimen>
-    <dimen name="encuesta_imagen_h">100dp</dimen>
-    <dimen name="encustas_titulos_s">12sp</dimen>
+    <dimen name="encuesta_imagen_w">300dp</dimen>
+    <dimen name="encuesta_imagen_h">150dp</dimen>
+    <dimen name="encustas_titulos_s">10sp</dimen>
     <dimen name="encustas_respuestas_s">10sp</dimen>
     <dimen name="encuesta_radiobutton">20dp</dimen>
     <dimen name="encuesta_spinner_h">30dp</dimen>
@@ -29,7 +29,6 @@
     <dimen name="lista_logo_h">50dp</dimen>
     <dimen name="lista_idioma_w">30dp</dimen>
     <dimen name="lista_idioma_h">30dp</dimen>
-    <dimen name="lista_item_textsize">20sp</dimen>
 
     <dimen name="tutorial_image_w">200dp</dimen>
     <dimen name="tutorial_image_h">200dp</dimen>
@@ -41,13 +40,13 @@
     <!--> dimens nuevos v2<!-->
     <dimen name="margin_card">10dp</dimen>
 
-    <dimen name="encuesta_item_textos">14sp</dimen>
+    <dimen name="encuesta_item_textos">?android:attr/textAppearanceMedium</dimen>
 
     <dimen name="lista_imagenperfil">130dp</dimen>
 
     <dimen name="menu_logo_w">200dp</dimen>
     <dimen name="menu_logo_h">100dp</dimen>
 
-
+    <dimen name="textApparence">16sp</dimen>
 
 </resources>

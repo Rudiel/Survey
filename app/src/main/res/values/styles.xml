@@ -101,7 +101,7 @@
 
     <style name="CheckBoxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
-        <item name="android:textSize">@dimen/encuesta_item_textos</item>
+        <item name="android:textSize">@dimen/textApparence</item>
         <item name="colorControlActivated">@color/survey_rosado</item>
         <item name="android:colorActivatedHighlight">@color/survey_rosado</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
@@ -109,7 +109,7 @@
 
     <style name="RadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="colorControlNormal">@color/survey_rosado_bajo</item>
-        <item name="android:textSize">@dimen/encuesta_item_textos</item>
+        <item name="android:textSize">@dimen/textApparence</item>
         <item name="colorControlActivated">@color/survey_rosado</item>
         <item name="android:colorActivatedHighlight">@color/survey_rosado</item>
         <item name="colorControlHighlight">@color/survey_rosado</item>
@@ -125,6 +125,7 @@
 
     <style name="NavigationDrawerStyle">
         <item name="android:typeface">monospace</item>
+        <item name="android:textSize">@dimen/textApparence</item>
     </style>
 
     <style name="ThemeToolbar" parent="Theme.AppCompat.Light">

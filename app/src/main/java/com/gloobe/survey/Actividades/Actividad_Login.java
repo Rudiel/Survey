@@ -145,6 +145,13 @@ public class Actividad_Login extends AppCompatActivity {
             }
         });
 
+        tvPrivacidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Actividad_Login.this,Activity_Privacidad.class));
+            }
+        });
+
     }
 
     private boolean usuarioValido() {

@@ -434,7 +434,7 @@ public class Actividad_Principal extends AppCompatActivity {
                         Log.d("ENCUESTABD", "HECHO");
                         db4oHelper.db().commit();
                         if (db4oHelper.db().query(ObjectToSend.class).size() == 0) {
-                            Toast.makeText(context, "Se han enviado las encuestas atrasadas", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, context.getString(R.string.send_survey_oldsended), Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
 

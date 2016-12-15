@@ -22,7 +22,7 @@
     <dimen name="lista_logo_h">60dp</dimen>
     <dimen name="lista_idioma_w">40dp</dimen>
     <dimen name="lista_idioma_h">40dp</dimen>
-    <dimen name="lista_item_textsize">30sp</dimen>
+    <dimen name="lista_item_textsize">?android:attr/textAppearanceLarge</dimen>
 
     <dimen name="tutorial_image_w">500dp</dimen>
     <dimen name="tutorial_image_h">500dp</dimen>
@@ -33,6 +33,9 @@
 
     <dimen name="lista_imagenperfil">180dp</dimen>
 
+    <dimen name="encuesta_item_textos">?android:attr/textAppearanceLarge</dimen>
+
+    <dimen name="textApparence">22sp</dimen>
 
 
 </resources>

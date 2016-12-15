@@ -21,6 +21,7 @@
 
     <TextView
         android:id="@+id/tvProfile"
+        android:textSize="@dimen/textApparence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"

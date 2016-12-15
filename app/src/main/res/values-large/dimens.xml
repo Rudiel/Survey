@@ -34,6 +34,7 @@
 
     <dimen name="lista_imagenperfil">160dp</dimen>
 
+    <dimen name="textApparence">18sp</dimen>
 
 
 </resources>

@@ -97,7 +97,11 @@ public class Fragment_Survey extends Fragment {
 
         encuesta = ((Actividad_Principal) getActivity()).encuesta;
 
-        Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).into(ivLogo);
+        if (encuesta.getAvatar().getAvatar().getUrl() != null) {
+            Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).into(ivLogo);
+            ivLogo.setBackground(null);
+            ivLogo.setPadding(0, 0, 0, 0);
+        }
 
 
         Utils.setContext(getActivity());
@@ -468,8 +472,8 @@ public class Fragment_Survey extends Fragment {
         params.topMargin = 20;
         params.leftMargin = 20;
         titulo.setLayoutParams(params);
-        //titulo.setTextSize(getResources().getDimension(R.dimen.encustas_titulos_s));
-        titulo.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+        titulo.setTextSize(getResources().getDimension(R.dimen.encustas_titulos_s));
+        //titulo.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
         titulo.setTextColor(getResources().getColor(R.color.survey_text));
         titulo.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
         return titulo;
