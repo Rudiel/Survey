@@ -20,7 +20,8 @@
                 android:id="@+id/ivLogo"
                 android:layout_width="@dimen/encuesta_imagen_w"
                 android:layout_height="@dimen/encuesta_imagen_h"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:layout_margin="10dp" />
 
         </LinearLayout>
 

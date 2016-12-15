@@ -8,6 +8,7 @@
         android:id="@+id/viewHeader"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:background="@drawable/fondo_degradado" />
 
     <ImageView
@@ -50,5 +51,6 @@
         android:layout_centerInParent="true"
         android:indeterminateTint="@color/survey_rosado"
         android:visibility="gone" />
+
 
 </RelativeLayout>

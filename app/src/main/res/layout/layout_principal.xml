@@ -14,12 +14,12 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:theme="@style/ThemeToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/fondo_degradado_toolbar"
             android:minHeight="?attr/actionBarSize"
-            android:title="" />
+            android:title=""
+            app:theme="@style/ThemeToolbar" />
 
         <LinearLayout
             android:id="@+id/llConexion"
@@ -38,10 +38,24 @@
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/flContenedor"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/flContenedor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ProgressBar
+                android:id="@+id/pbPrincipal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

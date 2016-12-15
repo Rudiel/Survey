@@ -2,6 +2,8 @@ package com.gloobe.survey.Actividades;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -59,6 +61,8 @@ public class Actividad_Login extends AppCompatActivity {
 
         ivLogo = (ImageView) findViewById(R.id.ivLoginLogo);
         pbLogin = (ProgressBar) findViewById(R.id.pbLogin);
+        pbLogin.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+
 
         tvPrivacidad = (TextView) findViewById(R.id.tvPrivacidad);
 
@@ -220,7 +224,7 @@ public class Actividad_Login extends AppCompatActivity {
         Utils.saveUserLastName(usuario.getLast_name());
         Utils.saveUserName(usuario.getName());
         Utils.saveUserMail(usuario.getEmail());
-
+        Utils.saveUserImage(usuario.getImage().getImage().getUrl());
     }
 
 }

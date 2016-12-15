@@ -40,11 +40,12 @@
     <!--> New version strings <-->
 
     <string name="aboutus_about">Acerca De</string>
-    <string name="aboutus_version">App Versión</string>ç
-    <string name="aboutus_text">Social Survey is integrated with a back office to make our online surveys, offline-compatible.
-Download the iOS app from App Store and connect your surveys with the back office. All the surveys that are in your back office will be available on your device. All the data collected on your iOS device can be synchronized to your online account.</string>
-    <string name="aboutus_terminos">Social surveys All Rights Reserved 2016</string>
+    <string name="aboutus_version">App Versión</string>
+    <string name="aboutus_text">
+Social Survey está integrado con un back office para hacer nuestras encuestas en línea, fuera de offline-compatible.
+Descarga la aplicación para Android de Google Play y conecta tus encuestas con la oficina de respaldo. Todas las encuestas que están en su back office estarán disponibles en su dispositivo. Todos los datos recopilados en tu dispositivo Android se pueden sincronizar con tu cuenta en línea</string>
     <string name="aboutus_appversion">App version</string>
+    <string name="aboutus_terminos">Todos los derechos reservados Social surveys 2016</string>
 
     <string name="support_title">Soporte</string>
     <string name="support_mail">Correo</string>

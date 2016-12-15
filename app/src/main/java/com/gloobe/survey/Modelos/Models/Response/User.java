@@ -11,6 +11,7 @@ public class User {
     private String last_name;
     private String api_key;
     private String email;
+    private ImageUser image;
 
     public int getId() {
         return id;
@@ -50,5 +51,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public ImageUser getImage() {
+        return image;
+    }
+
+    public void setImage(ImageUser image) {
+        this.image = image;
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Survey</string>
+    <string name="url_global">https://sleepy-ravine-58079.herokuapp.com/api/</string>
 
     <string name="intro_nuestro_titulo">Our service</string>
     <string name="intro_dinamic_survey">Dinamic Survey </string>
@@ -34,6 +35,7 @@
     <string name="menu_acercade">About us</string>
     <string name="menu_soporte">Support</string>
     <string name="menu_preguntas">FAQ</string>
+    <string name="menu_logout">Log Out</string>
 
 
     <!--> New version strings <-->
@@ -47,9 +49,13 @@ Download the Android app from Google Play and connect your surveys with the back
     <string name="support_mail">Mail</string>
     <string name="support_faq">FAQ</string>
     <string name="support_phone">Phone</string>
+    <string name="support_number">(998) 892 0251</string>
+    <string name="support_correo">info@socialastronauts.com</string>
 
     <string name="login_dialogo_titulo">Survey Login</string>
-    <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
+    <string name="login_dialog_text_mal">An error has occurred. Try again.</string>
+    <string name="login_aviso">Check the Privacy Notice and FAQ here.</string>
+
 
     <string name="lenguage_dialog_title">Choose a Language</string>
     <string name="lenguage_dialog_esp">Spanish</string>

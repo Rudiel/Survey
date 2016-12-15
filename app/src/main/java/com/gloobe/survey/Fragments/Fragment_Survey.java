@@ -74,7 +74,6 @@ public class Fragment_Survey extends Fragment {
     private ImageView ivLogo;
     private Encuesta encuesta;
     private List<com.gloobe.survey.Modelos.Models.Request.Question> lisQuestionsRequest;
-    private ProgressDialog progressDialog;
 
 
     @Nullable
@@ -143,7 +142,6 @@ public class Fragment_Survey extends Fragment {
 
         createSendButton();
 
-        progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
     }
 
     private void createOpenQuestion(Question question) {
@@ -525,12 +523,12 @@ public class Fragment_Survey extends Fragment {
             @Override
             public void onClick(View v) {
 
-                progressDialog.show();
+                ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
                 try {
                     createJson();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    progressDialog.dismiss();
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                 }
             }
         });
@@ -646,18 +644,18 @@ public class Fragment_Survey extends Fragment {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.body() != null) {
-                        progressDialog.dismiss();
+                        ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                         showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_done));
                     } else {
                         showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
-                        progressDialog.dismiss();
+                        ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
-                    progressDialog.dismiss();
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
 
                 }
             });
@@ -677,7 +675,7 @@ public class Fragment_Survey extends Fragment {
             } finally {
                 Actividad_Principal.db4oHelper.db().close();
             }
-            progressDialog.dismiss();
+            ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
         }
 
     }

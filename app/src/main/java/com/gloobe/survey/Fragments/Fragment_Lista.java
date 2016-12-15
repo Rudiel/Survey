@@ -46,7 +46,6 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
     private ImageView ivProfile;
     private TextView tvProfile;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private ProgressBar pbLista;
 
     @Nullable
     @Override
@@ -65,7 +64,6 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         ivProfile = (ImageView) getActivity().findViewById(R.id.ivProfile);
         tvProfile = (TextView) getActivity().findViewById(R.id.tvProfile);
         swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swiperefresh);
-        pbLista = (ProgressBar) getActivity().findViewById(R.id.pbLista);
 
         //pbLista.getIndeterminateDrawable().setColorFilter(0xff2863, android.graphics.PorterDuff.Mode.MULTIPLY);
 
@@ -77,7 +75,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
                 ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
         mRecyclerView.setAdapter(mAdapter);
 
-        Glide.with(this).load(R.drawable.pp).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+        Glide.with(this).load(Utils.getImageUser()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -116,7 +114,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
     @Override
     public void clicItem(View v) {
 
-        pbLista.setVisibility(View.VISIBLE);
+        ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
 
         int position = mRecyclerView.getChildLayoutPosition(v);
         ((Actividad_Principal) getActivity()).survey_id = ((Actividad_Principal) getActivity()).surveyList.get(position).getId();
@@ -141,14 +139,14 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
             public void onResponse(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Response<com.gloobe.survey.Modelos.Models.Response.Encuesta> response) {
                 if (response.body() != null) {
                     ((Actividad_Principal) getActivity()).encuesta = response.body();
-                    pbLista.setVisibility(View.GONE);
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                     ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Survey(), true, ((Actividad_Principal) getActivity()).FG_SURVEY);
                 }
             }
 
             @Override
             public void onFailure(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Throwable t) {
-                pbLista.setVisibility(View.GONE);
+                ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
             }
         });
 

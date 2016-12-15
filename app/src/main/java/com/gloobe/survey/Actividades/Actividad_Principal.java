@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,6 +27,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +75,7 @@ public class Actividad_Principal extends AppCompatActivity {
     public Toolbar toolbar;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
+    public ProgressBar pbPrincipal;
 
     //Nuevas variables v2
 
@@ -115,6 +119,9 @@ public class Actividad_Principal extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.ndPrincipal);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        pbPrincipal = (ProgressBar) findViewById(R.id.pbPrincipal);
+        pbPrincipal.getIndeterminateDrawable().setColorFilter(Color.MAGENTA, PorterDuff.Mode.MULTIPLY);
+
 
         tfTitulos = Typeface.createFromAsset(getAssets(),
                 "fonts/titulos.ttf");
@@ -179,6 +186,8 @@ public class Actividad_Principal extends AppCompatActivity {
 
     private void getEncuestas(int custumer_id, String token) {
 
+        pbPrincipal.setVisibility(View.VISIBLE);
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.url_global))
@@ -191,13 +200,20 @@ public class Actividad_Principal extends AppCompatActivity {
         encuestas.enqueue(new Callback<List<Survey>>() {
             @Override
             public void onResponse(Call<List<Survey>> call, Response<List<Survey>> response) {
-                Log.d("RESPONSE", response.body().toString());
-                surveyList = response.body();
-                iniciarFragment(new Fragment_Lista(), false, FG_LISTA);
+                if (response.body() != null) {
+                    Log.d("RESPONSE", response.body().toString());
+                    surveyList = response.body();
+                    pbPrincipal.setVisibility(View.GONE);
+                    iniciarFragment(new Fragment_Lista(), false, FG_LISTA);
+                } else {
+                    pbPrincipal.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
             public void onFailure(Call<List<Survey>> call, Throwable t) {
+                pbPrincipal.setVisibility(View.GONE);
 
             }
         });

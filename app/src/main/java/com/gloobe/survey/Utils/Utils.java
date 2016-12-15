@@ -76,5 +76,16 @@ public class Utils {
         return preferences.getString("USER_NAME", "");
     }
 
+    public static String getImageUser() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString("USER_IMAGE", "");
+    }
+
+    public static void saveUserImage(String imagen) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("USER_IMAGE", imagen);
+        editor.apply();
+    }
 
 }

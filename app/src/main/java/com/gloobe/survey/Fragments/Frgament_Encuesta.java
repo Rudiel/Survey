@@ -69,7 +69,6 @@ public class Frgament_Encuesta extends Fragment {
     private ArrayList<MultipleID> arrMultipleID;
     private ArrayList<CaritaID> arrCaritaID;
 
-    private ProgressDialog progressDialog;
     private JSONObject data;
 
     private RespuestaJSON resEdittex;
@@ -87,7 +86,7 @@ public class Frgament_Encuesta extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((Actividad_Principal)getActivity()).toolbar.setVisibility(View.GONE);
+        ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
 
         ll = (LinearLayout) getActivity().findViewById(R.id.llEncuestas);
         llContenedor = (LinearLayout) getActivity().findViewById(R.id.llContenedorEncuesta);
@@ -134,8 +133,6 @@ public class Frgament_Encuesta extends Fragment {
 
         crearBotonEnviar();
 
-        progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
-        progressDialog.setCancelable(false);
     }
 
     private void crearOpcionMultipleUna(String titulo, List<Answer> mAnswerList, int id) {
@@ -513,7 +510,7 @@ public class Frgament_Encuesta extends Fragment {
                 }
 
                 if (data != null) {
-                    progressDialog.show();
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
 
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(getString(R.string.url_global))
@@ -562,7 +559,7 @@ public class Frgament_Encuesta extends Fragment {
         setAnswerCheckbox();
 
         if (arrRespuestasJSON.size() < questionList.size()) {
-            progressDialog.dismiss();
+            ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
             ((Actividad_Principal) getActivity()).mostarDialogo("Faltan Preguntas por completar", "Encuesta");
             return;
 

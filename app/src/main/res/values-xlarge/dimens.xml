@@ -31,5 +31,8 @@
 
     <dimen name="botones_texto">25sp</dimen>
 
+    <dimen name="lista_imagenperfil">180dp</dimen>
+
+
 
 </resources>
