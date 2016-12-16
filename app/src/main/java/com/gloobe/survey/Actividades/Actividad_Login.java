@@ -80,8 +80,8 @@ public class Actividad_Login extends AppCompatActivity {
         btLogin.setTypeface(tfTitulos);
         tvPrivacidad.setTypeface(tfTitulos);
 
-        etPass.setText("qwerty");
-        etUsuario.setText("admin@dynamicsurveys.com");
+        //etPass.setText("qwerty");
+        //etUsuario.setText("admin@dynamicsurveys.com");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +148,7 @@ public class Actividad_Login extends AppCompatActivity {
         tvPrivacidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Actividad_Login.this,Activity_Privacidad.class));
+                startActivity(new Intent(Actividad_Login.this, Activity_Privacidad.class));
             }
         });
 

@@ -14,6 +14,7 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
+
     <LinearLayout
         android:id="@+id/llLogin"
         android:layout_width="wrap_content"
@@ -91,15 +92,12 @@
 
     <ImageView
         android:id="@+id/ivLoginLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/lista_logo_w"
+        android:layout_height="@dimen/menu_logo_h"
         android:layout_above="@id/llLogin"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:src="@drawable/splash_logo"
+        android:src="@drawable/shape"
         android:visibility="visible" />
 
 </RelativeLayout>

@@ -98,7 +98,7 @@ public class Fragment_Survey extends Fragment {
         encuesta = ((Actividad_Principal) getActivity()).encuesta;
 
         if (encuesta.getAvatar().getAvatar().getUrl() != null) {
-            Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).into(ivLogo);
+            Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).centerCrop().into(ivLogo);
             ivLogo.setBackground(null);
             ivLogo.setPadding(0, 0, 0, 0);
         }
@@ -429,6 +429,7 @@ public class Fragment_Survey extends Fragment {
         //spinner.setId(id);
         spinner.setPopupBackgroundResource(R.color.survey_rosado);
 
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.leftMargin = 20;
         params.rightMargin = 20;
@@ -527,13 +528,21 @@ public class Fragment_Survey extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
-                try {
-                    createJson();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
+                if (lisQuestionsRequest.size() != encuesta.getQuestions().size()) {
+
+                    showMessage(getString(R.string.send_survey_title), getString(R.string.send_survey_sizeinvalid));
+
+                } else {
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
+                    try {
+                        createJson();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
+                    }
                 }
+
+
             }
         });
 
@@ -541,6 +550,8 @@ public class Fragment_Survey extends Fragment {
     }
 
     private void createJson() throws JSONException {
+
+        JSONObject objectSubmissions = new JSONObject();
 
         JSONObject objectAnswers = new JSONObject();
 
@@ -610,9 +621,11 @@ public class Fragment_Survey extends Fragment {
 
         objectAnswers.put("answers_attributes", objectAttributes);
 
-        Log.d("OBJECT", objectAnswers.toString());
+        objectSubmissions.put("submission", objectAnswers);
 
-        sendResponse(objectAnswers);
+        Log.d("OBJECT", objectSubmissions.toString());
+
+        sendResponse(objectSubmissions);
 
     }
 
@@ -650,6 +663,7 @@ public class Fragment_Survey extends Fragment {
                     if (response.body() != null) {
                         ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                         showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_done));
+                        cerrarFragment();
                     } else {
                         showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
                         ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
@@ -680,7 +694,9 @@ public class Fragment_Survey extends Fragment {
                 Actividad_Principal.db4oHelper.db().close();
             }
             ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
+            cerrarFragment();
         }
+
 
     }
 
@@ -715,6 +731,12 @@ public class Fragment_Survey extends Fragment {
 
         dialog.show();
 
+    }
+
+    private void cerrarFragment(){
+        getActivity().getSupportFragmentManager().popBackStack();
+        ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.VISIBLE);
+        ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
 
