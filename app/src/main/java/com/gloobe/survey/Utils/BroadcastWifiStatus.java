@@ -15,9 +15,9 @@ import com.gloobe.survey.Actividades.Actividad_Principal;
 public class BroadcastWifiStatus extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+
+        Utils.setContext(context);
+        if (Utils.isConnected()) {
             try {
                 Actividad_Principal.llconexion.setVisibility(View.GONE);
                 Actividad_Principal.eliminarEncuesta(context);

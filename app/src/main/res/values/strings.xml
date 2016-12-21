@@ -56,7 +56,7 @@ Descarga la aplicación para Android de Google Play y conecta tus encuestas con 
 
     <string name="login_dialogo_titulo">Survey Login</string>
     <string name="login_dialog_text_mal">Un error ha ocurrido. Intente nuevamente.</string>
-    <string name="login_aviso">Revisa el aviso de Privacidad y FAQ aqui</string>
+    <string name="login_aviso">Revisa el aviso de Privacidad aqui</string>
 
     <string name="lenguage_dialog_title">Elige un Idioma</string>
     <string name="lenguage_dialog_esp">Español</string>
@@ -96,5 +96,7 @@ Descarga la aplicación para Android de Google Play y conecta tus encuestas con 
         <b>¿Ante quién puede presentar sus quejas y denuncias por el tratamiento indebido de sus datos personales?</b>\n
         Si usted considera que su derecho de protección de datos personales ha sido lesionado por alguna conducta de nuestros empleados o de nuestras actuaciones o respuestas, presume que en el tratamiento de sus datos personales existe alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, podrá interponer la queja o denuncia correspondiente ante el INAI, para mayor información visite www.inai.org.mx
     </string>
+
+    <string name="wifi_text">No tienes conexión a internet.</string>
 
 </resources>

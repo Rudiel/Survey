@@ -17,7 +17,7 @@ public class Question {
     private int choice_id;
     private List<String> choice_ids;
     private int image_id;
-    private List<String> date;
+    private String date;
     private int question_type;
     private EditText editText;
     private List<Integer> checkBoxIdsList;
@@ -62,11 +62,11 @@ public class Question {
         this.image_id = image_id;
     }
 
-    public List<String> getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(List<String> date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

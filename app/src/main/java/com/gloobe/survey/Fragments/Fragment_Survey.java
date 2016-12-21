@@ -303,11 +303,7 @@ public class Fragment_Survey extends Fragment {
                 DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                         btDate.setText(selectedday + "/" + selectedmonth + "/" + selectedyear);
-                        List<String> lisfecha = new ArrayList<>();
-                        lisfecha.add(String.valueOf(selectedday));
-                        lisfecha.add(String.valueOf(selectedmonth));
-                        lisfecha.add(String.valueOf(selectedyear));
-                        ques.setDate(lisfecha);
+                        ques.setDate(selectedday + "/" + selectedmonth + "/" + selectedyear);
                         if (!lisQuestionsRequest.contains(ques))
                             lisQuestionsRequest.add(ques);
                     }
@@ -528,19 +524,19 @@ public class Fragment_Survey extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (lisQuestionsRequest.size() != encuesta.getQuestions().size()) {
+                // if (lisQuestionsRequest.size() != encuesta.getQuestions().size()) {
 
-                    showMessage(getString(R.string.send_survey_title), getString(R.string.send_survey_sizeinvalid));
+                //   showMessage(getString(R.string.send_survey_title), getString(R.string.send_survey_sizeinvalid));
 
-                } else {
-                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
-                    try {
-                        createJson();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
-                    }
+                //} else {
+                ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.VISIBLE);
+                try {
+                    createJson();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                 }
+                // }
 
 
             }
@@ -583,9 +579,7 @@ public class Fragment_Survey extends Fragment {
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 4) {
                 JSONObject dateObject = new JSONObject();
-                dateObject.put("response1", lisQuestionsRequest.get(i).getDate().get(0));
-                dateObject.put("response2", lisQuestionsRequest.get(i).getDate().get(1));
-                dateObject.put("response3", lisQuestionsRequest.get(i).getDate().get(2));
+                dateObject.put("response", lisQuestionsRequest.get(i).getDate());
                 questionObject.put("answer_date_attributes", dateObject);
             }
 
@@ -632,10 +626,8 @@ public class Fragment_Survey extends Fragment {
 
     private void sendResponse(JSONObject sur) {
 
-        ConnectivityManager conMan = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-
+        Utils.setContext(getActivity());
+        if (Utils.isConnected()) {
 
             try {
                 Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
@@ -733,7 +725,7 @@ public class Fragment_Survey extends Fragment {
 
     }
 
-    private void cerrarFragment(){
+    private void cerrarFragment() {
         getActivity().getSupportFragmentManager().popBackStack();
         ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.VISIBLE);
         ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);

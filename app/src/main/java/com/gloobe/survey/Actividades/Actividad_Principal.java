@@ -364,9 +364,9 @@ public class Actividad_Principal extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        //getMenuInflater().inflate(R.menu.menu_toolbar, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        /*MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
 
         searchView = (SearchView) searchItem.getActionView();
@@ -393,7 +393,7 @@ public class Actividad_Principal extends AppCompatActivity {
             };
             searchView.setOnQueryTextListener(queryTextListener);
         }
-
+        */
         return super.onCreateOptionsMenu(menu);
     }
 

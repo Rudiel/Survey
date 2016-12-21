@@ -2,7 +2,10 @@ package com.gloobe.survey.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 /**
  * Created by rudielavilaperaza on 12/7/16.
@@ -86,6 +89,27 @@ public class Utils {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("USER_IMAGE", imagen);
         editor.apply();
+    }
+
+    public static boolean isConnected() {
+
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
+
+        //For 3G check
+        boolean is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+                .isConnectedOrConnecting();
+        //For WiFi Check
+        boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+                .isConnectedOrConnecting();
+
+        System.out.println(is3g + " net " + isWifi);
+
+        if (!is3g && !isWifi) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

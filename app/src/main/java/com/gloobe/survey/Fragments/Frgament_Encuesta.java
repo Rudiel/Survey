@@ -86,7 +86,7 @@ public class Frgament_Encuesta extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
+       /* ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
 
         ll = (LinearLayout) getActivity().findViewById(R.id.llEncuestas);
         llContenedor = (LinearLayout) getActivity().findViewById(R.id.llContenedorEncuesta);
@@ -546,8 +546,8 @@ public class Frgament_Encuesta extends Fragment {
 
                         }
                     });*/
-                }
-            }
+      /*          }
+           }
         });
         ll.addView(btenviar);
 
@@ -652,7 +652,7 @@ public class Frgament_Encuesta extends Fragment {
                     if (!arrRespuestasJSON.contains(resCheckBox))
                         arrRespuestasJSON.add(resCheckBox);
             }
-        }
+        }*/
 
     }
 
