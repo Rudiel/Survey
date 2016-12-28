@@ -19,29 +19,33 @@
             android:background="@drawable/fondo_degradado_toolbar"
             android:minHeight="?attr/actionBarSize"
             android:title=""
-            app:theme="@style/ThemeToolbar" />
+            app:theme="@style/ThemeToolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="10dp"
+                    android:src="@drawable/splash_logo"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <FrameLayout
-                android:id="@+id/flContenedor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ProgressBar
-                android:id="@+id/pbPrincipal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
-
             <LinearLayout
                 android:id="@+id/llConexion"
                 android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentBottom="true"
                 android:background="@color/survey_text"
                 android:visibility="gone">
 
@@ -50,11 +54,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textStyle="bold"
                     android:text="@string/wifi_text"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/flContenedor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/llConexion" />
+
+            <ProgressBar
+                android:id="@+id/pbPrincipal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
 
 
         </RelativeLayout>

@@ -20,10 +20,7 @@
                 android:id="@+id/ivLogo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/encuesta_imagen_h"
-                android:layout_gravity="center"
-                android:src="@drawable/splash_logo"
-                android:padding="40dp"
-                android:background="@drawable/fondo_degradado"/>
+                android:src="@drawable/unnamed" />
 
         </LinearLayout>
 

@@ -118,8 +118,6 @@
     <style name="SpinnerStyle3" parent="@android:style/Widget.DeviceDefault.Spinner">
         <item name="android:height">@dimen/encuesta_spinner_h</item>
         <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
-        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
-        <item name="colorControlHighlight">@color/survey_rosado</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

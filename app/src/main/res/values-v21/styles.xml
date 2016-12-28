@@ -54,17 +54,5 @@
     </style>
 
 
-    <style name="SpinnerStyle3" parent="@android:style/Widget.Material.Spinner">
-        <item name="android:height">@dimen/encuesta_spinner_h</item>
-        <item name="android:minHeight">@dimen/encuesta_spinner_h</item>
-        <item name="android:colorForeground">@color/survey_rosado</item>
-        <item name="android:colorAccent">@color/survey_rosado</item>
-        <item name="android:colorPrimary">@color/survey_rosado</item>
-        <item name="android:colorPrimaryDark">@color/survey_rosado</item>
-        <item name="colorControlNormal">@color/survey_rosado_bajo</item>
-        <item name="colorControlHighlight">@color/survey_rosado</item>
-        <item name="android:colorControlActivated">@color/survey_rosado</item>
-        <item name="android:textColor">@color/tema_verde</item>
-        <item name="android:popupBackground">@color/survey_gris</item>
-    </style>
+
 </resources>

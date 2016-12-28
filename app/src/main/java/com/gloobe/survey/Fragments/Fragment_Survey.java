@@ -50,8 +50,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -74,6 +76,7 @@ public class Fragment_Survey extends Fragment {
     private ImageView ivLogo;
     private Encuesta encuesta;
     private List<com.gloobe.survey.Modelos.Models.Request.Question> lisQuestionsRequest;
+    private Button btSend;
 
 
     @Nullable
@@ -99,10 +102,8 @@ public class Fragment_Survey extends Fragment {
 
         if (encuesta.getAvatar().getAvatar().getUrl() != null) {
             Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).centerCrop().into(ivLogo);
-            ivLogo.setBackground(null);
-            ivLogo.setPadding(0, 0, 0, 0);
-        }
-
+        } else
+            Glide.with(getActivity()).load(R.drawable.unnamed).centerCrop().into(ivLogo);
 
         Utils.setContext(getActivity());
 
@@ -192,6 +193,7 @@ public class Fragment_Survey extends Fragment {
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_type(question.getQuestion_type().getId());
         ques.setQuestion_id(question.getId());
+        lisQuestionsRequest.add(ques);
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -228,6 +230,7 @@ public class Fragment_Survey extends Fragment {
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
         ques.setQuestion_type(question.getQuestion_type().getId());
+        lisQuestionsRequest.add(ques);
 
         final List<Integer> checkBoxIdsList = new ArrayList<>();
 
@@ -291,6 +294,7 @@ public class Fragment_Survey extends Fragment {
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_type(question.getQuestion_type().getId());
         ques.setQuestion_id(question.getId());
+        lisQuestionsRequest.add(ques);
 
         btDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -391,6 +395,7 @@ public class Fragment_Survey extends Fragment {
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
         ques.setQuestion_type(question.getQuestion_type().getId());
+        lisQuestionsRequest.add(ques);
 
         //rating.setOnRatingBarChangeListener(clickRatingBar(res, id, titulo));
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -417,16 +422,15 @@ public class Fragment_Survey extends Fragment {
             respuestas[i] = question.getChoices().get(i).getTitle();
         }
 
-        Spinner spinner = new Spinner(new android.view.ContextThemeWrapper(getActivity(), R.style.SpinnerStyle3), null, 0);
-        //Spinner spinner = new Spinner(getActivity());
+        //Spinner spinner = new Spinner(new android.view.ContextThemeWrapper(getActivity(), R.style.SpinnerStyle3), null, 0);
+        Spinner spinner = new Spinner(getActivity());
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.layout_spinner, respuestas); //selected item will look like a spinner set from XML
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
-        //spinner.setId(id);
         spinner.setPopupBackgroundResource(R.color.survey_rosado);
+        spinner.setBackground(getResources().getDrawable(R.drawable.custom_spinner));
 
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.leftMargin = 20;
         params.rightMargin = 20;
         params.bottomMargin = 20;
@@ -441,6 +445,7 @@ public class Fragment_Survey extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.survey_rosado));
                 ques.setChoice_id(question.getChoices().get(position).getId());
                 if (!lisQuestionsRequest.contains(ques))
                     lisQuestionsRequest.add(ques);
@@ -469,8 +474,8 @@ public class Fragment_Survey extends Fragment {
         params.topMargin = 20;
         params.leftMargin = 20;
         titulo.setLayoutParams(params);
-        titulo.setTextSize(getResources().getDimension(R.dimen.encustas_titulos_s));
-        //titulo.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+        //titulo.setTextSize(getResources().getDimension(R.dimen.encustas_titulos_s));
+        titulo.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
         titulo.setTextColor(getResources().getColor(R.color.survey_text));
         titulo.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
         return titulo;
@@ -509,7 +514,7 @@ public class Fragment_Survey extends Fragment {
 
     private void createSendButton() {
 
-        final Button btSend = new Button(getActivity());
+        btSend = new Button(getActivity());
         btSend.setBackground(getResources().getDrawable(R.drawable.button_pink));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.encuesta_boton_enviar_w), (int) getResources().getDimension(R.dimen.encuesta_boton_enviar_h));
         params.gravity = Gravity.CENTER;
@@ -523,7 +528,7 @@ public class Fragment_Survey extends Fragment {
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                btSend.setEnabled(false);
                 // if (lisQuestionsRequest.size() != encuesta.getQuestions().size()) {
 
                 //   showMessage(getString(R.string.send_survey_title), getString(R.string.send_survey_sizeinvalid));
@@ -537,7 +542,6 @@ public class Fragment_Survey extends Fragment {
                     ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                 }
                 // }
-
 
             }
         });
@@ -566,7 +570,10 @@ public class Fragment_Survey extends Fragment {
             if (lisQuestionsRequest.get(i).getQuestion_type() == 6) {
 
                 JSONObject ratingObject = new JSONObject();
-                ratingObject.put("response", lisQuestionsRequest.get(i).getResponse());
+                if (lisQuestionsRequest.get(i).getResponse() != null)
+                    ratingObject.put("response", lisQuestionsRequest.get(i).getResponse());
+                else
+                    ratingObject.put("response", "5.0");
                 questionObject.put("answer_raiting_attributes", ratingObject);
             }
 
@@ -579,7 +586,10 @@ public class Fragment_Survey extends Fragment {
 
             if (lisQuestionsRequest.get(i).getQuestion_type() == 4) {
                 JSONObject dateObject = new JSONObject();
-                dateObject.put("response", lisQuestionsRequest.get(i).getDate());
+                if (lisQuestionsRequest.get(i).getDate() != null)
+                    dateObject.put("response", lisQuestionsRequest.get(i).getDate());
+                else
+                    dateObject.put("response", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
                 questionObject.put("answer_date_attributes", dateObject);
             }
 
@@ -654,18 +664,20 @@ public class Fragment_Survey extends Fragment {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.body() != null) {
                         ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
-                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_done));
-                        cerrarFragment();
+                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_done), true);
                     } else {
-                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
                         ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
+                        showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend), false);
+                        btSend.setEnabled(true);
+
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend));
                     ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
+                    showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_notsend), false);
+                    btSend.setEnabled(true);
 
                 }
             });
@@ -680,19 +692,21 @@ public class Fragment_Survey extends Fragment {
             try {
                 Actividad_Principal.db4oHelper.db().store(objectToSend);
                 //Log.d("DB", "" + Actividad_Principal.db4oHelper.db().query(ObjectToSend.class).size());
-                showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_noconnection));
+                showMessage(getResources().getString(R.string.send_survey_title), getResources().getString(R.string.send_survey_noconnection), false);
 
             } finally {
                 Actividad_Principal.db4oHelper.db().close();
             }
+            //cerrarFragment();
             ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
-            cerrarFragment();
+            btSend.setEnabled(true);
+            ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Survey(), false, Actividad_Principal.FG_SURVEY);
         }
 
 
     }
 
-    private void showMessage(String titulo, String mensaje) {
+    private void showMessage(String titulo, String mensaje, final boolean closeFg) {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -718,6 +732,8 @@ public class Fragment_Survey extends Fragment {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                if (closeFg)
+                    cerrarFragment();
             }
         });
 
@@ -730,6 +746,5 @@ public class Fragment_Survey extends Fragment {
         ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.VISIBLE);
         ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
-
 
 }

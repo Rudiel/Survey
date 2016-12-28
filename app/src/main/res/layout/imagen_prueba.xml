@@ -7,30 +7,25 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/image_selected_background"
-        android:src="@drawable/pp" />
+        android:background="@drawable/image_selected_background" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/image_selected_background"
-        android:src="@drawable/pp" />
+        android:background="@drawable/image_selected_background" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/pp" />
+        android:background="@drawable/image_selected_background" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/image_selected_background"
-        android:src="@drawable/pp" />
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/image_selected_background"
-        android:src="@drawable/pp" />
+        android:background="@drawable/image_selected_background" />
 
 </LinearLayout>

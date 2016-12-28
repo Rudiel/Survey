@@ -2,7 +2,6 @@ package com.gloobe.survey.Actividades;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +30,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.gloobe.survey.DataBase.Db4oHelper;
 import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
@@ -50,6 +50,8 @@ import com.gloobe.survey.Utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+//import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,6 +103,7 @@ public class Actividad_Principal extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.layout_principal);
 
         llconexion = (LinearLayout) findViewById(R.id.llConexion);

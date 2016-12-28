@@ -165,11 +165,12 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         encuestas.enqueue(new Callback<List<Survey>>() {
             @Override
             public void onResponse(Call<List<Survey>> call, Response<List<Survey>> response) {
-                Log.d("RESPONSE", response.body().toString());
-                ((Actividad_Principal) getActivity()).surveyList = response.body();
-                mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, Fragment_Lista.this, getActivity(),
-                        ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
-                mRecyclerView.setAdapter(mAdapter);
+                if (response.body() != null) {
+                    ((Actividad_Principal) getActivity()).surveyList = response.body();
+                    mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, Fragment_Lista.this, getActivity(),
+                            ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
                 swipeRefreshLayout.setRefreshing(false);
 
             }

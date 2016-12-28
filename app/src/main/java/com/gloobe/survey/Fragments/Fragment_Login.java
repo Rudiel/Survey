@@ -58,7 +58,7 @@ public class Fragment_Login extends Fragment {
 
         ivLogo = (ImageView) getActivity().findViewById(R.id.ivLoginLogo);
 
-        Glide.with(getActivity()).load(R.drawable.logo_name).into(ivLogo);
+        //Glide.with(getActivity()).load(R.drawable.logo_name).into(ivLogo);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyTheme);
         progressDialog.setCancelable(false);

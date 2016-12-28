@@ -3,6 +3,7 @@ package com.gloobe.survey.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
@@ -92,24 +93,18 @@ public class Utils {
     }
 
     public static boolean isConnected() {
-
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
-
-        //For 3G check
-        boolean is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-                .isConnectedOrConnecting();
-        //For WiFi Check
-        boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-                .isConnectedOrConnecting();
-
-        System.out.println(is3g + " net " + isWifi);
-
-        if (!is3g && !isWifi) {
-            return true;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) { // connected to the internet
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                // connected to wifi
+                return true;
+            } else
+                return false;
         } else {
+            // not connected to the internet
             return false;
         }
 
     }
-
 }

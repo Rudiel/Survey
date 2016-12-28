@@ -22,8 +22,8 @@
     <dimen name="login_button_w">250dp</dimen>
     <dimen name="login_button_h">50dp</dimen>
     <dimen name="login_edittext_w">250dp</dimen>
-    <dimen name="login_edittext_h">50dp</dimen>
     <dimen name="login_button_space">60dp</dimen>
+    <dimen name="login_edittext_h">50dp</dimen>
 
     <dimen name="lista_logo_w">200dp</dimen>
     <dimen name="lista_logo_h">50dp</dimen>
