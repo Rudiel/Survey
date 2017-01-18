@@ -22,7 +22,9 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Adaptadores.RecyclerViewAdapter;
 import com.gloobe.survey.Interfaces.IRecyclerItemClic;
+import com.gloobe.survey.Modelos.Models.Response.EncuestaModel;
 import com.gloobe.survey.Modelos.Models.Response.Survey;
+import com.gloobe.survey.Modelos.Models.Response.SurveyList;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Utils.Utils;
@@ -60,13 +62,11 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
         mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
-
         ivProfile = (ImageView) getActivity().findViewById(R.id.ivProfile);
         tvProfile = (TextView) getActivity().findViewById(R.id.tvProfile);
         swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swiperefresh);
 
         //pbLista.getIndeterminateDrawable().setColorFilter(0xff2863, android.graphics.PorterDuff.Mode.MULTIPLY);
-
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -75,17 +75,54 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
                 ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
         mRecyclerView.setAdapter(mAdapter);
 
-        Glide.with(this).load(Utils.getImageUser()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
-            @Override
-            protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                ivProfile.setImageDrawable(circularBitmapDrawable);
-            }
-        });
-
         Utils.setContext(getActivity());
+
+        /*if (!Utils.getImageUser().equals("")) {
+            Glide.with(this).load(Utils.getImageUser()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivProfile.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+        } else {
+            Glide.with(this).load(R.drawable.img_default).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivProfile.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+
+        }*/
+
+        if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl() != null) {
+
+            Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivProfile.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+        } else {
+            Glide.with(this).load(R.drawable.img_default).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    ivProfile.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+        }
+
 
         tvProfile.setText(getString(R.string.lista_welcome) + " " + Utils.getUserName());
         tvProfile.setTypeface(((Actividad_Principal) getActivity()).tfTitulosBold);
@@ -132,20 +169,21 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
 
         SurveyInterface service = retrofit.create(SurveyInterface.class);
 
-        Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> encuestaCall = service.getEncuesta(customer_id, survey_id, "Token token=" + token);
+        Call<com.gloobe.survey.Modelos.Models.Response.EncuestaModel> encuestaCall = service.getEncuesta(customer_id, survey_id, "Token token=" + token);
 
-        encuestaCall.enqueue(new Callback<com.gloobe.survey.Modelos.Models.Response.Encuesta>() {
+        encuestaCall.enqueue(new Callback<EncuestaModel>() {
             @Override
-            public void onResponse(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Response<com.gloobe.survey.Modelos.Models.Response.Encuesta> response) {
+            public void onResponse(Call<com.gloobe.survey.Modelos.Models.Response.EncuestaModel> call, Response<com.gloobe.survey.Modelos.Models.Response.EncuestaModel> response) {
                 if (response.body() != null) {
-                    ((Actividad_Principal) getActivity()).encuesta = response.body();
+                    ((Actividad_Principal) getActivity()).encuestaModel = response.body();
+                    ((Actividad_Principal) getActivity()).encuesta = response.body().getSurvey();
                     ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
                     ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Survey(), true, ((Actividad_Principal) getActivity()).FG_SURVEY);
                 }
             }
 
             @Override
-            public void onFailure(Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> call, Throwable t) {
+            public void onFailure(Call<com.gloobe.survey.Modelos.Models.Response.EncuestaModel> call, Throwable t) {
                 ((Actividad_Principal) getActivity()).pbPrincipal.setVisibility(View.GONE);
             }
         });
@@ -161,12 +199,14 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
 
         SurveyInterface service = retrofit.create(SurveyInterface.class);
 
-        Call<List<Survey>> encuestas = service.getSurveys(custumer_id, "Token token=" + token);
-        encuestas.enqueue(new Callback<List<Survey>>() {
+        Call<SurveyList> encuestas = service.getSurveys(custumer_id, "Token token=" + token);
+        encuestas.enqueue(new Callback<SurveyList>() {
             @Override
-            public void onResponse(Call<List<Survey>> call, Response<List<Survey>> response) {
+            public void onResponse(Call<SurveyList> call, Response<SurveyList> response) {
                 if (response.body() != null) {
-                    ((Actividad_Principal) getActivity()).surveyList = response.body();
+                    //((Actividad_Principal) getActivity()).surveyList = response.body();
+                    ((Actividad_Principal) getActivity()).surveyListObj = response.body();
+                    ((Actividad_Principal) getActivity()).surveyList = ((Actividad_Principal) getActivity()).surveyListObj.getSurveys();
                     mAdapter = new RecyclerViewAdapter(((Actividad_Principal) getActivity()).surveyList, Fragment_Lista.this, getActivity(),
                             ((Actividad_Principal) getActivity()).tfTitulos, ((Actividad_Principal) getActivity()).tfTextos, ((Actividad_Principal) getActivity()).tfTitulosBold);
                     mRecyclerView.setAdapter(mAdapter);
@@ -176,7 +216,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
             }
 
             @Override
-            public void onFailure(Call<List<Survey>> call, Throwable t) {
+            public void onFailure(Call<SurveyList> call, Throwable t) {
                 swipeRefreshLayout.setRefreshing(false);
 
             }

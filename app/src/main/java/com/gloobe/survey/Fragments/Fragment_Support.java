@@ -45,15 +45,15 @@ public class Fragment_Support extends Fragment {
         ((TextView) getActivity().findViewById(R.id.tvSupportMailIcon)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
         ((TextView) getActivity().findViewById(R.id.tvFaq)).setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
 
-
-        rlPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String phone = "9982392580";
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                startActivity(intent);
-            }
-        });
+        if (!getResources().getBoolean(R.bool.isTablet))
+            rlPhone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String phone = "9982392580";
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+                    startActivity(intent);
+                }
+            });
 
         rlMail.setOnClickListener(new View.OnClickListener() {
             @Override

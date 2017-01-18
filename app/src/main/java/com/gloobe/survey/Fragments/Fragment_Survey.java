@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -37,6 +40,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.gloobe.survey.Actividades.Actividad_Principal;
 import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
@@ -74,6 +78,7 @@ public class Fragment_Survey extends Fragment {
     private LinearLayout ll;
     private LinearLayout llContenedor;
     private ImageView ivLogo;
+    private ImageView ivPerfil;
     private Encuesta encuesta;
     private List<com.gloobe.survey.Modelos.Models.Request.Question> lisQuestionsRequest;
     private Button btSend;
@@ -90,6 +95,8 @@ public class Fragment_Survey extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        Utils.setContext(getActivity());
+
         ((Actividad_Principal) getActivity()).toolbar.setVisibility(View.GONE);
         ((Actividad_Principal) getActivity()).drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
@@ -97,46 +104,59 @@ public class Fragment_Survey extends Fragment {
         ll = (LinearLayout) getActivity().findViewById(R.id.llEncuestas);
         llContenedor = (LinearLayout) getActivity().findViewById(R.id.llContenedorEncuesta);
         ivLogo = (ImageView) getActivity().findViewById(R.id.ivLogo);
+        ivPerfil = (ImageView) getActivity().findViewById(R.id.ivSurveyProfile);
 
         encuesta = ((Actividad_Principal) getActivity()).encuesta;
 
-        if (encuesta.getAvatar().getAvatar().getUrl() != null) {
-            Glide.with(getActivity()).load(encuesta.getAvatar().getAvatar().getUrl()).centerCrop().into(ivLogo);
-        } else
+        if (encuesta.getAvatar().getUrl() != null) {
+            Glide.with(getActivity()).load(encuesta.getAvatar().getUrl()).centerCrop().into(ivLogo);
+            if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl() != null) {
+                ivPerfil.setVisibility(View.VISIBLE);
+                Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivPerfil) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        ivPerfil.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+            }
+        } else {
             Glide.with(getActivity()).load(R.drawable.unnamed).centerCrop().into(ivLogo);
-
-        Utils.setContext(getActivity());
+            ivPerfil.setVisibility(View.GONE);
+        }
 
         lisQuestionsRequest = new ArrayList<>();
 
         for (int q = 0; q < encuesta.getQuestions().size(); q++) {
 
-            switch (encuesta.getQuestions().get(q).getQuestion_type().getId()) {
-                case 1:
+            switch (encuesta.getQuestions().get(q).getQuestion_type()) {
+                case "open":
                     //abierta editext
                     createOpenQuestion(encuesta.getQuestions().get(q));
                     break;
-                case 2:
+                case "single":
                     //una opcion radio button
                     createSingleChoiseQuestion(encuesta.getQuestions().get(q));
                     break;
-                case 3:
+                case "multiple":
                     //opcion multiple checkbox
                     createMultipleChoiseQuestion(encuesta.getQuestions().get(q));
                     break;
-                case 4:
+                case "date":
                     //fecha date
                     createDateQuestion(encuesta.getQuestions().get(q));
                     break;
-                case 5:
+                case "image":
                     createImageQuestion(encuesta.getQuestions().get(q));
                     //Imagenes
                     break;
-                case 6:
+                case "rating":
                     createRaitingQuestion(encuesta.getQuestions().get(q));
                     //Raiting
                     break;
-                case 7:
+                case "list":
                     createSingleChoiceListQuestion(encuesta.getQuestions().get(q));
                     //Una opcion de una lista spinner
                     break;
@@ -163,7 +183,7 @@ public class Fragment_Survey extends Fragment {
         //editText.setId(id);
 
         com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
         ques.setQuestion_id(question.getId());
         ques.setEditText(editText);
 
@@ -191,7 +211,7 @@ public class Fragment_Survey extends Fragment {
         }
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
         ques.setQuestion_id(question.getId());
         lisQuestionsRequest.add(ques);
 
@@ -229,7 +249,7 @@ public class Fragment_Survey extends Fragment {
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
         lisQuestionsRequest.add(ques);
 
         final List<Integer> checkBoxIdsList = new ArrayList<>();
@@ -292,7 +312,7 @@ public class Fragment_Survey extends Fragment {
         btDate.setText(getString(R.string.send_survey_fecha));
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
         ques.setQuestion_id(question.getId());
         lisQuestionsRequest.add(ques);
 
@@ -306,6 +326,7 @@ public class Fragment_Survey extends Fragment {
 
                 DatePickerDialog mDatePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
                         btDate.setText(selectedday + "/" + selectedmonth + "/" + selectedyear);
                         ques.setDate(selectedday + "/" + selectedmonth + "/" + selectedyear);
                         if (!lisQuestionsRequest.contains(ques))
@@ -332,7 +353,7 @@ public class Fragment_Survey extends Fragment {
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
 
         //necesito agregar las imagenes en el linear layout x cada pregunta
         //cada imagen tiene su listener
@@ -394,7 +415,7 @@ public class Fragment_Survey extends Fragment {
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
         lisQuestionsRequest.add(ques);
 
         //rating.setOnRatingBarChangeListener(clickRatingBar(res, id, titulo));
@@ -440,7 +461,7 @@ public class Fragment_Survey extends Fragment {
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
-        ques.setQuestion_type(question.getQuestion_type().getId());
+        ques.setQuestion_type(question.getQuestion_type());
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -567,7 +588,7 @@ public class Fragment_Survey extends Fragment {
             JSONObject questionObject = new JSONObject();
             questionObject.put("question_id", lisQuestionsRequest.get(i).getQuestion_id());
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 6) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("rating")) {
 
                 JSONObject ratingObject = new JSONObject();
                 if (lisQuestionsRequest.get(i).getResponse() != null)
@@ -577,14 +598,14 @@ public class Fragment_Survey extends Fragment {
                 questionObject.put("answer_raiting_attributes", ratingObject);
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 2 || lisQuestionsRequest.get(i).getQuestion_type() == 7) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("single") || lisQuestionsRequest.get(i).getQuestion_type().equals("list")) {
 
                 JSONObject choiceObject = new JSONObject();
                 choiceObject.put("choice_id", lisQuestionsRequest.get(i).getChoice_id());
                 questionObject.put("choice_answer_attributes", choiceObject);
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 4) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("date")) {
                 JSONObject dateObject = new JSONObject();
                 if (lisQuestionsRequest.get(i).getDate() != null)
                     dateObject.put("response", lisQuestionsRequest.get(i).getDate());
@@ -593,14 +614,14 @@ public class Fragment_Survey extends Fragment {
                 questionObject.put("answer_date_attributes", dateObject);
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 1) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("open")) {
                 JSONObject openObject = new JSONObject();
                 openObject.put("response", lisQuestionsRequest.get(i).getEditText().getText().toString());
                 questionObject.put("answer_open_attributes", openObject);
 
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 3) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("multiple")) {
                 //opcion multiple
                 JSONObject multipleObject = new JSONObject();
                 JSONArray jsonArray = new JSONArray();
@@ -613,7 +634,7 @@ public class Fragment_Survey extends Fragment {
 
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type() == 5) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("image")) {
                 //imagenes
                 JSONObject imageObject = new JSONObject();
                 imageObject.put("image_id", lisQuestionsRequest.get(i).getChoice_id());

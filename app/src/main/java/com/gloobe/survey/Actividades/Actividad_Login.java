@@ -80,8 +80,8 @@ public class Actividad_Login extends AppCompatActivity {
         btLogin.setTypeface(tfTitulos);
         tvPrivacidad.setTypeface(tfTitulos);
 
-        //etPass.setText("qwerty");
-        //etUsuario.setText("admin@dynamicsurveys.com");
+        etPass.setText("qwerty");
+        etUsuario.setText("admin@socialsurveys.net");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override

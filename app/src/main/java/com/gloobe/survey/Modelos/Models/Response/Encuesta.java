@@ -13,7 +13,7 @@ public class Encuesta {
     private int questions_count;
     private String created_at;
     private List<Question> questions;
-    private EncuestaImage avatar;
+    private Avatar avatar;
     //falta la lista de imagenes
 
 
@@ -65,11 +65,11 @@ public class Encuesta {
         this.questions = questions;
     }
 
-    public EncuestaImage getAvatar() {
+    public Avatar getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(EncuestaImage avatar) {
+    public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
 }

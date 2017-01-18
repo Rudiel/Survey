@@ -5,6 +5,7 @@ import com.gloobe.survey.Modelos.Cliente;
 import com.gloobe.survey.Modelos.Encuesta;
 import com.gloobe.survey.Modelos.Models.Request.Login;
 import com.gloobe.survey.Modelos.Models.Response.Survey;
+import com.gloobe.survey.Modelos.Models.Response.SurveyList;
 import com.gloobe.survey.Modelos.Models.Response.User;
 
 import org.json.JSONObject;
@@ -46,11 +47,11 @@ public interface SurveyInterface {
 
     @Headers({"Content-Type: application/json"})
     @GET("customers/{customer_id}/surveys")
-    Call<List<Survey>> getSurveys(@Path("customer_id") int customer_id, @Header("Authorization") String token);
+    Call<SurveyList> getSurveys(@Path("customer_id") int customer_id, @Header("Authorization") String token);
 
     @Headers({"Content-Type: application/json"})
     @GET("customers/{customer_id}/surveys/{survey_id}")
-    Call<com.gloobe.survey.Modelos.Models.Response.Encuesta> getEncuesta(@Path("customer_id") int customer_id, @Path("survey_id") int survey_id, @Header("Authorization") String token);
+    Call<com.gloobe.survey.Modelos.Models.Response.EncuestaModel> getEncuesta(@Path("customer_id") int customer_id, @Path("survey_id") int survey_id, @Header("Authorization") String token);
 
     @Headers({"Content-Type: application/json"})
     @POST("surveys/{survey_id}/submissions")

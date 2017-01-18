@@ -40,6 +40,8 @@ import com.gloobe.survey.Modelos.Answer;
 import com.gloobe.survey.Modelos.Data;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
+import com.gloobe.survey.Modelos.Models.Response.EncuestaModel;
+import com.gloobe.survey.Modelos.Models.Response.SurveyList;
 import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.Models.Response.Survey;
 import com.gloobe.survey.R;
@@ -67,6 +69,8 @@ public class Actividad_Principal extends AppCompatActivity {
 
     public Data datos;
 
+    public SurveyList surveyListObj;
+
     public List<Question> questionList;
     public List<Answer> answerList;
     public List<Survey> surveyList;
@@ -90,6 +94,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
     public int survey_id = 0;
     public Encuesta encuesta = null;
+    public EncuestaModel encuestaModel;
 
     public static final String FG_ABOUT = "ABOUT_US";
     public static final String FG_LISTA = "LISTA";
@@ -187,7 +192,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
     }
 
-    private void getEncuestas(int custumer_id, String token) {
+    private void getEncuestas(final int custumer_id, final String token) {
 
         pbPrincipal.setVisibility(View.VISIBLE);
 
@@ -199,24 +204,29 @@ public class Actividad_Principal extends AppCompatActivity {
 
         SurveyInterface service = retrofit.create(SurveyInterface.class);
 
-        Call<List<Survey>> encuestas = service.getSurveys(custumer_id, "Token token=" + token);
-        encuestas.enqueue(new Callback<List<Survey>>() {
+        Call<SurveyList> encuestas = service.getSurveys(custumer_id, "Token token=" + token);
+        encuestas.enqueue(new Callback<SurveyList>() {
             @Override
-            public void onResponse(Call<List<Survey>> call, Response<List<Survey>> response) {
+            public void onResponse(Call<SurveyList> call, Response<SurveyList> response) {
                 if (response.body() != null) {
                     Log.d("RESPONSE", response.body().toString());
-                    surveyList = response.body();
+                    //surveyList = response.body();
+                    surveyListObj = response.body();
+                    surveyList = surveyListObj.getSurveys();
                     pbPrincipal.setVisibility(View.GONE);
                     iniciarFragment(new Fragment_Lista(), false, FG_LISTA);
                 } else {
                     pbPrincipal.setVisibility(View.GONE);
+                    mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal));
+                    getEncuestas(custumer_id, token);
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<Survey>> call, Throwable t) {
+            public void onFailure(Call<SurveyList> call, Throwable t) {
                 pbPrincipal.setVisibility(View.GONE);
+                mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal));
 
             }
         });

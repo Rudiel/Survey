@@ -11,7 +11,7 @@ public class Question {
     private int id;
     private String title;
     private String created_at;
-    private QuestionType question_type;
+    private String question_type;
     private List<Choices> choices;
     private List<Images> images;
 
@@ -39,11 +39,11 @@ public class Question {
         this.created_at = created_at;
     }
 
-    public QuestionType getQuestion_type() {
+    public String getQuestion_type() {
         return question_type;
     }
 
-    public void setQuestion_type(QuestionType question_type) {
+    public void setQuestion_type(String question_type) {
         this.question_type = question_type;
     }
 

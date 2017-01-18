@@ -18,7 +18,7 @@ public class Question {
     private List<String> choice_ids;
     private int image_id;
     private String date;
-    private int question_type;
+    private String question_type;
     private EditText editText;
     private List<Integer> checkBoxIdsList;
 
@@ -70,11 +70,11 @@ public class Question {
         this.date = date;
     }
 
-    public int getQuestion_type() {
+    public String getQuestion_type() {
         return question_type;
     }
 
-    public void setQuestion_type(int question_type) {
+    public void setQuestion_type(String question_type) {
         this.question_type = question_type;
     }
 

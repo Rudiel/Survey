@@ -49,4 +49,6 @@
 
     <dimen name="textApparence">16sp</dimen>
 
+    <bool name="isTablet">false</bool>
+
 </resources>
