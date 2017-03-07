@@ -36,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -349,7 +350,7 @@ public class Fragment_Survey extends Fragment {
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
         linearLayout.setGravity(Gravity.CENTER);
 
-        final List<ImageView> imageViewList = new ArrayList<>();
+        final List<RelativeLayout> imageViewList = new ArrayList<>();
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
@@ -359,32 +360,55 @@ public class Fragment_Survey extends Fragment {
         //cada imagen tiene su listener
         for (int i = 0; i < question.getImages().size(); i++) {
 
+            final RelativeLayout relativeLayout = new RelativeLayout(getActivity());
+            RelativeLayout.LayoutParams paramsRelative = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            relativeLayout.setLayoutParams(paramsRelative);
+
             final ImageView imagen = new ImageView(getActivity());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.dimen_carita), (int) getResources().getDimension(R.dimen.dimen_carita));
-            params.gravity = Gravity.CENTER;
-            params.leftMargin = 20;
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) getResources().getDimension(R.dimen.dimen_carita), (int) getResources().getDimension(R.dimen.dimen_carita));
+            params.addRule(RelativeLayout.CENTER_IN_PARENT);
+
+            if (question.getImages().get(i).getFile().getUrl() != null)
+                Glide.with(getActivity()).load(question.getImages().get(i).getFile().getUrl()).into(imagen);
+            else
+                Glide.with(getActivity()).load(question.getImages().get(i).getReference_path()).into(imagen);
+            relativeLayout.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
+            relativeLayout.setBackground(null);
+            params.bottomMargin = (int)getResources().getDimension(R.dimen.tutorial_button_height);
             imagen.setLayoutParams(params);
 
-            Glide.with(getActivity()).load(question.getImages().get(i).getFile().getUrl()).into(imagen);
-            imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
-            imagen.setBackground(null);
+
+            final TextView textView = new TextView(getActivity());
+            RelativeLayout.LayoutParams paramsText = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            textView.setText(question.getImages().get(i).getName());
+            textView.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+            textView.setTextColor(getResources().getColor(R.color.survey_text));
+            paramsText.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            paramsText.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            paramsText.topMargin = (int)getResources().getDimension(R.dimen.tutorial_button_height);
+            textView.setLayoutParams(paramsText);
+
 
             final int finalI = i;
-            imagen.setOnClickListener(new View.OnClickListener() {
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     for (int k = 0; k < imageViewList.size(); k++) {
                         imageViewList.get(k).setBackground(null);
+
                     }
-                    imagen.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
+                    relativeLayout.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
                     ques.setChoice_id(question.getImages().get(finalI).getId());
                 }
             });
 
-            if (!imageViewList.contains(imagen))
-                imageViewList.add(imagen);
+            if (!imageViewList.contains(relativeLayout))
+                imageViewList.add(relativeLayout);
 
-            linearLayout.addView(imagen);
+            relativeLayout.addView(imagen);
+            relativeLayout.addView(textView);
+
+            linearLayout.addView(relativeLayout);
 
         }
 

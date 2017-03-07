@@ -11,6 +11,25 @@ public class Images {
     private int question_id;
     private String created_at;
     private String updated_at;
+    private String name;
+    private String reference_path;
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReference_path() {
+        return reference_path;
+    }
+
+    public void setReference_path(String reference_path) {
+        this.reference_path = reference_path;
+    }
 
     public int getId() {
         return id;

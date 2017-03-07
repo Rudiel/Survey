@@ -29,13 +29,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Typeface tfTextos;
     private Typeface tfTituloBold;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvEncuesta;
-        public TextView tvFecha;
-        public TextView tvNumero;
-        public CardView rlNumero;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvEncuesta;
+        TextView tvFecha;
+        TextView tvNumero;
+        CardView rlNumero;
 
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
             tvEncuesta = (TextView) v.findViewById(R.id.tvLista);
             tvFecha = (TextView) v.findViewById(R.id.tvFecha);

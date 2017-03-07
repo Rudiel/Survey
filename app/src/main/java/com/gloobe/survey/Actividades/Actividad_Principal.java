@@ -190,6 +190,8 @@ public class Actividad_Principal extends AppCompatActivity {
 
         dbHelper();
 
+        surveyListObj= new SurveyList();
+
     }
 
     private void getEncuestas(final int custumer_id, final String token) {

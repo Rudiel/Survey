@@ -94,10 +94,9 @@
         android:id="@+id/ivLoginLogo"
         android:layout_width="@dimen/lista_logo_w"
         android:layout_height="@dimen/menu_logo_h"
-        android:layout_above="@id/llLogin"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:src="@drawable/shape"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -232,6 +233,7 @@ public class Actividad_Login extends AppCompatActivity {
         Utils.saveUserName(usuario.getName());
         Utils.saveUserMail(usuario.getEmail());
         Utils.saveUserImage(usuario.getImage().getImage().getUrl());
+        Log.d("KEY",usuario.getApi_key());
     }
 
 }
