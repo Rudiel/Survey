@@ -25,7 +25,7 @@
     <string name="encuestra_dialgo_texto_mal">Ocurrio un error al Enviar sus Respuestas, intente nuevamente.</string>
     <string name="encuestra_dialgo_texto_bien">Respuestas Enviadas Satisfactoriamente!.</string>
 
-    <string name="lista_dialogo_texto_mal">Este item no tiene encuestas</string>
+    <string name="lista_dialogo_texto_mal">Ha ocurrido un error. Intente nuevamente</string>
     <string name="lista_dialogo_titulo">Encuestas</string>
 
     <string name="menu_surveys">Surveys</string>

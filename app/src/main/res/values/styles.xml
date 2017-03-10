@@ -23,6 +23,11 @@
 
     </style>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/survey_rosado</item>
+        <item name="colorAccent">@color/survey_rosado</item>
+    </style>
+
 
     <style name="ProgressBarCustom">
         <item name="android:bottomBright">@color/transparent</item>

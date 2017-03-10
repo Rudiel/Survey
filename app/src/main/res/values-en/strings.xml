@@ -26,7 +26,7 @@
     <string name="encuestra_dialgo_texto_mal">There was an error submitting your answers, please try again.</string>
     <string name="encuestra_dialgo_texto_bien">Replies Sent Satisfactorily!</string>
 
-    <string name="lista_dialogo_texto_mal">This item has no surveys</string>
+    <string name="lista_dialogo_texto_mal">An error has occurred. Try again</string>
     <string name="lista_dialogo_titulo">Surveys</string>
 
     <string name="menu_surveys">Surveys</string>

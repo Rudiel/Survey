@@ -18,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -230,11 +231,11 @@ public class Actividad_Principal extends AppCompatActivity {
                             logout();
                         }
                         else {
-                            mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
+                            mostarDialogo(getString(R.string.lista_dialogo_texto_mal),getString(R.string.lista_dialogo_titulo), custumer_id, token);
                         }
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
-                        mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
+                        mostarDialogo(getString(R.string.lista_dialogo_texto_mal),getString(R.string.lista_dialogo_titulo), custumer_id, token);
 
                     }
 
@@ -247,7 +248,7 @@ public class Actividad_Principal extends AppCompatActivity {
             @Override
             public void onFailure(Call<SurveyList> call, Throwable t) {
                 pbPrincipal.setVisibility(View.GONE);
-                mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
+                mostarDialogo(getString(R.string.lista_dialogo_texto_mal),getString(R.string.lista_dialogo_titulo), custumer_id, token);
 
             }
         });
@@ -318,11 +319,12 @@ public class Actividad_Principal extends AppCompatActivity {
     }
 
     public void mostarDialogo(String mensaje, String titulo, @Nullable final int custumer_id, @Nullable final String token) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         builder.setMessage(mensaje)
                 .setTitle(titulo);
         final AlertDialog dialog = builder.create();
-        dialog.setButton("ok", new DialogInterface.OnClickListener() {
+
+        dialog.setButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialog.dismiss();
