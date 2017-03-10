@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -49,6 +50,10 @@ import com.gloobe.survey.Utils.FontsOverride;
 import com.gloobe.survey.Utils.LocaleHelper;
 import com.gloobe.survey.Utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -190,7 +195,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
         dbHelper();
 
-        surveyListObj= new SurveyList();
+        surveyListObj = new SurveyList();
 
     }
 
@@ -218,9 +223,23 @@ public class Actividad_Principal extends AppCompatActivity {
                     pbPrincipal.setVisibility(View.GONE);
                     iniciarFragment(new Fragment_Lista(), false, FG_LISTA);
                 } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Log.d("BAD_TOKEN", jObjError.toString());
+                        if(jObjError.getString("error").equals("Unauthorized")){
+                            logout();
+                        }
+                        else {
+                            mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
+                        }
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                        mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
+
+                    }
+
+
                     pbPrincipal.setVisibility(View.GONE);
-                    mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal));
-                    getEncuestas(custumer_id, token);
                 }
 
             }
@@ -228,7 +247,7 @@ public class Actividad_Principal extends AppCompatActivity {
             @Override
             public void onFailure(Call<SurveyList> call, Throwable t) {
                 pbPrincipal.setVisibility(View.GONE);
-                mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal));
+                mostarDialogo(getString(R.string.lista_dialogo_titulo), getString(R.string.lista_dialogo_texto_mal), custumer_id, token);
 
             }
         });
@@ -298,7 +317,7 @@ public class Actividad_Principal extends AppCompatActivity {
 
     }
 
-    public void mostarDialogo(String mensaje, String titulo) {
+    public void mostarDialogo(String mensaje, String titulo, @Nullable final int custumer_id, @Nullable final String token) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(mensaje)
                 .setTitle(titulo);
@@ -307,6 +326,9 @@ public class Actividad_Principal extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialog.dismiss();
+                if (token != null)
+                    getEncuestas(custumer_id, token);
+
             }
         });
         dialog.show();

@@ -103,18 +103,18 @@ public class Fragment_Login extends Fragment {
                                 ((Actividad_Principal) getActivity()).datos = cliente.getData();
                                 //((Actividad_Principal) getActivity()).surveyList = cliente.getData().getSurveys();
                                 progressDialog.dismiss();
-                                ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Lista(), true,((Actividad_Principal)getActivity()).FG_LISTA);
+                                ((Actividad_Principal) getActivity()).iniciarFragment(new Fragment_Lista(), true, ((Actividad_Principal) getActivity()).FG_LISTA);
 
                             } else {
                                 progressDialog.dismiss();
-                                ((Actividad_Principal) getActivity()).mostarDialogo(getResources().getString(R.string.login_credenciales_invalidas), getResources().getString(R.string.login_dialog_titulo));
+                                ((Actividad_Principal) getActivity()).mostarDialogo(getResources().getString(R.string.login_credenciales_invalidas), getResources().getString(R.string.login_dialog_titulo), 0, null);
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Cliente> call, Throwable t) {
                             progressDialog.dismiss();
-                            ((Actividad_Principal) getActivity()).mostarDialogo(t.getMessage().toString(), getResources().getString(R.string.login_dialog_titulo));
+                            ((Actividad_Principal) getActivity()).mostarDialogo(t.getMessage().toString(), getResources().getString(R.string.login_dialog_titulo), 0, null);
                         }
                     });
                 }
