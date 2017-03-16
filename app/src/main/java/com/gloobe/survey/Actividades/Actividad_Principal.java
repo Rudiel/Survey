@@ -38,13 +38,11 @@ import com.gloobe.survey.Fragments.Fragment_AboutUs;
 import com.gloobe.survey.Fragments.Fragment_Lista;
 import com.gloobe.survey.Fragments.Fragment_Support;
 import com.gloobe.survey.Interfaces.SurveyInterface;
-import com.gloobe.survey.Modelos.Answer;
 import com.gloobe.survey.Modelos.Data;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
 import com.gloobe.survey.Modelos.Models.Response.EncuestaModel;
 import com.gloobe.survey.Modelos.Models.Response.SurveyList;
-import com.gloobe.survey.Modelos.Question;
 import com.gloobe.survey.Modelos.Models.Response.Survey;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Utils.FontsOverride;
@@ -76,9 +74,6 @@ public class Actividad_Principal extends AppCompatActivity {
     public Data datos;
 
     public SurveyList surveyListObj;
-
-    public List<Question> questionList;
-    public List<Answer> answerList;
     public List<Survey> surveyList;
 
     public static LinearLayout llconexion;

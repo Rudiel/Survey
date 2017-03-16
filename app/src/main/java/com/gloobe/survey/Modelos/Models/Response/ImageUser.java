@@ -6,14 +6,13 @@ package com.gloobe.survey.Modelos.Models.Response;
 
 public class ImageUser {
 
-   private Image image;
+   private Avatar avatar;
 
-
-    public Image getImage() {
-        return image;
+    public Avatar getAvatar() {
+        return avatar;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }

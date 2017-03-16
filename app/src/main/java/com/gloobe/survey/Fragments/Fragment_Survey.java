@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -19,6 +20,7 @@ import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,6 +49,7 @@ import com.gloobe.survey.Interfaces.SurveyInterface;
 import com.gloobe.survey.Modelos.Models.Request.ObjectToSend;
 import com.gloobe.survey.Modelos.Models.Response.Encuesta;
 import com.gloobe.survey.Modelos.Models.Response.Question;
+import com.gloobe.survey.Modelos.Models.Response.Raiting;
 import com.gloobe.survey.R;
 import com.gloobe.survey.Utils.DatePikerFragment;
 import com.gloobe.survey.Utils.Utils;
@@ -111,9 +114,9 @@ public class Fragment_Survey extends Fragment {
 
         if (encuesta.getAvatar().getUrl() != null) {
             Glide.with(getActivity()).load(encuesta.getAvatar().getUrl()).centerCrop().into(ivLogo);
-            if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl() != null) {
+            if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getAvatar().getUrl() != null) {
                 ivPerfil.setVisibility(View.VISIBLE);
-                Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivPerfil) {
+                Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getAvatar().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivPerfil) {
                     @Override
                     protected void setResource(Bitmap resource) {
                         RoundedBitmapDrawable circularBitmapDrawable =
@@ -161,6 +164,15 @@ public class Fragment_Survey extends Fragment {
                     createSingleChoiceListQuestion(encuesta.getQuestions().get(q));
                     //Una opcion de una lista spinner
                     break;
+                case "phone":
+                    createPhoneQuestion(encuesta.getQuestions().get(q));
+                    break;
+                case "email":
+                    createEmailQuestion(encuesta.getQuestions().get(q));
+                    break;
+                case "description":
+                    createDescriptionQuestion(encuesta.getQuestions().get(q));
+                    break;
 
             }
 
@@ -192,6 +204,117 @@ public class Fragment_Survey extends Fragment {
             lisQuestionsRequest.add(ques);
 
         ll.addView(createCardview(createTitle(question.getTitle()), editText));
+
+    }
+
+    private void createPhoneQuestion(Question question) {
+
+        //ll.addView(createTitle(question.getTitle()));
+        EditText editText = new EditText(new android.view.ContextThemeWrapper(getActivity(), R.style.EdittextStyle));
+        editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        editText.setHint(getString(R.string.encuesta_edittext_hint));
+        editText.setHintTextColor(getResources().getColor(R.color.survey_gris));
+        editText.setSingleLine(true);
+        editText.setTextColor(getResources().getColor(R.color.survey_text));
+        editText.setInputType(InputType.TYPE_CLASS_PHONE);
+        editText.setMaxLines(1);
+        editText.setLines(1);
+        //editText.setId(id);
+
+        com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
+        ques.setQuestion_type(question.getQuestion_type());
+        ques.setQuestion_id(question.getId());
+        ques.setEditText(editText);
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
+
+        ll.addView(createCardview(createTitle(question.getTitle()), editText));
+
+    }
+
+    private void createEmailQuestion(Question question) {
+
+        //ll.addView(createTitle(question.getTitle()));
+        EditText editText = new EditText(new android.view.ContextThemeWrapper(getActivity(), R.style.EdittextStyle));
+        editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        editText.setHint(getString(R.string.encuesta_edittext_hint));
+        editText.setHintTextColor(getResources().getColor(R.color.survey_gris));
+        editText.setSingleLine(true);
+        editText.setTextColor(getResources().getColor(R.color.survey_text));
+        editText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        editText.setMaxLines(1);
+        editText.setLines(1);
+        //editText.setId(id);
+
+        com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
+        ques.setQuestion_type(question.getQuestion_type());
+        ques.setQuestion_id(question.getId());
+        ques.setEditText(editText);
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
+
+        ll.addView(createCardview(createTitle(question.getTitle()), editText));
+
+    }
+
+    private void createDescriptionQuestion(Question question) {
+
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.LEFT);
+
+        //ll.addView(createTitle(question.getTitle()));
+        EditText editText = new EditText(new android.view.ContextThemeWrapper(getActivity(), R.style.EdittextStyle));
+        editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        editText.setHint(getString(R.string.encuesta_edittext_hint));
+        editText.setHintTextColor(getResources().getColor(R.color.survey_gris));
+        editText.setSingleLine(true);
+        editText.setTextColor(getResources().getColor(R.color.survey_text));
+        editText.setMaxLines(1);
+        editText.setLines(1);
+        //editText.setId(id);
+
+        linearLayout.addView(editText);
+
+
+        if (question.getInfo_body() != null) {
+            TextView tvBody = new TextView(getActivity());
+            LinearLayout.LayoutParams paramsInfo = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            paramsInfo.gravity = Gravity.CENTER;
+            paramsInfo.topMargin = (int) getResources().getDimension(R.dimen.tutorial_button_height);
+            tvBody.setText(question.getInfo_body());
+            tvBody.setTextColor(getResources().getColor(R.color.survey_text));
+            tvBody.setLayoutParams(paramsInfo);
+
+            linearLayout.addView(tvBody);
+        }
+
+        if (question.getInfo_image() != null) {
+
+            final ImageView ivInfo = new ImageView(getActivity());
+            LinearLayout.LayoutParams paramsImage = new LinearLayout.LayoutParams((int) getResources().getDimension(R.dimen.dimen_carita) * 3, (int) getResources().getDimension(R.dimen.dimen_carita) * 3);
+            paramsImage.gravity = Gravity.CENTER;
+            paramsImage.topMargin = (int) getResources().getDimension(R.dimen.tutorial_button_height);
+            ivInfo.setLayoutParams(paramsImage);
+
+            Glide.with(getActivity()).load(question.getInfo_image().getUrl()).centerCrop().into(ivInfo);
+
+            linearLayout.addView(ivInfo);
+        }
+
+        com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
+        ques.setQuestion_type(question.getQuestion_type());
+        ques.setQuestion_id(question.getId());
+        ques.setEditText(editText);
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
+
+
+        ll.addView(createCardview(createTitle(question.getTitle()), linearLayout));
 
     }
 
@@ -374,7 +497,7 @@ public class Fragment_Survey extends Fragment {
                 Glide.with(getActivity()).load(question.getImages().get(i).getReference_path()).into(imagen);
             relativeLayout.setBackground(getResources().getDrawable(R.drawable.image_selected_background));
             relativeLayout.setBackground(null);
-            params.bottomMargin = (int)getResources().getDimension(R.dimen.tutorial_button_height);
+            params.bottomMargin = (int) getResources().getDimension(R.dimen.tutorial_button_height);
             imagen.setLayoutParams(params);
 
 
@@ -385,7 +508,7 @@ public class Fragment_Survey extends Fragment {
             textView.setTextColor(getResources().getColor(R.color.survey_text));
             paramsText.addRule(RelativeLayout.CENTER_HORIZONTAL);
             paramsText.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            paramsText.topMargin = (int)getResources().getDimension(R.dimen.tutorial_button_height);
+            paramsText.topMargin = (int) getResources().getDimension(R.dimen.tutorial_button_height);
             textView.setLayoutParams(paramsText);
 
 
@@ -427,33 +550,61 @@ public class Fragment_Survey extends Fragment {
 
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
-
-        RatingBar rating = //new RatingBar(getActivity());
-                new RatingBar(new android.view.ContextThemeWrapper(getActivity(), R.style.RatingBarStyle), null, 0);
-        rating.setMax(5);
-        LinearLayout.LayoutParams paramsStar = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        rating.setLayoutParams(paramsStar);
-        rating.setNumStars(5);
 
         final com.gloobe.survey.Modelos.Models.Request.Question ques = new com.gloobe.survey.Modelos.Models.Request.Question();
         ques.setQuestion_id(question.getId());
         ques.setQuestion_type(question.getQuestion_type());
         lisQuestionsRequest.add(ques);
 
-        //rating.setOnRatingBarChangeListener(clickRatingBar(res, id, titulo));
-        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                ques.setResponse(String.valueOf(rating));
-                if (!lisQuestionsRequest.contains(ques))
-                    lisQuestionsRequest.add(ques);
+        final List<Raiting> raitingsList = new ArrayList<>();
 
-            }
-        });
+        for (int x = 0; x < question.getRaitings().size(); x++) {
 
-        linearLayout.addView(rating);
+            TextView tvRaitingTitle = new TextView(getActivity());
+            tvRaitingTitle.setText(question.getRaitings().get(x).getName());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.topMargin = 20;
+            params.leftMargin = 20;
+            tvRaitingTitle.setLayoutParams(params);
+            tvRaitingTitle.setTextColor(getResources().getColor(R.color.survey_text));
+            tvRaitingTitle.setTypeface(((Actividad_Principal) getActivity()).tfTitulos);
+
+            RatingBar ratingbar = //new RatingBar(getActivity());
+                    new RatingBar(new android.view.ContextThemeWrapper(getActivity(), R.style.RatingBarStyle), null, 0);
+            ratingbar.setMax(5);
+            LinearLayout.LayoutParams paramsStar = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ratingbar.setLayoutParams(paramsStar);
+            ratingbar.setNumStars(5);
+
+            final Raiting r = new Raiting();
+            r.setId(question.getRaitings().get(x).getId());
+            r.setRange("5");
+            raitingsList.add(r);
+
+            final int finalI = x;
+            ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    //ques.setResponse(String.valueOf(rating));
+                    r.setRange(String.valueOf((int) rating));
+                    if (!raitingsList.contains(r)) {
+                        raitingsList.add(r);
+                    }
+
+                }
+            });
+
+
+            linearLayout.addView(tvRaitingTitle);
+            linearLayout.addView(ratingbar);
+        }
+
+        ques.setRaitings(raitingsList);
+
+        if (!lisQuestionsRequest.contains(ques))
+            lisQuestionsRequest.add(ques);
 
         ll.addView(createCardview(createTitle(question.getTitle()), linearLayout));
 
@@ -615,11 +766,23 @@ public class Fragment_Survey extends Fragment {
             if (lisQuestionsRequest.get(i).getQuestion_type().equals("rating")) {
 
                 JSONObject ratingObject = new JSONObject();
-                if (lisQuestionsRequest.get(i).getResponse() != null)
-                    ratingObject.put("response", lisQuestionsRequest.get(i).getResponse());
-                else
-                    ratingObject.put("response", "5.0");
-                questionObject.put("answer_raiting_attributes", ratingObject);
+
+                for (int r = 0; r < lisQuestionsRequest.get(i).getRaitings().size(); r++) {
+                    JSONObject rating = new JSONObject();
+
+                    rating.put("raiting_id", lisQuestionsRequest.get(i).getRaitings().get(r).getId());
+
+                    if (!lisQuestionsRequest.get(i).getRaitings().get(r).getRange().equals(""))
+                        rating.put("response", lisQuestionsRequest.get(i).getRaitings().get(r).getRange());
+                    else
+                        rating.put("response", "5");
+
+                    ratingObject.put(String.valueOf(r), rating);
+                }
+
+                questionObject.put("answer_raitings_attributes", ratingObject);
+
+
             }
 
             if (lisQuestionsRequest.get(i).getQuestion_type().equals("single") || lisQuestionsRequest.get(i).getQuestion_type().equals("list")) {
@@ -638,7 +801,10 @@ public class Fragment_Survey extends Fragment {
                 questionObject.put("answer_date_attributes", dateObject);
             }
 
-            if (lisQuestionsRequest.get(i).getQuestion_type().equals("open")) {
+            if (lisQuestionsRequest.get(i).getQuestion_type().equals("open")
+                    || lisQuestionsRequest.get(i).getQuestion_type().equals("phone")
+                    || lisQuestionsRequest.get(i).getQuestion_type().equals("description")
+                    || lisQuestionsRequest.get(i).getQuestion_type().equals("email")) {
                 JSONObject openObject = new JSONObject();
                 openObject.put("response", lisQuestionsRequest.get(i).getEditText().getText().toString());
                 questionObject.put("answer_open_attributes", openObject);
@@ -664,6 +830,7 @@ public class Fragment_Survey extends Fragment {
                 imageObject.put("image_id", lisQuestionsRequest.get(i).getChoice_id());
                 questionObject.put("answer_image_attributes", imageObject);
             }
+
 
             objectAttributes.put(String.valueOf(i), questionObject);
         }

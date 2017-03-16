@@ -8,7 +8,6 @@ import java.util.List;
 public class Data_Encuesta {
     private String title, description, expires_at, url;
     private int id;
-    private List<Question> questions;
 
     public String getTitle() {
         return title;
@@ -50,11 +49,5 @@ public class Data_Encuesta {
         this.id = id;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
 }

@@ -14,6 +14,11 @@ public class Question {
     private String question_type;
     private List<Choices> choices;
     private List<Images> images;
+    private List<Raiting> raitings;
+    private String info_body;
+    private Avatar info_image;
+
+
 
     public int getId() {
         return id;
@@ -61,5 +66,29 @@ public class Question {
 
     public void setImages(List<Images> images) {
         this.images = images;
+    }
+
+    public List<Raiting> getRaitings() {
+        return raitings;
+    }
+
+    public void setRaitings(List<Raiting> raitings) {
+        this.raitings = raitings;
+    }
+
+    public String getInfo_body() {
+        return info_body;
+    }
+
+    public void setInfo_body(String info_body) {
+        this.info_body = info_body;
+    }
+
+    public Avatar getInfo_image() {
+        return info_image;
+    }
+
+    public void setInfo_image(Avatar info_image) {
+        this.info_image = info_image;
     }
 }

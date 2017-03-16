@@ -100,9 +100,9 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
 
         }*/
     if(((Actividad_Principal)getActivity()).surveyListObj.getAvatar()!=null)
-        if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl() != null) {
+        if (((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getAvatar().getUrl() != null) {
 
-            Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getImage().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
+            Glide.with(this).load(((Actividad_Principal) getActivity()).surveyListObj.getAvatar().getAvatar().getUrl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(ivProfile) {
                 @Override
                 protected void setResource(Bitmap resource) {
                     RoundedBitmapDrawable circularBitmapDrawable =
@@ -134,8 +134,7 @@ public class Fragment_Lista extends Fragment implements IRecyclerItemClic {
             }
         });*/
 
-        ((Actividad_Principal) getActivity()).questionList = null;
-        ((Actividad_Principal) getActivity()).answerList = null;
+
 
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.survey_rosado), getResources().getColor(R.color.survey_morado));
 

@@ -1,60 +1,13 @@
 package com.gloobe.survey.Fragments;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RatingBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.gloobe.survey.Actividades.Actividad_Principal;
-import com.gloobe.survey.Modelos.Answer;
-import com.gloobe.survey.Modelos.Carita;
-import com.gloobe.survey.Modelos.CaritaID;
-import com.gloobe.survey.Modelos.Multiple;
-import com.gloobe.survey.Modelos.MultipleID;
-import com.gloobe.survey.Modelos.PreguntaAbierta;
-import com.gloobe.survey.Modelos.Question;
-import com.gloobe.survey.Modelos.RespuestaJSON;
-import com.gloobe.survey.R;
-import com.gloobe.survey.Interfaces.SurveyInterface;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.RequestBody;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by rudielavilaperaza on 26/07/16.
  */
 public class Frgament_Encuesta extends Fragment {
 
-    private LinearLayout ll;
+   /* private LinearLayout ll;
     private LinearLayout llContenedor;
     private List<Question> questionList;
     private ImageView ivLogo;
@@ -654,7 +607,6 @@ public class Frgament_Encuesta extends Fragment {
             }
         }*/
 
-    }
 
 }
 

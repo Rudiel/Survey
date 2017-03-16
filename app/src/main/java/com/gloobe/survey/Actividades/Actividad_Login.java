@@ -81,8 +81,8 @@ public class Actividad_Login extends AppCompatActivity {
         btLogin.setTypeface(tfTitulos);
         tvPrivacidad.setTypeface(tfTitulos);
 
-        etPass.setText("qwerty");
-        etUsuario.setText("admin@socialsurveys.net");
+        etPass.setText("test123");
+        etUsuario.setText("e6e8802");
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class Actividad_Login extends AppCompatActivity {
                     SurveyInterface service = retrofit.create(SurveyInterface.class);
 
                     Login login = new Login();
-                    login.setEmail(etUsuario.getText().toString());
+                    login.setUsername(etUsuario.getText().toString());
                     login.setPassword(etPass.getText().toString());
 
                     Call<User> loginCall = service.login(login);
@@ -229,10 +229,7 @@ public class Actividad_Login extends AppCompatActivity {
         Utils.setContext(this);
         Utils.saveApiKey(usuario.getApi_key());
         Utils.saveUserId(usuario.getId());
-        Utils.saveUserLastName(usuario.getLast_name());
         Utils.saveUserName(usuario.getName());
-        Utils.saveUserMail(usuario.getEmail());
-        Utils.saveUserImage(usuario.getImage().getImage().getUrl());
         Log.d("KEY",usuario.getApi_key());
     }
 
